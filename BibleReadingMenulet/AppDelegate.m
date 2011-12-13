@@ -12,9 +12,65 @@
 
 @synthesize window = _window;
 
+- (NSString *)appDirPath {
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *dirPath  = [rootPath stringByAppendingPathComponent:@"BibleReadingMenulet"];
+    return dirPath;
+}
+
+- (NSString *)progressPath {
+    NSString *dirPath = [self appDirPath];
+    NSString *filePath = [dirPath stringByAppendingPathComponent:@"progress.csv"];
+    return filePath;
+}
+
+- (NSString *)templatePath {
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSString *path = [bundle pathForResource:@"OneYear" ofType:@"csv"];
+    return path;
+}
+
+- (NSString *)getCurrentRange:(NSString *)path
+{
+    NSString *rdata = [NSString stringWithContentsOfFile:path
+                                                encoding:NSUTF8StringEncoding error:nil];
+    NSArray *lines = [rdata componentsSeparatedByString:@"\n"];
+    for (NSString *line in lines) {
+        NSLog(@"line -> %@", line);
+        NSArray *fields = [line componentsSeparatedByString:@","];
+        NSUInteger count = [fields count];
+        if (count == 1) {
+            return [fields objectAtIndex:0];
+        }
+    }
+    
+    return nil;
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
+    NSString *progPath = [self progressPath];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if (![fileManager fileExistsAtPath:progPath]) {
+        [fileManager createDirectoryAtPath:[self appDirPath]
+               withIntermediateDirectories:YES
+                                attributes:nil
+                                     error:nil];
+        NSString *tmplPath = [self templatePath];
+        [fileManager copyItemAtPath:tmplPath toPath:progPath error:nil];
+    }
+    
+    statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+    [statusItem setMenu:menu];
+    [statusItem setHighlightMode:YES];
+    
+    NSString *range = [self getCurrentRange:progPath];
+    if (range) {
+        [statusItem setTitle:range];
+    } else {
+        [statusItem setTitle:@"Congratulations!!"];
+    }    
 }
-
 @end

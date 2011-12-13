@@ -13,6 +13,7 @@
 		BA94AB65149704D30040164E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BA94AB63149704D30040164E /* Credits.rtf */; };
 		BA94AB68149704D30040164E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA94AB67149704D30040164E /* AppDelegate.m */; };
 		BA94AB6B149704D30040164E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA94AB69149704D30040164E /* MainMenu.xib */; };
+		BA94AB7614970A750040164E /* OneYear.csv in Resources */ = {isa = PBXBuildFile; fileRef = BA94AB7514970A750040164E /* OneYear.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,14 +22,15 @@
 		BA94AB57149704D30040164E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		BA94AB58149704D30040164E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		BA94AB59149704D30040164E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		BA94AB5C149704D30040164E /* BibleReadingMenulet-Info.plist */ = {isa = PBXFileReference; path = "BibleReadingMenulet-Info.plist"; sourceTree = "<group>"; };
+		BA94AB5C149704D30040164E /* BibleReadingMenulet-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BibleReadingMenulet-Info.plist"; sourceTree = "<group>"; };
 		BA94AB5E149704D30040164E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BA94AB60149704D30040164E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		BA94AB62149704D30040164E /* BibleReadingMenulet-Prefix.pch */ = {isa = PBXFileReference; path = "BibleReadingMenulet-Prefix.pch"; sourceTree = "<group>"; };
+		BA94AB62149704D30040164E /* BibleReadingMenulet-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BibleReadingMenulet-Prefix.pch"; sourceTree = "<group>"; };
 		BA94AB64149704D30040164E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		BA94AB66149704D30040164E /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		BA94AB66149704D30040164E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BA94AB67149704D30040164E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BA94AB6A149704D30040164E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		BA94AB7514970A750040164E /* OneYear.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OneYear.csv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 		BA94AB5B149704D30040164E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BA94AB7514970A750040164E /* OneYear.csv */,
 				BA94AB5C149704D30040164E /* BibleReadingMenulet-Info.plist */,
 				BA94AB5D149704D30040164E /* InfoPlist.strings */,
 				BA94AB60149704D30040164E /* main.m */,
@@ -156,6 +159,7 @@
 				BA94AB5F149704D30040164E /* InfoPlist.strings in Resources */,
 				BA94AB65149704D30040164E /* Credits.rtf in Resources */,
 				BA94AB6B149704D30040164E /* MainMenu.xib in Resources */,
+				BA94AB7614970A750040164E /* OneYear.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +293,7 @@
 				BA94AB70149704D30040164E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
