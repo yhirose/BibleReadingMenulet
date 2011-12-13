@@ -1,0 +1,296 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BA94AB55149704D30040164E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA94AB54149704D30040164E /* Cocoa.framework */; };
+		BA94AB5F149704D30040164E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA94AB5D149704D30040164E /* InfoPlist.strings */; };
+		BA94AB61149704D30040164E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BA94AB60149704D30040164E /* main.m */; };
+		BA94AB65149704D30040164E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BA94AB63149704D30040164E /* Credits.rtf */; };
+		BA94AB68149704D30040164E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA94AB67149704D30040164E /* AppDelegate.m */; };
+		BA94AB6B149704D30040164E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA94AB69149704D30040164E /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BA94AB50149704D30040164E /* BibleReadingMenulet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BibleReadingMenulet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA94AB54149704D30040164E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		BA94AB57149704D30040164E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		BA94AB58149704D30040164E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		BA94AB59149704D30040164E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BA94AB5C149704D30040164E /* BibleReadingMenulet-Info.plist */ = {isa = PBXFileReference; path = "BibleReadingMenulet-Info.plist"; sourceTree = "<group>"; };
+		BA94AB5E149704D30040164E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BA94AB60149704D30040164E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BA94AB62149704D30040164E /* BibleReadingMenulet-Prefix.pch */ = {isa = PBXFileReference; path = "BibleReadingMenulet-Prefix.pch"; sourceTree = "<group>"; };
+		BA94AB64149704D30040164E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		BA94AB66149704D30040164E /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		BA94AB67149704D30040164E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BA94AB6A149704D30040164E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BA94AB4D149704D30040164E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA94AB55149704D30040164E /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BA94AB45149704D30040164E = {
+			isa = PBXGroup;
+			children = (
+				BA94AB5A149704D30040164E /* BibleReadingMenulet */,
+				BA94AB53149704D30040164E /* Frameworks */,
+				BA94AB51149704D30040164E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BA94AB51149704D30040164E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BA94AB50149704D30040164E /* BibleReadingMenulet.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BA94AB53149704D30040164E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BA94AB54149704D30040164E /* Cocoa.framework */,
+				BA94AB56149704D30040164E /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BA94AB56149704D30040164E /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BA94AB57149704D30040164E /* AppKit.framework */,
+				BA94AB58149704D30040164E /* CoreData.framework */,
+				BA94AB59149704D30040164E /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		BA94AB5A149704D30040164E /* BibleReadingMenulet */ = {
+			isa = PBXGroup;
+			children = (
+				BA94AB66149704D30040164E /* AppDelegate.h */,
+				BA94AB67149704D30040164E /* AppDelegate.m */,
+				BA94AB69149704D30040164E /* MainMenu.xib */,
+				BA94AB5B149704D30040164E /* Supporting Files */,
+			);
+			path = BibleReadingMenulet;
+			sourceTree = "<group>";
+		};
+		BA94AB5B149704D30040164E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BA94AB5C149704D30040164E /* BibleReadingMenulet-Info.plist */,
+				BA94AB5D149704D30040164E /* InfoPlist.strings */,
+				BA94AB60149704D30040164E /* main.m */,
+				BA94AB62149704D30040164E /* BibleReadingMenulet-Prefix.pch */,
+				BA94AB63149704D30040164E /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BA94AB4F149704D30040164E /* BibleReadingMenulet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA94AB6E149704D30040164E /* Build configuration list for PBXNativeTarget "BibleReadingMenulet" */;
+			buildPhases = (
+				BA94AB4C149704D30040164E /* Sources */,
+				BA94AB4D149704D30040164E /* Frameworks */,
+				BA94AB4E149704D30040164E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BibleReadingMenulet;
+			productName = BibleReadingMenulet;
+			productReference = BA94AB50149704D30040164E /* BibleReadingMenulet.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BA94AB47149704D30040164E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Yuji Hirose";
+			};
+			buildConfigurationList = BA94AB4A149704D30040164E /* Build configuration list for PBXProject "BibleReadingMenulet" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BA94AB45149704D30040164E;
+			productRefGroup = BA94AB51149704D30040164E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BA94AB4F149704D30040164E /* BibleReadingMenulet */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BA94AB4E149704D30040164E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA94AB5F149704D30040164E /* InfoPlist.strings in Resources */,
+				BA94AB65149704D30040164E /* Credits.rtf in Resources */,
+				BA94AB6B149704D30040164E /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BA94AB4C149704D30040164E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA94AB61149704D30040164E /* main.m in Sources */,
+				BA94AB68149704D30040164E /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BA94AB5D149704D30040164E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BA94AB5E149704D30040164E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		BA94AB63149704D30040164E /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BA94AB64149704D30040164E /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		BA94AB69149704D30040164E /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BA94AB6A149704D30040164E /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BA94AB6C149704D30040164E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		BA94AB6D149704D30040164E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		BA94AB6F149704D30040164E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BibleReadingMenulet/BibleReadingMenulet-Prefix.pch";
+				INFOPLIST_FILE = "BibleReadingMenulet/BibleReadingMenulet-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		BA94AB70149704D30040164E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BibleReadingMenulet/BibleReadingMenulet-Prefix.pch";
+				INFOPLIST_FILE = "BibleReadingMenulet/BibleReadingMenulet-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BA94AB4A149704D30040164E /* Build configuration list for PBXProject "BibleReadingMenulet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA94AB6C149704D30040164E /* Debug */,
+				BA94AB6D149704D30040164E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA94AB6E149704D30040164E /* Build configuration list for PBXNativeTarget "BibleReadingMenulet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA94AB6F149704D30040164E /* Debug */,
+				BA94AB70149704D30040164E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BA94AB47149704D30040164E /* Project object */;
+}
