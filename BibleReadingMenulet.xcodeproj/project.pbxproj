@@ -14,6 +14,8 @@
 		BA94AB68149704D30040164E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA94AB67149704D30040164E /* AppDelegate.m */; };
 		BA94AB6B149704D30040164E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA94AB69149704D30040164E /* MainMenu.xib */; };
 		BA94AB7614970A750040164E /* OneYear.csv in Resources */ = {isa = PBXBuildFile; fileRef = BA94AB7514970A750040164E /* OneYear.csv */; };
+		BA94AB8B149BFA140040164E /* Utility.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA94AB8A149BFA140040164E /* Utility.mm */; };
+		BA94AB92149E94C10040164E /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = BA94AB91149E94C00040164E /* Schedule.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,10 @@
 		BA94AB67149704D30040164E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BA94AB6A149704D30040164E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		BA94AB7514970A750040164E /* OneYear.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OneYear.csv; sourceTree = "<group>"; };
+		BA94AB88149BF9CE0040164E /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		BA94AB8A149BFA140040164E /* Utility.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Utility.mm; sourceTree = "<group>"; };
+		BA94AB90149E94C00040164E /* Schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schedule.h; sourceTree = "<group>"; };
+		BA94AB91149E94C00040164E /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Schedule.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +90,10 @@
 		BA94AB5A149704D30040164E /* BibleReadingMenulet */ = {
 			isa = PBXGroup;
 			children = (
+				BA94AB90149E94C00040164E /* Schedule.h */,
+				BA94AB91149E94C00040164E /* Schedule.m */,
+				BA94AB8A149BFA140040164E /* Utility.mm */,
+				BA94AB88149BF9CE0040164E /* Utility.h */,
 				BA94AB66149704D30040164E /* AppDelegate.h */,
 				BA94AB67149704D30040164E /* AppDelegate.m */,
 				BA94AB69149704D30040164E /* MainMenu.xib */,
@@ -172,6 +182,8 @@
 			files = (
 				BA94AB61149704D30040164E /* main.m in Sources */,
 				BA94AB68149704D30040164E /* AppDelegate.m in Sources */,
+				BA94AB8B149BFA140040164E /* Utility.mm in Sources */,
+				BA94AB92149E94C10040164E /* Schedule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +267,7 @@
 		BA94AB6F149704D30040164E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BibleReadingMenulet/BibleReadingMenulet-Prefix.pch";
 				INFOPLIST_FILE = "BibleReadingMenulet/BibleReadingMenulet-Info.plist";
@@ -266,6 +279,7 @@
 		BA94AB70149704D30040164E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BibleReadingMenulet/BibleReadingMenulet-Prefix.pch";
 				INFOPLIST_FILE = "BibleReadingMenulet/BibleReadingMenulet-Info.plist";

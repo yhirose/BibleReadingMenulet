@@ -7,10 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "Schedule.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     IBOutlet NSMenu *menu;
     NSStatusItem *statusItem;
+    Schedule *schedule;
+    NSArray *chapList;
 }
 
 @property (assign) IBOutlet NSWindow *window;

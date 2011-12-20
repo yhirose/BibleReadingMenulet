@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Utility.h"
 
 @implementation AppDelegate
 
@@ -30,52 +31,6 @@
     return path;
 }
 
-- (NSString *)getCurrentRange
-{
-    NSString *path = [self progressPath];
-    NSString *rdata = [NSString stringWithContentsOfFile:path
-                                                encoding:NSUTF8StringEncoding error:nil];
-    NSArray *lines = [rdata componentsSeparatedByString:@"\n"];
-    for (NSString *line in lines) {
-        NSLog(@"range -> %@", line);
-        NSArray *fields = [line componentsSeparatedByString:@","];
-        NSUInteger count = [fields count];
-        if (count == 1) {
-            return [fields objectAtIndex:0];
-        }
-    }
-    
-    return nil;
-}
-
-- (void)markCurrentRangeAsRead
-{
-    // TODO:
-    NSString *path = [self progressPath];
-    NSString *rdata = [NSString stringWithContentsOfFile:path
-                                                encoding:NSUTF8StringEncoding error:nil];
-    NSMutableArray *newLines = [NSMutableArray array];
-    BOOL found = FALSE;
-    NSArray *lines = [rdata componentsSeparatedByString:@"\n"];
-    for (NSString *line in lines) {
-        NSArray *fields = [line componentsSeparatedByString:@","];
-        NSUInteger count = [fields count];
-        if (!found && count == 1) {
-            NSDate *now = [NSDate date];
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            [formatter setDateFormat:@", yyyy-MM-dd(E) HH:mm:ss"];
-            NSString *result = [formatter stringFromDate:now];
-            [newLines addObject:[line stringByAppendingString:result]];
-            found = TRUE;
-        } else {
-            [newLines addObject:line];
-        }
-    }
-    
-    NSString* wdata = [newLines componentsJoinedByString:@"\n"];
-    [wdata writeToFile:path atomically:TRUE encoding:NSUTF8StringEncoding error:nil];
-}
-
 - (void)setupProgressFile
 {
     NSString *progPath = [self progressPath];
@@ -93,11 +48,30 @@
 
 - (void)setupStatusMenuTitle
 {
-    NSString *range = [self getCurrentRange];
-    if (range) {
-        [statusItem setTitle:range];
-    } else {
+    if ([schedule isComplete])
+    {
         [statusItem setTitle:@"Congratulations!!"];
+    }
+    else
+    {
+        NSString *range = [schedule currRange];
+        [statusItem setTitle:range];
+        
+        NSMenu *menuChapters = [[NSMenu alloc] initWithTitle:@"Chapters"];
+        
+        chapList = [Utility makeChapterList:range];
+        int i = 0;
+        for (NSDictionary *item in chapList)
+        {
+            NSMenuItem *menuItem = [menuChapters addItemWithTitle:[item valueForKey:@"label"]
+                                    action:@selector(readAction:)
+                             keyEquivalent:@""];
+            [menuItem setTag:i];
+            i++;
+        }
+        
+        NSMenuItem *menuRead = [menu itemWithTitle:@"Read"];
+        [menuRead setSubmenu:menuChapters];
     }    
 }
 
@@ -105,25 +79,36 @@
 {
     [self setupProgressFile];
     
+    schedule = [[Schedule alloc] initWithPath:[self progressPath]];
+    
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     [statusItem setMenu:menu];
     [statusItem setHighlightMode:YES];
+    
     [self setupStatusMenuTitle];
 }
 
-- (IBAction)readAction:(id)sender {
-    NSString *range = [self getCurrentRange];
-    if (range) {
-        // TODO: open the bible...
-    }    
+- (IBAction)readAction:(id)sender
+{
+    NSInteger i = [sender tag];
+    NSDictionary *item = [chapList objectAtIndex:i];
+    
+    NSString *urlStr = [NSString stringWithFormat:@"http://www.watchtower.org/j/bible/%@/chapter_%03d.htm",
+     [[item valueForKey:@"book"] lowercaseString],
+     [[item valueForKey:@"chap"] intValue]];
+
+    NSURL *url = [NSURL URLWithString:urlStr];
+    [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
-- (IBAction)markAsReadAction:(id)sender {
-    [self markCurrentRangeAsRead];
+- (IBAction)markAsReadAction:(id)sender
+{
+    [schedule markAsRead];
     [self setupStatusMenuTitle];
 }
 
-- (IBAction)quitAction:(id)sender {
+- (IBAction)quitAction:(id)sender
+{
     [NSApp terminate:self];
 }
 @end

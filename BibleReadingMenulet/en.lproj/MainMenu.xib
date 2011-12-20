@@ -72,7 +72,7 @@
 					</object>
 					<object class="NSMenuItem" id="858201412">
 						<reference key="NSMenu" ref="81072856"/>
-						<string key="NSTitle">Quit Bible Reading Menulet</string>
+						<string key="NSTitle">Quit</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="626792289"/>
@@ -98,14 +98,6 @@
 						<reference key="destination" ref="81072856"/>
 					</object>
 					<int key="connectionID">546</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">readAction:</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="263907612"/>
-					</object>
-					<int key="connectionID">550</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
