@@ -296,4 +296,17 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
     return [NSString stringWithUTF8String:title.c_str()];
 }
 
++ (NSArray *)getAvailableLanguages
+{
+    return [NSArray arrayWithObjects:
+            @"ch",
+            @"chs",
+            @"e",
+            @"f",
+            @"j",
+            //@"s",
+            @"u",
+            nil];    
+}
+
 @end

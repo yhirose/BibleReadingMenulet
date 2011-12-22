@@ -14,6 +14,7 @@
 + (int)getBookNo:(NSString *)name;
 + (NSString *)getContent:(NSString *)html;
 + (NSString *)getTitle:(NSString *)html;
++ (NSArray *)getAvailableLanguages;
 @end
 
 #endif

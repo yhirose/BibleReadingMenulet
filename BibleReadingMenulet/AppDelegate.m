@@ -46,9 +46,9 @@
     }
 }
 
-- (NSString *)htmlPathForBook:(NSString *)book forChap:(NSNumber *)chap {
+- (NSString *)htmlPathWithLanguage:(NSString *)lang forBook:(NSString *)book forChap:(NSNumber *)chap {
     NSString *dirPath = [self appDirPath];
-    NSString *fileName = [NSString stringWithFormat:@"%@_%@.html", book, chap];
+    NSString *fileName = [NSString stringWithFormat:@"%@_%@_%@.html", book, chap, lang];
     return [dirPath stringByAppendingPathComponent:fileName];
 }
 
@@ -57,9 +57,12 @@
     return [bundle pathForResource:@"Template" ofType:@"html"];
 }
 
-- (NSString *)setupHTMLFileForBook:(NSString *)book forChap:(NSNumber *)chap
+- (NSString *)setupHTMLFileWithLanguage:(NSString *)lang forBook:(NSString *)book forChap:(NSNumber *)chap
 {
-    NSString *path = [self htmlPathForBook:book forChap:chap];
+    NSString *path = [self htmlPathWithLanguage:lang
+                                        forBook:book
+                                        forChap:chap];
+    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     if (![fileManager fileExistsAtPath:path]) {
@@ -69,7 +72,8 @@
                                 attributes:nil
                                      error:nil];
         
-        NSString *urlStr = [NSString stringWithFormat:@"http://www.watchtower.org/j/bible/%@/chapter_%03d.htm",
+        NSString *urlStr = [NSString stringWithFormat:@"http://www.watchtower.org/%@/bible/%@/chapter_%03d.htm",
+                            [lang lowercaseString],
                             [book lowercaseString],
                             [chap intValue]];
         
@@ -92,10 +96,11 @@
                                                    encoding:NSUTF8StringEncoding
                                                       error:nil];
 
-        NSString *mp3UrlStr = [NSString stringWithFormat:@"http://download.jw.org/files/media_bible/%02d_%@_J_%02d.mp3",
-                            [Utility getBookNo:book],
-                            book,
-                            [chap intValue]];
+        NSString *mp3UrlStr = [NSString stringWithFormat:@"http://download.jw.org/files/media_bible/%02d_%@_%@_%02d.mp3",
+                               [Utility getBookNo:book],
+                               book,
+                               [lang uppercaseString],
+                               [chap intValue]];
         
         NSString *html = [NSString stringWithFormat:tmpl, 
                           [Utility getTitle:nwtHTML],
@@ -114,14 +119,12 @@
 - (void)setupStatusMenuTitle
 {
     NSMenuItem *menuRead = [menu itemWithTitle:@"Read"];
-    NSMenuItem *menuListen = [menu itemWithTitle:@"Listen"];
     
     if ([schedule isComplete])
     {
         [statusItem setTitle:@"Congratulations!!"];
         
         [menuRead setSubmenu:nil];
-        [menuListen setSubmenu:nil];
     }
     else
     {
@@ -148,8 +151,36 @@
     }    
 }
 
+- (void)setupLanguageMenu
+{
+    NSMenuItem *menuLang = [menu itemWithTitle:@"Language"];
+    
+    NSMenu *menuLangs = [[NSMenu alloc] initWithTitle:@"Languages"];
+
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    NSString *currLang = [ud stringForKey:@"LANGUAGE"];
+    
+    for (NSString* lang in [Utility getAvailableLanguages])
+    {
+        NSMenuItem *menuItem = [menuLangs addItemWithTitle:lang
+                                                    action:@selector(langAction:)
+                                             keyEquivalent:@""];
+        
+        [menuItem setState:[currLang isEqualToString:lang] ? NSOnState : NSOffState];
+    }    
+    
+    [menuLang setSubmenu:menuLangs];
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *defaults = [NSMutableDictionary dictionary];
+    [defaults setObject:@"e" forKey:@"LANGUAGE"];
+    [ud registerDefaults:defaults];
+    
+    [self setupLanguageMenu];
+
     [self setupProgressFile];
     
     schedule = [[Schedule alloc] initWithPath:[self progressPath]];
@@ -166,12 +197,27 @@
     NSInteger i = [sender tag];
     NSDictionary *item = [chapList objectAtIndex:i];
     
-    NSString *path = [self setupHTMLFileForBook:[item valueForKey:@"book"]
-                                        forChap:[item valueForKey:@"chap"]];
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    NSString *lang = [ud stringForKey:@"LANGUAGE"];
+    
+    NSString *path = [self setupHTMLFileWithLanguage: lang
+                                             forBook:[item valueForKey:@"book"]
+                                             forChap:[item valueForKey:@"chap"]];
     
     NSURL *url = [NSURL fileURLWithPath:path];
 
     [[NSWorkspace sharedWorkspace] openURL:url];
+}
+
+- (IBAction)langAction:(id)sender
+{
+    NSString *lang = [sender title];
+    
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud setObject:lang forKey:@"LANGUAGE"];
+    [ud synchronize];
+    
+    [self setupLanguageMenu];
 }
 
 - (IBAction)markAsReadAction:(id)sender
