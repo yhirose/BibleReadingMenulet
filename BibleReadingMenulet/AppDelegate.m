@@ -46,7 +46,7 @@
     }
 }
 
-- (NSString *)htmlPathForBook:(NSString *)book forChap:(NSString *)chap {
+- (NSString *)htmlPathForBook:(NSString *)book forChap:(NSNumber *)chap {
     NSString *dirPath = [self appDirPath];
     NSString *fileName = [NSString stringWithFormat:@"%@_%@.html", book, chap];
     return [dirPath stringByAppendingPathComponent:fileName];
@@ -57,7 +57,7 @@
     return [bundle pathForResource:@"Template" ofType:@"html"];
 }
 
-- (NSString *)setupHTMLFileForBook:(NSString *)book forChap:(NSString *)chap
+- (NSString *)setupHTMLFileForBook:(NSString *)book forChap:(NSNumber *)chap
 {
     NSString *path = [self htmlPathForBook:book forChap:chap];
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -167,7 +167,7 @@
     NSDictionary *item = [chapList objectAtIndex:i];
     
     NSString *path = [self setupHTMLFileForBook:[item valueForKey:@"book"]
-                       forChap:[item valueForKey:@"chap"]];
+                                        forChap:[item valueForKey:@"chap"]];
     
     NSURL *url = [NSURL fileURLWithPath:path];
 
