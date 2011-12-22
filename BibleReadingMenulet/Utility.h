@@ -11,6 +11,9 @@
 
 @interface Utility
 + (NSArray *)makeChapterList:(NSString *)range;
++ (int)getBookNo:(NSString *)name;
++ (NSString *)getContent:(NSString *)html;
++ (NSString *)getTitle:(NSString *)html;
 @end
 
 #endif

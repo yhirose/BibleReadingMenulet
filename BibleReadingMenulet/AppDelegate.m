@@ -15,62 +15,135 @@
 
 - (NSString *)appDirPath {
     NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *dirPath  = [rootPath stringByAppendingPathComponent:@"BibleReadingMenulet"];
-    return dirPath;
+    return [rootPath stringByAppendingPathComponent:@"BibleReadingMenulet"];
 }
 
 - (NSString *)progressPath {
     NSString *dirPath = [self appDirPath];
-    NSString *filePath = [dirPath stringByAppendingPathComponent:@"progress.csv"];
-    return filePath;
+    return [dirPath stringByAppendingPathComponent:@"progress.csv"];
 }
 
-- (NSString *)templatePath {
+- (NSString *)progressTemplatePath {
     NSBundle *bundle = [NSBundle mainBundle];
-    NSString *path = [bundle pathForResource:@"OneYear" ofType:@"csv"];
-    return path;
+    return [bundle pathForResource:@"OneYear" ofType:@"csv"];
 }
 
 - (void)setupProgressFile
 {
-    NSString *progPath = [self progressPath];
+    NSString *path = [self progressPath];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    if (![fileManager fileExistsAtPath:progPath]) {
+    if (![fileManager fileExistsAtPath:path]) {
+        
         [fileManager createDirectoryAtPath:[self appDirPath]
                withIntermediateDirectories:YES
                                 attributes:nil
                                      error:nil];
-        NSString *tmplPath = [self templatePath];
-        [fileManager copyItemAtPath:tmplPath toPath:progPath error:nil];
+        
+        NSString *tmplPath = [self progressTemplatePath];
+        
+        [fileManager copyItemAtPath:tmplPath toPath:path error:nil];
     }
+}
+
+- (NSString *)htmlPathForBook:(NSString *)book forChap:(NSString *)chap {
+    NSString *dirPath = [self appDirPath];
+    NSString *fileName = [NSString stringWithFormat:@"%@_%@.html", book, chap];
+    return [dirPath stringByAppendingPathComponent:fileName];
+}
+
+- (NSString *)htmlTemplatePath {
+    NSBundle *bundle = [NSBundle mainBundle];
+    return [bundle pathForResource:@"Template" ofType:@"html"];
+}
+
+- (NSString *)setupHTMLFileForBook:(NSString *)book forChap:(NSString *)chap
+{
+    NSString *path = [self htmlPathForBook:book forChap:chap];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if (![fileManager fileExistsAtPath:path]) {
+        
+        [fileManager createDirectoryAtPath:[self appDirPath]
+               withIntermediateDirectories:YES
+                                attributes:nil
+                                     error:nil];
+        
+        NSString *urlStr = [NSString stringWithFormat:@"http://www.watchtower.org/j/bible/%@/chapter_%03d.htm",
+                            [book lowercaseString],
+                            [chap intValue]];
+        
+        NSURL *url = [NSURL URLWithString:urlStr];
+        
+        NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+        NSURLResponse *resp;
+        NSError *err;
+        
+        NSData *data = [NSURLConnection sendSynchronousRequest:req
+                                             returningResponse:&resp
+                                                         error:&err];
+        
+        NSString *nwtHTML = [[NSString alloc] initWithData:data 
+                                                  encoding:NSUTF8StringEncoding];
+
+        NSString *tmplPath = [self htmlTemplatePath];
+        
+        NSString *tmpl = [NSString stringWithContentsOfFile:tmplPath 
+                                                   encoding:NSUTF8StringEncoding
+                                                      error:nil];
+
+        NSString *mp3UrlStr = [NSString stringWithFormat:@"http://download.jw.org/files/media_bible/%02d_%@_J_%02d.mp3",
+                            [Utility getBookNo:book],
+                            book,
+                            [chap intValue]];
+        
+        NSString *html = [NSString stringWithFormat:tmpl, 
+                          [Utility getTitle:nwtHTML],
+                          mp3UrlStr,
+                          [Utility getContent:nwtHTML]];
+        
+        [html writeToFile:path
+               atomically:TRUE 
+                 encoding:NSUTF8StringEncoding 
+                    error:nil];
+    }
+    
+    return path;
 }
 
 - (void)setupStatusMenuTitle
 {
+    NSMenuItem *menuRead = [menu itemWithTitle:@"Read"];
+    NSMenuItem *menuListen = [menu itemWithTitle:@"Listen"];
+    
     if ([schedule isComplete])
     {
         [statusItem setTitle:@"Congratulations!!"];
+        
+        [menuRead setSubmenu:nil];
+        [menuListen setSubmenu:nil];
     }
     else
     {
         NSString *range = [schedule currRange];
         [statusItem setTitle:range];
         
-        NSMenu *menuChapters = [[NSMenu alloc] initWithTitle:@"Chapters"];
-        
         chapList = [Utility makeChapterList:range];
+        
+        NSMenu *menuChapters = [[NSMenu alloc] initWithTitle:@"Read Chapters"];        
+        
         int i = 0;
         for (NSDictionary *item in chapList)
         {
             NSMenuItem *menuItem = [menuChapters addItemWithTitle:[item valueForKey:@"label"]
-                                    action:@selector(readAction:)
-                             keyEquivalent:@""];
+                                                           action:@selector(readAction:)
+                                                    keyEquivalent:@""];
+            
             [menuItem setTag:i];
+            
             i++;
         }
         
-        NSMenuItem *menuRead = [menu itemWithTitle:@"Read"];
         [menuRead setSubmenu:menuChapters];
     }    
 }
@@ -93,11 +166,11 @@
     NSInteger i = [sender tag];
     NSDictionary *item = [chapList objectAtIndex:i];
     
-    NSString *urlStr = [NSString stringWithFormat:@"http://www.watchtower.org/j/bible/%@/chapter_%03d.htm",
-     [[item valueForKey:@"book"] lowercaseString],
-     [[item valueForKey:@"chap"] intValue]];
+    NSString *path = [self setupHTMLFileForBook:[item valueForKey:@"book"]
+                       forChap:[item valueForKey:@"chap"]];
+    
+    NSURL *url = [NSURL fileURLWithPath:path];
 
-    NSURL *url = [NSURL URLWithString:urlStr];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
 

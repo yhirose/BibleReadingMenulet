@@ -213,4 +213,87 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
     return list;
 }
 
++ (int)getBookNo:(NSString *)name
+{
+    const char* names[] =
+    {
+        "Ge", "Ex", "Le", "Nu", "De",
+        "Jos", "Jg", "Ru", "1Sa", "2Sa",
+        "1Ki", "2Ki", "1Ch", "2Ch", "Ezr",
+        "Ne", "Es", "Job", "Ps", "Pr",
+        "Ec", "Ca", "Isa", "Jer", "La",
+        "Eze", "Da", "Ho", "Joe", "Am",
+        "Ob", "Jon", "Mic", "Na", "Hab",
+        "Zep", "Hag", "Zec", "Mal", "Mt",
+        "Mr", "Lu", "Joh", "Ac", "Ro",
+        "1Co", "2Co", "Ga", "Eph", "Php",
+        "Col", "1Th", "2Th", "1Ti", "2Ti",
+        "Tit", "Phm", "Heb", "Jas", "1Pe",
+        "2Pe", "1Jo", "2Jo", "3Jo", "Jude",
+        "Re",
+    };
+    
+    std::string s = [name UTF8String];
+
+    for (int i = 0; i < 66; i++)
+    {
+        if (s == names[i])
+        {
+            return i + 1;
+        }
+    }
+    
+    return -1;
+}
+
++ (NSString *)getContent:(NSString *)html
+{
+    const char* str = [html UTF8String];
+    const char* pat = "</h3>(.*)<div class=\"footer\"";
+    
+    std::string content;
+    
+    regex_t re;
+    size_t nmatch = 2;
+    regmatch_t matches[nmatch];
+    
+    regcomp(&re, pat, REG_EXTENDED);
+    
+    int ret = regexec(&re, str, nmatch, matches, REG_NOTBOL|REG_NOTEOL);
+    if (!ret)
+    {
+        const auto& m1 = matches[1];        
+        content.assign(&str[m1.rm_so], &str[m1.rm_eo]);
+    }
+    
+    regfree(&re);
+    
+    return [NSString stringWithUTF8String:content.c_str()];
+}
+
++ (NSString *)getTitle:(NSString *)html
+{
+    const char* str = [html UTF8String];
+    const char* pat = "<h3>(.*)</h3>";
+    
+    std::string title;
+    
+    regex_t re;
+    size_t nmatch = 2;
+    regmatch_t matches[nmatch];
+    
+    regcomp(&re, pat, REG_EXTENDED);
+    
+    int ret = regexec(&re, str, nmatch, matches, 0);
+    if (!ret)
+    {
+        const auto& m1 = matches[1];        
+        title.assign(&str[m1.rm_so], &str[m1.rm_eo]);
+    }
+    
+    regfree(&re);
+    
+    return [NSString stringWithUTF8String:title.c_str()];
+}
+
 @end
