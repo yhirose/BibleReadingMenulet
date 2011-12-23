@@ -17,6 +17,7 @@
 		BA94AB8B149BFA140040164E /* Utility.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA94AB8A149BFA140040164E /* Utility.mm */; };
 		BA94AB92149E94C10040164E /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = BA94AB91149E94C00040164E /* Schedule.m */; };
 		BAEB0BE314A2D06D006CBFD0 /* Template.html in Resources */ = {isa = PBXBuildFile; fileRef = BAEB0BE214A2D06D006CBFD0 /* Template.html */; };
+		BAEB0BFA14A40BAD006CBFD0 /* LanguageInformation.mm in Sources */ = {isa = PBXBuildFile; fileRef = BAEB0BF914A40BAD006CBFD0 /* LanguageInformation.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,8 @@
 		BA94AB90149E94C00040164E /* Schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schedule.h; sourceTree = "<group>"; };
 		BA94AB91149E94C00040164E /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Schedule.m; sourceTree = "<group>"; };
 		BAEB0BE214A2D06D006CBFD0 /* Template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Template.html; sourceTree = "<group>"; };
+		BAEB0BF514A40AE8006CBFD0 /* LanguageInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageInformation.h; sourceTree = "<group>"; };
+		BAEB0BF914A40BAD006CBFD0 /* LanguageInformation.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LanguageInformation.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +95,8 @@
 		BA94AB5A149704D30040164E /* BibleReadingMenulet */ = {
 			isa = PBXGroup;
 			children = (
+				BAEB0BF914A40BAD006CBFD0 /* LanguageInformation.mm */,
+				BAEB0BF514A40AE8006CBFD0 /* LanguageInformation.h */,
 				BA94AB90149E94C00040164E /* Schedule.h */,
 				BA94AB91149E94C00040164E /* Schedule.m */,
 				BA94AB8A149BFA140040164E /* Utility.mm */,
@@ -188,6 +193,7 @@
 				BA94AB68149704D30040164E /* AppDelegate.m in Sources */,
 				BA94AB8B149BFA140040164E /* Utility.mm in Sources */,
 				BA94AB92149E94C10040164E /* Schedule.m in Sources */,
+				BAEB0BFA14A40BAD006CBFD0 /* LanguageInformation.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

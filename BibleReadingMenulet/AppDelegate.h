@@ -8,10 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 #import "Schedule.h"
+#import "LanguageInformation.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     IBOutlet NSMenu *menu;
     NSStatusItem *statusItem;
+    LanguageInformation *langInfo;
     Schedule *schedule;
     NSArray *chapList;
 }
