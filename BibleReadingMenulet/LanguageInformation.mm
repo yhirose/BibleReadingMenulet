@@ -32,7 +32,7 @@ const struct LanguageInfo langInfo[] =
     { "汉语（简化字）", "ch", "", "", "" },
     { "漢語（繁體字）", "chs", "", "", "" },
     { "Dansk", "d", "http://www.watchtower.org/%@/bibelen/%@/chapter_%03d.htm", "", "" },
-    { "English", "e", "", "", "" },
+    { "English", "e", "http://www.watchtower.org/%@/bible/%@/chapter_%03d.htm", "http://download.jw.org/files/media_bible/%02d_%@_%@_%02d.mp3", "" },
     { "Français", "f", "", "", "" },
     { "Suomi", "fi", "http://www.watchtower.org/%@/raamattu/%@/chapter_%03d.htm", "", "" },
     { "Magyar", "h", "http://www.watchtower.org/%@/biblia/%@/chapter_%03d.htm", "", "" },
@@ -316,12 +316,14 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
 
 - (NSString *)pageURLWithLanguage:(NSString *)lang book:(NSString*)book chapter:(NSNumber *)chap
 {
-    int i = [self getLanguageId:lang];
-    
+    int i = [self getLanguageId:lang];    
     NSString *format = [[_infoArray objectAtIndex:i] valueForKey:@"pageURL"];
+    
     if (![format length])
     {
-        format = @"http://www.watchtower.org/%@/bible/%@/chapter_%03d.htm";
+        // Use English data
+        int i = [self getLanguageId:@"e"];    
+        format = [[_infoArray objectAtIndex:i] valueForKey:@"pageURL"];
     }
     
     return [NSString stringWithFormat:format,
@@ -333,11 +335,12 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
 - (NSString *)mp3URLWithLanguage:(NSString *)lang book:(NSString*)book chapter:(NSNumber *)chap
 {
     int i = [self getLanguageId:lang];
-    
     NSString *format = [[_infoArray objectAtIndex:i] valueForKey:@"mp3URL"];
+    
     if (![format length])
     {
-        format = @"http://download.jw.org/files/media_bible/%02d_%@_%@_%02d.mp3";
+        i = [self getLanguageId:@"e"];
+        format = [[_infoArray objectAtIndex:i] valueForKey:@"mp3URL"];
     }
     
     return [NSString stringWithFormat:format,

@@ -10,6 +10,8 @@
 #define BibleReadingMenulet_Utility_h
 
 @interface Utility
++ (NSString *)appDirPath;
++ (NSString *)progressPath;
 + (NSString *)getContent:(NSString *)html;
 + (NSString *)getTitle:(NSString *)html;
 @end

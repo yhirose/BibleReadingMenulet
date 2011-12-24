@@ -13,41 +13,36 @@
 
 @synthesize window = _window;
 
-- (NSString *)appDirPath {
-    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    return [rootPath stringByAppendingPathComponent:@"BibleReadingMenulet"];
-}
-
-- (NSString *)progressPath {
-    NSString *dirPath = [self appDirPath];
-    return [dirPath stringByAppendingPathComponent:@"progress.csv"];
-}
-
-- (NSString *)progressTemplatePath {
-    NSBundle *bundle = [NSBundle mainBundle];
-    return [bundle pathForResource:@"OneYear" ofType:@"csv"];
-}
-
-- (void)setupProgressFile
+- (void)setupProgressFiles
 {
-    NSString *path = [self progressPath];
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSString *resourcePath = [bundle resourcePath];
+    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    if (![fileManager fileExistsAtPath:path]) {
-        
-        [fileManager createDirectoryAtPath:[self appDirPath]
-               withIntermediateDirectories:YES
-                                attributes:nil
-                                     error:nil];
-        
-        NSString *tmplPath = [self progressTemplatePath];
-        
-        [fileManager copyItemAtPath:tmplPath toPath:path error:nil];
-    }
+    for (NSString *fileName in [fileManager contentsOfDirectoryAtPath:resourcePath error:nil])
+    {
+        if ([fileName hasSuffix:@".csv"])
+        {
+            NSString *path = [[Utility appDirPath] stringByAppendingPathComponent:fileName];
+            
+            if (![fileManager fileExistsAtPath:path]) {
+                
+                [fileManager createDirectoryAtPath:[Utility appDirPath]
+                       withIntermediateDirectories:YES
+                                        attributes:nil
+                                             error:nil];
+                
+                NSString *tmplPath = [resourcePath stringByAppendingPathComponent:fileName];
+                
+                [fileManager copyItemAtPath:tmplPath toPath:path error:nil];
+            }   
+        }
+    }    
 }
 
 - (NSString *)htmlPathWithLanguage:(NSString *)lang book:(NSString *)book chapter:(NSNumber *)chap {
-    NSString *dirPath = [self appDirPath];
+    NSString *dirPath = [Utility appDirPath];
     NSString *fileName = [NSString stringWithFormat:@"%@_%@_%@.html", book, chap, lang];
     return [dirPath stringByAppendingPathComponent:fileName];
 }
@@ -67,7 +62,7 @@
     
     if (![fileManager fileExistsAtPath:path]) {
         
-        [fileManager createDirectoryAtPath:[self appDirPath]
+        [fileManager createDirectoryAtPath:[Utility appDirPath]
                withIntermediateDirectories:YES
                                 attributes:nil
                                      error:nil];
@@ -181,17 +176,24 @@
     [menuLang setSubmenu:menuLangs];    
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+- (void)setupUserDefaults
 {
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
     NSMutableDictionary *defaults = [NSMutableDictionary dictionary];
+    
     [defaults setObject:@"e" forKey:@"LANGUAGE"];
+    [defaults setObject:@"OneYear.csv" forKey:@"PROGRESS"];
+    
     [ud registerDefaults:defaults];
-    
+}
+
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+    [self setupUserDefaults];
+    [self setupProgressFiles];
+        
     langInfo = [[LanguageInformation alloc] init];
-    schedule = [[Schedule alloc] initWithPath:[self progressPath]];
-    
-    [self setupProgressFile];
+    schedule = [[Schedule alloc] initWithPath:[Utility progressPath]];
     
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     [statusItem setMenu:menu];

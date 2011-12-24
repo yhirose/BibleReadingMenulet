@@ -5,6 +5,18 @@
 
 @implementation Utility
 
++ (NSString *)appDirPath {
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    return [rootPath stringByAppendingPathComponent:@"BibleReadingMenulet"];
+}
+
++ (NSString *)progressPath {
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    NSString *fileName = [ud stringForKey:@"PROGRESS"];
+    NSString *dirPath = [Utility appDirPath];
+    return [dirPath stringByAppendingPathComponent:fileName];
+}
+
 + (NSString *)getContent:(NSString *)html
 {
     const char* str = [html UTF8String];
