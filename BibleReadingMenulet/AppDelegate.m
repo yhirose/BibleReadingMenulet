@@ -113,7 +113,7 @@
 
 - (void)setupStatusMenuTitle
 {
-    NSMenuItem *menuRead = [menu itemWithTitle:@"Read"];
+    NSMenuItem *menuRead = [menu itemAtIndex:0];
     
     if ([schedule isComplete])
     {
@@ -154,7 +154,7 @@
 
 - (void)setupLanguageMenu
 {
-    NSMenuItem *menuLang = [menu itemWithTitle:@"Language"];
+    NSMenuItem *menuLang = [menu itemAtIndex:3];
     
     NSMenu *menuLangs = [[NSMenu alloc] initWithTitle:@"Languages"];
 
@@ -178,9 +178,7 @@
         i++;
     }    
     
-    [menuLang setSubmenu:menuLangs];
-    
-    [self setupStatusMenuTitle];
+    [menuLang setSubmenu:menuLangs];    
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -191,7 +189,6 @@
     [ud registerDefaults:defaults];
     
     langInfo = [[LanguageInformation alloc] init];
-    
     schedule = [[Schedule alloc] initWithPath:[self progressPath]];
     
     [self setupProgressFile];
@@ -201,7 +198,6 @@
     [statusItem setHighlightMode:YES];
 
     [self setupLanguageMenu];
-
     [self setupStatusMenuTitle];
 }
 
@@ -234,6 +230,7 @@
     [ud synchronize];
     
     [self setupLanguageMenu];
+    [self setupStatusMenuTitle];
 }
 
 - (IBAction)markAsReadAction:(id)sender

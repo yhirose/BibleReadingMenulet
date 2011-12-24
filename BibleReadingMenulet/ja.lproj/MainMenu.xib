@@ -40,7 +40,7 @@
 				<array class="NSMutableArray" key="NSMenuItems">
 					<object class="NSMenuItem" id="263907612">
 						<reference key="NSMenu" ref="81072856"/>
-						<string key="NSTitle">Read</string>
+						<string key="NSTitle">読む</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<object class="NSCustomResource" key="NSOnImage" id="626792289">
@@ -54,7 +54,7 @@
 					</object>
 					<object class="NSMenuItem" id="48567420">
 						<reference key="NSMenu" ref="81072856"/>
-						<string key="NSTitle">Mark as Read</string>
+						<string key="NSTitle">既読にする</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="626792289"/>
@@ -72,7 +72,7 @@
 					</object>
 					<object class="NSMenuItem" id="1037894063">
 						<reference key="NSMenu" ref="81072856"/>
-						<string key="NSTitle">Language</string>
+						<string key="NSTitle">言語</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="626792289"/>
@@ -90,7 +90,7 @@
 					</object>
 					<object class="NSMenuItem" id="858201412">
 						<reference key="NSMenu" ref="81072856"/>
-						<string key="NSTitle">Quit</string>
+						<string key="NSTitle">終了</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="626792289"/>
@@ -248,11 +248,16 @@
 					<string key="className">AppDelegate</string>
 					<string key="superclassName">NSObject</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="langAction:">id</string>
 						<string key="markAsReadAction:">id</string>
 						<string key="quitAction:">id</string>
 						<string key="readAction:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="langAction:">
+							<string key="name">langAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="markAsReadAction:">
 							<string key="name">markAsReadAction:</string>
 							<string key="candidateClassName">id</string>
