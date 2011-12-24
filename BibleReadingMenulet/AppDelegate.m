@@ -123,10 +123,16 @@
     }
     else
     {
-        NSString *range = [schedule currRange];
-        [statusItem setTitle:range];
+        NSString *range = [schedule currRange];        
         
-        chapList = [Utility makeChapterList:range];
+        NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+        NSString *lang = [ud stringForKey:@"LANGUAGE"];
+        
+        NSString *vernacularRane = [langInfo translateRange:range language:lang];
+        
+        [statusItem setTitle:vernacularRane];
+        
+        chapList = [langInfo makeChapterListFromRange:range language:lang];
         
         NSMenu *menuChapters = [[NSMenu alloc] initWithTitle:@"Read Chapters"];        
         
@@ -153,10 +159,10 @@
     NSMenu *menuLangs = [[NSMenu alloc] initWithTitle:@"Languages"];
 
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
-    NSString *currSymbol = [ud stringForKey:@"LANGUAGE"];
+    NSString *currLangSymbol = [ud stringForKey:@"LANGUAGE"];
     
     int i = 0;
-    for (NSDictionary* val in [langInfo getLanguageInformation])
+    for (NSDictionary* val in langInfo.infoArray)
     {
         NSString *name = [val valueForKey:@"name"];
         NSString *symbol = [val valueForKey:@"symbol"];
@@ -165,7 +171,7 @@
                                                     action:@selector(langAction:)
                                              keyEquivalent:@""];
         
-        [menuItem setState:[currSymbol isEqualToString:symbol] ? NSOnState : NSOffState];
+        [menuItem setState:[currLangSymbol isEqualToString:symbol] ? NSOnState : NSOffState];
 
         [menuItem setTag:i];
         
@@ -173,6 +179,8 @@
     }    
     
     [menuLang setSubmenu:menuLangs];
+    
+    [self setupStatusMenuTitle];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -217,7 +225,7 @@
 - (IBAction)langAction:(id)sender
 {
     NSInteger i = [sender tag];
-    NSDictionary *item = [[langInfo getLanguageInformation] objectAtIndex:i];
+    NSDictionary *item = [langInfo.infoArray objectAtIndex:i];
     
     NSString *lang = [item valueForKey:@"symbol"];
     
