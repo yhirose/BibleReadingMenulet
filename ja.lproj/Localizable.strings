@@ -5,5 +5,5 @@
   Created by Yuji Hirose on 12/24/11.
   Copyright (c) 2011 Yuji Hirose. All rights reserved.
 */
-"OPEN_ERR_TTL" = "Failed to open the Bible chapter.";
-"OPEN_ERR_MSG" = "Internet connection may be currently unavailable...";
+"OPEN_ERR_TTL" = "聖書を表示できませんでした。";
+"OPEN_ERR_MSG" = "インターネットに接続されていません...";

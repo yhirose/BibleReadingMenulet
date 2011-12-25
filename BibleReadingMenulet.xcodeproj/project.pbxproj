@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA8B1D6014A6A9A8000B2529 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA8B1D6214A6A9A8000B2529 /* Localizable.strings */; };
 		BA94AB55149704D30040164E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA94AB54149704D30040164E /* Cocoa.framework */; };
 		BA94AB5F149704D30040164E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA94AB5D149704D30040164E /* InfoPlist.strings */; };
 		BA94AB61149704D30040164E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BA94AB60149704D30040164E /* main.m */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BA8B1D6114A6A9A8000B2529 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BA8B1D6314A6A9C0000B2529 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BA94AB50149704D30040164E /* BibleReadingMenulet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BibleReadingMenulet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA94AB54149704D30040164E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		BA94AB57149704D30040164E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -113,6 +116,7 @@
 		BA94AB5B149704D30040164E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BA8B1D6214A6A9A8000B2529 /* Localizable.strings */,
 				BAEB0BE214A2D06D006CBFD0 /* Template.html */,
 				BA94AB7514970A750040164E /* OneYear.csv */,
 				BA94AB5C149704D30040164E /* BibleReadingMenulet-Info.plist */,
@@ -181,6 +185,7 @@
 				BA94AB6B149704D30040164E /* MainMenu.xib in Resources */,
 				BA94AB7614970A750040164E /* OneYear.csv in Resources */,
 				BAEB0BE314A2D06D006CBFD0 /* Template.html in Resources */,
+				BA8B1D6014A6A9A8000B2529 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +207,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		BA8B1D6214A6A9A8000B2529 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BA8B1D6114A6A9A8000B2529 /* en */,
+				BA8B1D6314A6A9C0000B2529 /* ja */,
+			);
+			name = Localizable.strings;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		BA94AB5D149704D30040164E /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -80,6 +80,10 @@
         NSData *data = [NSURLConnection sendSynchronousRequest:req
                                              returningResponse:&resp
                                                          error:&err];
+        if (data == nil)
+        {
+            return nil;
+        }
         
         NSString *nwtHTML = [[NSString alloc] initWithData:data 
                                                   encoding:NSUTF8StringEncoding];
@@ -215,9 +219,17 @@
                                                 book:[item valueForKey:@"book"]
                                              chapter:[item valueForKey:@"chap"]];
     
-    NSURL *url = [NSURL fileURLWithPath:path];
-
-    [[NSWorkspace sharedWorkspace] openURL:url];
+    if (path == nil)
+    {
+        NSRunAlertPanel(NSLocalizedString(@"OPEN_ERR_TTL", @"Title for Open error"),
+                        NSLocalizedString(@"OPEN_ERR_MSG", @"Message for open error"),
+                        @"OK", nil, nil);
+    }
+    else
+    {
+        NSURL *url = [NSURL fileURLWithPath:path];        
+        [[NSWorkspace sharedWorkspace] openURL:url];
+    }    
 }
 
 - (IBAction)langAction:(id)sender
