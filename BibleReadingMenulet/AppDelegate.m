@@ -11,8 +11,6 @@
 
 @implementation AppDelegate
 
-@synthesize window = _window;
-
 - (void)setupProgressFiles
 {
     NSBundle *bundle = [NSBundle mainBundle];

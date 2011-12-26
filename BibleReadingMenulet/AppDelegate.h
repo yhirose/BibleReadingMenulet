@@ -18,7 +18,6 @@
     NSArray *chapList;
 }
 
-@property (assign) IBOutlet NSWindow *window;
 - (IBAction)readAction:(id)sender;
 - (IBAction)langAction:(id)sender;
 - (IBAction)markAsReadAction:(id)sender;

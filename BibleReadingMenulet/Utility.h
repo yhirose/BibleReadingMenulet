@@ -9,7 +9,7 @@
 #ifndef BibleReadingMenulet_Utility_h
 #define BibleReadingMenulet_Utility_h
 
-@interface Utility
+@interface Utility : NSObject
 + (NSString *)appDirPath;
 + (NSString *)progressPath;
 + (NSString *)getContent:(NSString *)html;
