@@ -17,6 +17,7 @@
 		BA94AB7614970A750040164E /* OneYear.csv in Resources */ = {isa = PBXBuildFile; fileRef = BA94AB7514970A750040164E /* OneYear.csv */; };
 		BA94AB8B149BFA140040164E /* Utility.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA94AB8A149BFA140040164E /* Utility.mm */; };
 		BA94AB92149E94C10040164E /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = BA94AB91149E94C00040164E /* Schedule.m */; };
+		BACE777814A9692E00855A1C /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = BACE777714A9692E00855A1C /* LaunchAtLoginController.m */; };
 		BAEB0BE314A2D06D006CBFD0 /* Template.html in Resources */ = {isa = PBXBuildFile; fileRef = BAEB0BE214A2D06D006CBFD0 /* Template.html */; };
 		BAEB0BFA14A40BAD006CBFD0 /* LanguageInformation.mm in Sources */ = {isa = PBXBuildFile; fileRef = BAEB0BF914A40BAD006CBFD0 /* LanguageInformation.mm */; };
 /* End PBXBuildFile section */
@@ -43,6 +44,8 @@
 		BA94AB90149E94C00040164E /* Schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schedule.h; sourceTree = "<group>"; };
 		BA94AB91149E94C00040164E /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Schedule.m; sourceTree = "<group>"; };
 		BABC3B3014A6744B0089FEC9 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		BACE777614A9692E00855A1C /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LaunchAtLoginController.h; path = LaunchAtLoginController/LaunchAtLoginController.h; sourceTree = SOURCE_ROOT; };
+		BACE777714A9692E00855A1C /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LaunchAtLoginController.m; path = LaunchAtLoginController/LaunchAtLoginController.m; sourceTree = SOURCE_ROOT; };
 		BAEB0BE214A2D06D006CBFD0 /* Template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Template.html; sourceTree = "<group>"; };
 		BAEB0BF514A40AE8006CBFD0 /* LanguageInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageInformation.h; sourceTree = "<group>"; };
 		BAEB0BF914A40BAD006CBFD0 /* LanguageInformation.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LanguageInformation.mm; sourceTree = "<group>"; };
@@ -116,6 +119,8 @@
 		BA94AB5B149704D30040164E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BACE777614A9692E00855A1C /* LaunchAtLoginController.h */,
+				BACE777714A9692E00855A1C /* LaunchAtLoginController.m */,
 				BA8B1D6214A6A9A8000B2529 /* Localizable.strings */,
 				BAEB0BE214A2D06D006CBFD0 /* Template.html */,
 				BA94AB7514970A750040164E /* OneYear.csv */,
@@ -201,6 +206,7 @@
 				BA94AB8B149BFA140040164E /* Utility.mm in Sources */,
 				BA94AB92149E94C10040164E /* Schedule.m in Sources */,
 				BAEB0BFA14A40BAD006CBFD0 /* LanguageInformation.mm in Sources */,
+				BACE777814A9692E00855A1C /* LaunchAtLoginController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
