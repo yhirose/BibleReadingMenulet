@@ -13,14 +13,14 @@
 - (int)advance:(int)curr
 {
     int i = curr;
-    for (; i < [_data count] && [[_data objectAtIndex:i] count] > 1; i++)
+    for (; i < [_ranges count] && [[_ranges objectAtIndex:i] count] > 1; i++)
     {
         ;
     }
-    if (i == [_data count])
+    if (i == [_ranges count])
     {
         i = 0;
-        for (; i < curr && [[_data objectAtIndex:i] count] > 1; i++)
+        for (; i < curr && [[_ranges objectAtIndex:i] count] > 1; i++)
         {
             ;
         }
@@ -49,7 +49,8 @@
             NSArray *fields = [line componentsSeparatedByString:@","];
             NSUInteger count = [fields count];
             
-            NSMutableArray *item = [NSMutableArray arrayWithObject:[fields objectAtIndex:0]];
+            NSMutableDictionary *item = [NSMutableDictionary dictionaryWithObject:[fields objectAtIndex:0]
+                                                                           forKey:@"range"];
             
             if (count == 2)
             {
@@ -60,7 +61,7 @@
                 }
                 else
                 {
-                    [item addObject:date];
+                    [item setValue:date forKey:@"date"];
                 }
             }
             
@@ -74,14 +75,20 @@
 - (void)saveData:(NSMutableArray *)data toFile:(NSString *)path
 {
     NSMutableArray *lines = [NSMutableArray array];
-    for (int i = 0; i < [_data count]; i++)
+    for (int i = 0; i < [_ranges count]; i++)
     {
-        NSMutableArray *item = [_data objectAtIndex:i];
-        if (i == _curr)
+        NSMutableDictionary *item = [_ranges objectAtIndex:i];
+        
+        NSString *line = [NSString stringWithString:[item valueForKey:@"range"]];
+        
+        NSString *date = (i == self.currentIndex) ? @"*" : [item valueForKey:@"date"];
+        
+        if (date)
         {
-            item = [NSMutableArray arrayWithObjects:[item objectAtIndex:0], @"*", nil];
+            line = [line stringByAppendingFormat:@",%@", date];
         }
-        [lines addObject:[item componentsJoinedByString:@","]];
+        
+        [lines addObject:line];
     }
     NSString *wdata = [lines componentsJoinedByString:@"\n"];
     [wdata writeToFile:path atomically:TRUE encoding:NSUTF8StringEncoding error:nil];
@@ -102,17 +109,19 @@
     if (self)
     {
         _path = path;
-        _curr = -1;
+        int curr = -1;
         
         // Load data from file.
-        _data = [self loadDataOfFile:path currIndex:&_curr];
+        _ranges = [self loadDataOfFile:path currIndex:&curr];
 
         // There is no '*' mark.
-        if (_curr == -1)
+        if (curr == -1)
         {
             // Try to find an available spot.
-            _curr = [self advance:0];            
+            curr = [self advance:0];            
         }
+        
+        self.currentIndex = curr;
     }
     
     return self;
@@ -120,31 +129,79 @@
 
 - (BOOL)isComplete
 {
-    return _curr == -1;
+    return self.currentIndex == -1;
 }
 
 - (void)markAsRead
 {
+    [self markAsReadAtIndex:self.currentIndex];
+}
+
+- (void)markAsReadAtIndex:(NSInteger)index
+{
     if (![self isComplete])
     {
-        NSDate *now = [NSDate date];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"yyyy-MM-dd(E) HH:mm:ss"];
-        NSString *date = [formatter stringFromDate:now];
+        NSMutableArray *item = [_ranges objectAtIndex:index];
         
-        [[_data objectAtIndex:_curr] setObject:date atIndex:1];
-        
-        _curr = [self advance:_curr + 1];
-        
-        [self saveData:_data toFile:_path];
+        if (![item valueForKey:@"date"])
+        {
+            NSDate *now = [NSDate date];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"yyyy-MM-dd(E) HH:mm:ss"];
+            NSString *date = [formatter stringFromDate:now];
+            
+            [item setValue:date forKey:@"date"];
+            
+            if (index == self.currentIndex)
+            {
+                self.currentIndex = [self advance:self.currentIndex + 1];
+            }
+            
+            [self saveData:_ranges toFile:_path];
+            
+            NSNotification *n = [NSNotification notificationWithName:@"markChanged" object:self];
+            [[NSNotificationCenter defaultCenter] postNotification:n];
+        }
     }
 }
 
-- (NSString *)currRange
+- (void)markAsUnreadAtIndex:(NSInteger)index
 {
-    NSMutableArray *currItem = [_data objectAtIndex:_curr];
-    return [currItem objectAtIndex:0];
+    NSMutableArray *item = [_ranges objectAtIndex:index];
+    
+    if ([item valueForKey:@"date"])
+    {
+        [item setValue:nil forKey:@"date"];
+        [self saveData:_ranges toFile:_path];
+        
+        NSNotification *n = [NSNotification notificationWithName:@"markChanged" object:self];
+        [[NSNotificationCenter defaultCenter] postNotification:n];
+    }
 }
 
+- (NSString *)currentRange
+{
+    NSMutableArray *currItem = [_ranges objectAtIndex:self.currentIndex];
+    return [currItem valueForKey:@"range"];
+}
+
+- (NSMutableArray *)ranges
+{
+    return _ranges;
+}
+
+- (int)currentIndex
+{
+    return _curr;
+}
+
+- (void)setCurrentIndex:(NSInteger)index
+{
+    _curr = (int)index;
+    [self saveData:_ranges toFile:_path];
+    
+    NSNotification *n = [NSNotification notificationWithName:@"currentRangeChanged" object:self];
+    [[NSNotificationCenter defaultCenter] postNotification:n];
+}
 
 @end

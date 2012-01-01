@@ -262,9 +262,18 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
     return !ret;
 }
 
+static LanguageInformation *_instance = nil;
+
 @implementation LanguageInformation
 
 @synthesize infoArray = _infoArray;
+
++ (LanguageInformation *)instance {
+    if (_instance == nil) {
+        _instance = [[LanguageInformation alloc] init];
+    }
+    return _instance;
+}
 
 - (id)init
 {
@@ -372,7 +381,7 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
                 NSNumber *verse = [NSNumber numberWithInt:item.verse];
                 
                 NSString *label = [NSString stringWithCString:item.label.c_str() encoding:NSUTF8StringEncoding];
-                label = [self translateRange:label language:lang];
+                label = [self translateCitation:label language:lang];
                 
                 NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
                                      label, @"label",
@@ -389,7 +398,7 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
     return list;
 }
 
-- (NSString *)translateRange:(NSString *)str language:(NSString *)lang
+- (NSString *)translateCitation:(NSString *)str language:(NSString *)lang
 {
     int langId = [self getLanguageId:lang];
     NSString *bookNamesStr = [NSString stringWithUTF8String:langInfo[langId].bookNames];
@@ -408,7 +417,7 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
     {
         const char* str = [cita UTF8String];
 
-        const char* pat = "^([1-3]?[a-z]+) (.+)$";
+        const char* pat = "^([1-3]?[a-z]+)( .+)?$";
         
         regex_t re;
         size_t nmatch = 3;
@@ -420,16 +429,24 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
         if (!ret)
         {
             const auto& mbook = matches[1];
-            const auto& mrest = matches[2];
-            
             std::string book(&str[mbook.rm_so], &str[mbook.rm_eo]);
-            std::string rest(&str[mrest.rm_so], &str[mrest.rm_eo]);
             
             int bookId = getBookId(book);            
             book = [[bookNames objectAtIndex:bookId] UTF8String];
             
             char buff[BUFSIZ];
-            sprintf(buff, "%s %s", book.c_str(), rest.c_str());
+            
+            if (matches[2].rm_so != -1)
+            {
+                const auto& mrest = matches[2];            
+                std::string rest(&str[mrest.rm_so], &str[mrest.rm_eo]);
+                
+                sprintf(buff, "%s%s", book.c_str(), rest.c_str());
+            }
+            else
+            {
+                sprintf(buff, "%s", book.c_str());
+            }
             
             [citasVernacular addObject:[NSString stringWithUTF8String:buff]];
         }
@@ -440,6 +457,19 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
     NSString *rangeVernacular = [citasVernacular componentsJoinedByString:@"/"];
 
     return [NSString stringWithString:rangeVernacular];
+}
+
+- (NSString *)translateRange:(NSString *)range language:(NSString *)lang
+{
+    NSMutableArray *citasVernacular = [NSMutableArray array];
+    
+    NSArray *citas = [range componentsSeparatedByString:@"/"];
+    for (NSString *cita in citas)
+    {
+        [citasVernacular addObject:[self translateCitation:cita language:lang]];
+    }
+    
+    return [citasVernacular componentsJoinedByString:@"/"];
 }
 
 @end

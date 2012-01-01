@@ -1,0 +1,24 @@
+﻿
+/* Class = "NSPanel"; title = "Reading Schedule"; ObjectID = "1"; */
+"1.title" = "Reading Schedule";
+
+/* Class = "NSTableColumn"; headerCell.title = "Range"; ObjectID = "9"; */
+"9.headerCell.title" = "Range";
+
+/* Class = "NSTableColumn"; headerCell.title = "Date"; ObjectID = "10"; */
+"10.headerCell.title" = "Date";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "11"; */
+"11.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "12"; */
+"12.title" = "Text Cell";
+
+/* Class = "NSButtonCell"; title = "Mark as Read"; ObjectID = "14"; */
+"14.title" = "Mark as Read";
+
+/* Class = "NSButtonCell"; title = "Mark as Unread"; ObjectID = "16"; */
+"16.title" = "Mark as Unread";
+
+/* Class = "NSButtonCell"; title = "Set Current"; ObjectID = "18"; */
+"18.title" = "Set as Current";

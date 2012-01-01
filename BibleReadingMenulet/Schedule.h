@@ -12,13 +12,18 @@
     @private
     NSString       *_path;
     int             _curr;
-    NSMutableArray *_data;
+    NSMutableArray *_ranges;
 }
 
 - (id)init;
 - (id)initWithPath:(NSString *)path;
 - (BOOL)isComplete;
 - (void)markAsRead;
-- (NSString *)currRange;
+- (void)markAsReadAtIndex:(NSInteger)index;
+- (void)markAsUnreadAtIndex:(NSInteger)index;
+- (NSString *)currentRange;
+- (NSMutableArray *)ranges;
+- (int)currentIndex;
+- (void)setCurrentIndex:(NSInteger)index;
 
 @end

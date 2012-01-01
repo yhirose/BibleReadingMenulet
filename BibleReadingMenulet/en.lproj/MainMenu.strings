@@ -1,0 +1,21 @@
+﻿
+/* Class = "NSMenuItem"; title = "Read"; ObjectID = "543"; */
+"543.title" = "Read";
+
+/* Class = "NSMenuItem"; title = "Quit"; ObjectID = "545"; */
+"545.title" = "Quit";
+
+/* Class = "NSMenuItem"; title = "Mark as Read"; ObjectID = "548"; */
+"548.title" = "Mark as Read";
+
+/* Class = "NSMenuItem"; title = "Listen"; ObjectID = "553"; */
+"553.title" = "Listen";
+
+/* Class = "NSMenuItem"; title = "Language"; ObjectID = "554"; */
+"554.title" = "Language";
+
+/* Class = "NSMenuItem"; title = "Start at Login"; ObjectID = "558"; */
+"558.title" = "Start at Login";
+
+/* Class = "NSMenuItem"; title = "Show Schedule..."; ObjectID = "563"; */
+"563.title" = "Show Schedule...";

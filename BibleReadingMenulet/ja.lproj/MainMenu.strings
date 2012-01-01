@@ -1,0 +1,21 @@
+﻿
+/* Class = "NSMenuItem"; title = "Read"; ObjectID = "543"; */
+"543.title" = "読む";
+
+/* Class = "NSMenuItem"; title = "Quit"; ObjectID = "545"; */
+"545.title" = "終了";
+
+/* Class = "NSMenuItem"; title = "Mark as Read"; ObjectID = "548"; */
+"548.title" = "読了";
+
+/* Class = "NSMenuItem"; title = "Listen"; ObjectID = "553"; */
+"553.title" = "聴く";
+
+/* Class = "NSMenuItem"; title = "Language"; ObjectID = "554"; */
+"554.title" = "言語";
+
+/* Class = "NSMenuItem"; title = "Start at Login"; ObjectID = "558"; */
+"558.title" = "ログイン時に起動";
+
+/* Class = "NSMenuItem"; title = "Show Schedule..."; ObjectID = "563"; */
+"563.title" = "スケジュール表...";

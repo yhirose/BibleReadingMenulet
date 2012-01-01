@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "SchedulePanelController.h"
 #import "Utility.h"
 
 @implementation AppDelegate
@@ -118,9 +119,9 @@
         
         [menuRead setSubmenu:nil];
     }
-    else
+    else if ([schedule currentRange])
     {
-        NSString *range = [schedule currRange];        
+        NSString *range = [schedule currentRange];        
         
         NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
         NSString *lang = [ud stringForKey:@"LANGUAGE"];
@@ -151,7 +152,7 @@
 
 - (void)setupLanguageMenu
 {
-    NSMenuItem *menuLang = [menu itemAtIndex:3];
+    NSMenuItem *menuLang = [menu itemAtIndex:4];
     
     NSMenu *menuLangs = [[NSMenu alloc] initWithTitle:@"Languages"];
 
@@ -193,8 +194,13 @@
 {
     [self setupUserDefaults];
     [self setupProgressFiles];
+    
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(setupStatusMenuTitle) name:@"currentRangeChanged" object:nil];
+    [nc addObserver:self selector:@selector(setupStatusMenuTitle) name:@"languageChanged" object:nil];
+    [nc addObserver:self selector:@selector(setupLanguageMenu) name:@"languageChanged" object:nil];
         
-    langInfo = [[LanguageInformation alloc] init];
+    langInfo = [LanguageInformation instance];
     schedule = [[Schedule alloc] initWithPath:[Utility progressPath]];
     
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
@@ -241,18 +247,30 @@
     [ud setObject:lang forKey:@"LANGUAGE"];
     [ud synchronize];
     
-    [self setupLanguageMenu];
-    [self setupStatusMenuTitle];
+    NSNotification *n = [NSNotification notificationWithName:@"languageChanged" object:self];
+    [[NSNotificationCenter defaultCenter] postNotification:n];
 }
 
 - (IBAction)markAsReadAction:(id)sender
 {
     [schedule markAsRead];
-    [self setupStatusMenuTitle];
 }
 
 - (IBAction)quitAction:(id)sender
 {
     [NSApp terminate:self];
 }
+
+- (IBAction)showSchedulePanel:(id)sender
+{
+    if (!schedulePanelController)
+    {
+        schedulePanelController = [[SchedulePanelController alloc] initWithSchedule:schedule];
+    }
+    
+    [NSApp activateIgnoringOtherApps:YES];
+    [schedulePanelController showWindow:self];
+    [[schedulePanelController window] makeKeyAndOrderFront:self];
+}
+
 @end
