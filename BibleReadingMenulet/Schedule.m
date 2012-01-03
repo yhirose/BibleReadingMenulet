@@ -40,11 +40,13 @@
     NSString *rdata = [NSString stringWithContentsOfFile:path
                                                 encoding:NSUTF8StringEncoding error:nil];
     
-    NSArray *lines = [rdata componentsSeparatedByString:@"\n"];
+    NSArray *lines = [[rdata stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]
+                      componentsSeparatedByString:@"\n"];
+    
     for (int i = 0; i < [lines count]; i++)
     {
         NSString *line = [lines objectAtIndex:i];
-        if ([line length] > 0)
+        //if ([line length] > 0)
         {
             NSArray *fields = [line componentsSeparatedByString:@","];
             NSUInteger count = [fields count];

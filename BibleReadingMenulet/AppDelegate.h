@@ -12,16 +12,21 @@
 
 @class SchedulePanelController;
 
-@interface AppDelegate : NSObject <NSApplicationDelegate> {
-    IBOutlet NSMenu *menu;
-    NSStatusItem *statusItem;
-    LanguageInformation *langInfo;
-    Schedule *schedule;
-    NSArray *chapList;
-    SchedulePanelController *schedulePanelController;
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate> {
+    @private
+    NSStatusItem *_statusItem;
+    LanguageInformation *_langInfo;
+    Schedule *_schedule;
+    NSMutableArray *_chapList;
+    NSMutableArray *_chapListForSchool;
+    SchedulePanelController *_schedulePanelController;
 }
 
+@property (assign) IBOutlet NSMenu *menu;
+
+- (void)read:(id)sender chapterList:(NSMutableArray *)chapList;
 - (IBAction)readAction:(id)sender;
+- (IBAction)readActionForSchool:(id)sender;
 - (IBAction)langAction:(id)sender;
 - (IBAction)markAsReadAction:(id)sender;
 - (IBAction)quitAction:(id)sender;

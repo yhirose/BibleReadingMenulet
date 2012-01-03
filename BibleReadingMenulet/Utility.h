@@ -11,9 +11,10 @@
 
 @interface Utility : NSObject
 + (NSString *)appDirPath;
-+ (NSString *)progressPath;
++ (NSString *)schedulePath;
 + (NSString *)getContent:(NSString *)html;
 + (NSString *)getTitle:(NSString *)html;
++ (NSMutableArray *)getRangesForSchool;
 @end
 
 #endif

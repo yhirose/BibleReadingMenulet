@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA3E9F6614B1589D00006CC4 /* BibleReadingMenulet.icns in Resources */ = {isa = PBXBuildFile; fileRef = BA3E9F6514B1589D00006CC4 /* BibleReadingMenulet.icns */; };
 		BA7BC4CF14A97E5A00740694 /* SchedulePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7BC4CE14A97E5A00740694 /* SchedulePanelController.m */; };
 		BA94AB55149704D30040164E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA94AB54149704D30040164E /* Cocoa.framework */; };
 		BA94AB5F149704D30040164E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA94AB5D149704D30040164E /* InfoPlist.strings */; };
@@ -14,7 +15,7 @@
 		BA94AB65149704D30040164E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BA94AB63149704D30040164E /* Credits.rtf */; };
 		BA94AB68149704D30040164E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA94AB67149704D30040164E /* AppDelegate.m */; };
 		BA94AB6B149704D30040164E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA94AB69149704D30040164E /* MainMenu.xib */; };
-		BA94AB7614970A750040164E /* OneYear.csv in Resources */ = {isa = PBXBuildFile; fileRef = BA94AB7514970A750040164E /* OneYear.csv */; };
+		BA94AB7614970A750040164E /* Schedule.csv in Resources */ = {isa = PBXBuildFile; fileRef = BA94AB7514970A750040164E /* Schedule.csv */; };
 		BA94AB8B149BFA140040164E /* Utility.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA94AB8A149BFA140040164E /* Utility.mm */; };
 		BA94AB92149E94C10040164E /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = BA94AB91149E94C00040164E /* Schedule.m */; };
 		BA99DD4614B0009A00C54386 /* SchedulePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD4414B0009A00C54386 /* SchedulePanel.xib */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BA3E9F6514B1589D00006CC4 /* BibleReadingMenulet.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = BibleReadingMenulet.icns; sourceTree = "<group>"; };
 		BA7BC4CD14A97E5A00740694 /* SchedulePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchedulePanelController.h; sourceTree = "<group>"; };
 		BA7BC4CE14A97E5A00740694 /* SchedulePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchedulePanelController.m; sourceTree = "<group>"; };
 		BA94AB50149704D30040164E /* BibleReadingMenulet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BibleReadingMenulet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,7 +45,7 @@
 		BA94AB66149704D30040164E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BA94AB67149704D30040164E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BA94AB6A149704D30040164E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		BA94AB7514970A750040164E /* OneYear.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OneYear.csv; sourceTree = "<group>"; };
+		BA94AB7514970A750040164E /* Schedule.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Schedule.csv; sourceTree = "<group>"; };
 		BA94AB88149BF9CE0040164E /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		BA94AB8A149BFA140040164E /* Utility.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Utility.mm; sourceTree = "<group>"; };
 		BA94AB90149E94C00040164E /* Schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schedule.h; sourceTree = "<group>"; };
@@ -115,16 +117,16 @@
 		BA94AB5A149704D30040164E /* BibleReadingMenulet */ = {
 			isa = PBXGroup;
 			children = (
-				BA94AB90149E94C00040164E /* Schedule.h */,
-				BA94AB91149E94C00040164E /* Schedule.m */,
 				BA94AB88149BF9CE0040164E /* Utility.h */,
 				BA94AB8A149BFA140040164E /* Utility.mm */,
-				BAEB0BF914A40BAD006CBFD0 /* LanguageInformation.mm */,
 				BAEB0BF514A40AE8006CBFD0 /* LanguageInformation.h */,
-				BA94AB66149704D30040164E /* AppDelegate.h */,
-				BA94AB67149704D30040164E /* AppDelegate.m */,
+				BAEB0BF914A40BAD006CBFD0 /* LanguageInformation.mm */,
+				BA94AB90149E94C00040164E /* Schedule.h */,
+				BA94AB91149E94C00040164E /* Schedule.m */,
 				BA7BC4CD14A97E5A00740694 /* SchedulePanelController.h */,
 				BA7BC4CE14A97E5A00740694 /* SchedulePanelController.m */,
+				BA94AB66149704D30040164E /* AppDelegate.h */,
+				BA94AB67149704D30040164E /* AppDelegate.m */,
 				BA94AB69149704D30040164E /* MainMenu.xib */,
 				BA99DD4414B0009A00C54386 /* SchedulePanel.xib */,
 				BA94AB5B149704D30040164E /* Supporting Files */,
@@ -135,13 +137,14 @@
 		BA94AB5B149704D30040164E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BA3E9F6514B1589D00006CC4 /* BibleReadingMenulet.icns */,
 				BACE777614A9692E00855A1C /* LaunchAtLoginController.h */,
 				BACE777714A9692E00855A1C /* LaunchAtLoginController.m */,
 				BA99DD5014B0060300C54386 /* Localizable.strings */,
 				BA99DD4C14B0039D00C54386 /* MainMenu.strings */,
 				BA99DD4714B0017700C54386 /* SchedulePanel.strings */,
 				BAEB0BE214A2D06D006CBFD0 /* Template.html */,
-				BA94AB7514970A750040164E /* OneYear.csv */,
+				BA94AB7514970A750040164E /* Schedule.csv */,
 				BA94AB5C149704D30040164E /* BibleReadingMenulet-Info.plist */,
 				BA94AB5D149704D30040164E /* InfoPlist.strings */,
 				BA94AB60149704D30040164E /* main.m */,
@@ -206,13 +209,14 @@
 				BA94AB5F149704D30040164E /* InfoPlist.strings in Resources */,
 				BA94AB65149704D30040164E /* Credits.rtf in Resources */,
 				BA94AB6B149704D30040164E /* MainMenu.xib in Resources */,
-				BA94AB7614970A750040164E /* OneYear.csv in Resources */,
+				BA94AB7614970A750040164E /* Schedule.csv in Resources */,
 				BAEB0BE314A2D06D006CBFD0 /* Template.html in Resources */,
 				BA99DD4614B0009A00C54386 /* SchedulePanel.xib in Resources */,
 				BA99DD4914B0017700C54386 /* SchedulePanel.strings in Resources */,
 				BA99DD4E14B0039D00C54386 /* MainMenu.strings in Resources */,
 				BA99DD5214B0060300C54386 /* Localizable.strings in Resources */,
 				BA99DD5414B0061200C54386 /* Localizable.strings in Resources */,
+				BA3E9F6614B1589D00006CC4 /* BibleReadingMenulet.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,12 +309,12 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_ENABLE_OBJC_GC = supported;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -333,12 +337,12 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_ENABLE_OBJC_GC = supported;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;

@@ -11,8 +11,16 @@
 #import "Utility.h"
 
 @implementation AppDelegate
+@synthesize menu = _menu;
 
-- (void)setupProgressFiles
+enum MenuTag
+{
+    ReadMenuTag = 0,
+    SchoolMenuTag = 1,
+    LanguageMenuTag = 2
+};
+
+- (void)setupScheduleFiles
 {
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *resourcePath = [bundle resourcePath];
@@ -66,7 +74,7 @@
                                 attributes:nil
                                      error:nil];
         
-        NSString *urlStr = [langInfo pageURLWithLanguage:lang
+        NSString *urlStr = [_langInfo pageURLWithLanguage:lang
                                                     book:book
                                                  chapter:chap];
         
@@ -93,7 +101,7 @@
                                                    encoding:NSUTF8StringEncoding
                                                       error:nil];
 
-        NSString *mp3UrlStr = [langInfo mp3URLWithLanguage:lang book:book chapter:chap];
+        NSString *mp3UrlStr = [_langInfo mp3URLWithLanguage:lang book:book chapter:chap];
         
         NSString *html = [NSString stringWithFormat:tmpl, 
                           [Utility getTitle:nwtHTML],
@@ -111,31 +119,54 @@
 
 - (void)setupStatusMenuTitle
 {
-    NSMenuItem *menuRead = [menu itemAtIndex:0];
-    
-    if ([schedule isComplete])
+    if (_schedule == nil)
     {
-        [statusItem setTitle:@"Congratulations!!"];
-        
-        [menuRead setSubmenu:nil];
+        return;
     }
-    else if ([schedule currentRange])
+    
+    if ([_schedule isComplete])
     {
-        NSString *range = [schedule currentRange];        
+        [_statusItem setTitle:@"Congratulations!!"];
+    }
+    else
+    {
+        NSString *range = [_schedule currentRange];        
         
         NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
         NSString *lang = [ud stringForKey:@"LANGUAGE"];
         
-        NSString *vernacularRane = [langInfo translateRange:range language:lang];
+        NSString *vernacularRane = [_langInfo translateRange:range language:lang];
         
-        [statusItem setTitle:vernacularRane];
+        [_statusItem setTitle:vernacularRane];
+    }    
+}
+
+- (void)setupReadMenu
+{
+    NSMenuItem *menuRead = [_menu itemWithTag:ReadMenuTag];
+    
+    if (_schedule == nil)
+    {
+        return;
+    }
+    
+    if ([_schedule isComplete])
+    {
+        [menuRead setSubmenu:nil];
+    }
+    else
+    {
+        NSString *range = [_schedule currentRange];        
         
-        chapList = [langInfo makeChapterListFromRange:range language:lang];
+        NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+        NSString *lang = [ud stringForKey:@"LANGUAGE"];
         
-        NSMenu *menuChapters = [[NSMenu alloc] initWithTitle:@"Read Chapters"];        
+        _chapList = [_langInfo makeChapterListFromRange:range language:lang];
+        
+        NSMenu *menuChapters = [[NSMenu alloc] init];        
         
         int i = 0;
-        for (NSDictionary *item in chapList)
+        for (NSDictionary *item in _chapList)
         {
             NSMenuItem *menuItem = [menuChapters addItemWithTitle:[item valueForKey:@"label"]
                                                            action:@selector(readAction:)
@@ -151,16 +182,14 @@
 }
 
 - (void)setupLanguageMenu
-{
-    NSMenuItem *menuLang = [menu itemAtIndex:4];
-    
-    NSMenu *menuLangs = [[NSMenu alloc] initWithTitle:@"Languages"];
+{    
+    NSMenu *menuLangs = [[NSMenu alloc] init];
 
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
     NSString *currLangSymbol = [ud stringForKey:@"LANGUAGE"];
     
     int i = 0;
-    for (NSDictionary* val in langInfo.infoArray)
+    for (NSDictionary* val in _langInfo.infoArray)
     {
         NSString *name = [val valueForKey:@"name"];
         NSString *symbol = [val valueForKey:@"symbol"];
@@ -176,7 +205,42 @@
         i++;
     }    
     
-    [menuLang setSubmenu:menuLangs];    
+    [[_menu itemWithTag:LanguageMenuTag] setSubmenu:menuLangs];    
+}
+
+- (void)setupSchoolMenu
+{
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    NSString *lang = [ud stringForKey:@"LANGUAGE"];
+    
+    _chapListForSchool = [NSMutableArray array];
+    NSMenu *menuChapters = [[NSMenu alloc] init];
+    
+    int i = 0;
+    for (NSString *range in [Utility getRangesForSchool])
+    {
+        if (i != 0)
+        {
+            [menuChapters addItem:[NSMenuItem separatorItem]];
+        }
+        
+        NSMutableArray *chapList = [_langInfo makeChapterListFromRange:range language:lang];
+        
+        for (NSDictionary *item in chapList)
+        {
+            NSMenuItem *menuItem = [menuChapters addItemWithTitle:[item valueForKey:@"label"]
+                                                           action:@selector(readActionForSchool:)
+                                                    keyEquivalent:@""];
+            
+            [menuItem setTag:i];
+            
+            i++;
+        }
+        
+        [_chapListForSchool addObjectsFromArray:chapList];
+    }    
+    
+    [[_menu itemWithTag:SchoolMenuTag] setSubmenu:menuChapters];
 }
 
 - (void)setupUserDefaults
@@ -185,7 +249,7 @@
     NSMutableDictionary *defaults = [NSMutableDictionary dictionary];
     
     [defaults setObject:@"e" forKey:@"LANGUAGE"];
-    [defaults setObject:@"OneYear.csv" forKey:@"PROGRESS"];
+    [defaults setObject:@"Schedule.csv" forKey:@"SCHEDULE"];
     
     [ud registerDefaults:defaults];
 }
@@ -193,25 +257,25 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     [self setupUserDefaults];
-    [self setupProgressFiles];
+    [self setupScheduleFiles];
     
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(setupStatusMenuTitle) name:@"currentRangeChanged" object:nil];
     [nc addObserver:self selector:@selector(setupStatusMenuTitle) name:@"languageChanged" object:nil];
-    [nc addObserver:self selector:@selector(setupLanguageMenu) name:@"languageChanged" object:nil];
         
-    langInfo = [LanguageInformation instance];
-    schedule = [[Schedule alloc] initWithPath:[Utility progressPath]];
+    _langInfo = [LanguageInformation instance];
+    _schedule = [[Schedule alloc] initWithPath:[Utility schedulePath]];
     
-    statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-    [statusItem setMenu:menu];
-    [statusItem setHighlightMode:YES];
-
-    [self setupLanguageMenu];
+    _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+    [_statusItem setMenu:_menu];
+    [_statusItem setHighlightMode:YES];
+    
+    [_menu setDelegate:self];
+    
     [self setupStatusMenuTitle];
 }
 
-- (IBAction)readAction:(id)sender
+- (void)read:(id)sender chapterList:(NSMutableArray *)chapList
 {
     NSInteger i = [sender tag];
     NSDictionary *item = [chapList objectAtIndex:i];
@@ -236,10 +300,20 @@
     }    
 }
 
+- (IBAction)readAction:(id)sender
+{
+    [self read:sender chapterList:_chapList];
+}
+
+- (IBAction)readActionForSchool:(id)sender
+{
+    [self read:sender chapterList:_chapListForSchool];
+}
+
 - (IBAction)langAction:(id)sender
 {
     NSInteger i = [sender tag];
-    NSDictionary *item = [langInfo.infoArray objectAtIndex:i];
+    NSDictionary *item = [_langInfo.infoArray objectAtIndex:i];
     
     NSString *lang = [item valueForKey:@"symbol"];
     
@@ -253,7 +327,7 @@
 
 - (IBAction)markAsReadAction:(id)sender
 {
-    [schedule markAsRead];
+    [_schedule markAsRead];
 }
 
 - (IBAction)quitAction:(id)sender
@@ -263,14 +337,21 @@
 
 - (IBAction)showSchedulePanel:(id)sender
 {
-    if (!schedulePanelController)
+    if (!_schedulePanelController)
     {
-        schedulePanelController = [[SchedulePanelController alloc] initWithSchedule:schedule];
+        _schedulePanelController = [[SchedulePanelController alloc] initWithSchedule:_schedule];
     }
     
     [NSApp activateIgnoringOtherApps:YES];
-    [schedulePanelController showWindow:self];
-    [[schedulePanelController window] makeKeyAndOrderFront:self];
+    [_schedulePanelController showWindow:self];
+    [[_schedulePanelController window] makeKeyAndOrderFront:self];
+}
+
+- (void)menuWillOpen:(NSMenu *)menu
+{
+    [self setupReadMenu];
+    [self setupLanguageMenu];
+    [self setupSchoolMenu];
 }
 
 @end

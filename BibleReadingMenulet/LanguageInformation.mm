@@ -262,13 +262,14 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
     return !ret;
 }
 
-static LanguageInformation *_instance = nil;
-
 @implementation LanguageInformation
 
 @synthesize infoArray = _infoArray;
 
 + (LanguageInformation *)instance {
+    
+    static LanguageInformation *_instance = nil;
+    
     if (_instance == nil) {
         _instance = [[LanguageInformation alloc] init];
     }
@@ -359,7 +360,7 @@ static LanguageInformation *_instance = nil;
             [chap intValue]];
 }
 
-- (NSArray *)makeChapterListFromRange:(NSString *)range language:(NSString *)lang;
+- (NSMutableArray *)makeChapterListFromRange:(NSString *)range language:(NSString *)lang;
 {
     NSMutableArray *list = [NSMutableArray array];
     
@@ -377,6 +378,7 @@ static LanguageInformation *_instance = nil;
         {
             for (const auto& item: items)
             {
+                NSString *book = [NSString stringWithCString:item.book.c_str() encoding:NSUTF8StringEncoding];
                 NSNumber *chap = [NSNumber numberWithInt:item.chap];
                 NSNumber *verse = [NSNumber numberWithInt:item.verse];
                 
@@ -385,7 +387,7 @@ static LanguageInformation *_instance = nil;
                 
                 NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
                                      label, @"label",
-                                     [NSString stringWithCString:item.book.c_str() encoding:NSUTF8StringEncoding], @"book",
+                                     book, @"book",
                                      chap, @"chap",
                                      verse, @"verse",
                                      nil];
