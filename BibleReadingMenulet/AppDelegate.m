@@ -250,6 +250,7 @@ enum MenuTag
     
     [defaults setObject:@"e" forKey:@"LANGUAGE"];
     [defaults setObject:@"Schedule.csv" forKey:@"SCHEDULE"];
+    [defaults setValue:0 forKey:@"READING_MODE"];
     
     [ud registerDefaults:defaults];
 }
@@ -282,12 +283,25 @@ enum MenuTag
     
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
     NSString *lang = [ud stringForKey:@"LANGUAGE"];
+    BOOL readingMode = [ud boolForKey:@"READING_MODE"];
+
+    NSURL *url;
+    if (readingMode)
+    {
+        NSString *urlStr = [self setupHTMLFileWithLanguage:lang
+                                                      book:[item valueForKey:@"book"]
+                                                   chapter:[item valueForKey:@"chap"]];
+        url = [NSURL fileURLWithPath:urlStr];        
+    }
+    else
+    {
+        NSString *urlStr = [_langInfo pageURLWithLanguage:lang
+                                                     book:[item valueForKey:@"book"]
+                                                  chapter:[item valueForKey:@"chap"]];
+        url = [NSURL URLWithString:urlStr];
+    }
     
-    NSString *path = [self setupHTMLFileWithLanguage:lang
-                                                book:[item valueForKey:@"book"]
-                                             chapter:[item valueForKey:@"chap"]];
-    
-    if (path == nil)
+    if (url == nil)
     {
         NSRunAlertPanel(NSLocalizedString(@"OPEN_ERR_TTL", @"Title for Open error"),
                         NSLocalizedString(@"OPEN_ERR_MSG", @"Message for open error"),
@@ -295,7 +309,6 @@ enum MenuTag
     }
     else
     {
-        NSURL *url = [NSURL fileURLWithPath:path];        
         [[NSWorkspace sharedWorkspace] openURL:url];
     }    
 }
