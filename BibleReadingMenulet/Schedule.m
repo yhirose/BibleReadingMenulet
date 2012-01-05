@@ -46,29 +46,26 @@
     for (int i = 0; i < [lines count]; i++)
     {
         NSString *line = [lines objectAtIndex:i];
-        //if ([line length] > 0)
+        NSArray *fields = [line componentsSeparatedByString:@","];
+        NSUInteger count = [fields count];
+        
+        NSMutableDictionary *item = [NSMutableDictionary dictionaryWithObject:[fields objectAtIndex:0]
+                                                                       forKey:@"range"];
+        
+        if (count == 2)
         {
-            NSArray *fields = [line componentsSeparatedByString:@","];
-            NSUInteger count = [fields count];
-            
-            NSMutableDictionary *item = [NSMutableDictionary dictionaryWithObject:[fields objectAtIndex:0]
-                                                                           forKey:@"range"];
-            
-            if (count == 2)
+            NSString *date = [fields objectAtIndex:1];
+            if ([date compare:@"*" options:NSCaseInsensitiveSearch] == NSOrderedSame)
             {
-                NSString *date = [fields objectAtIndex:1];
-                if ([date compare:@"*" options:NSCaseInsensitiveSearch] == NSOrderedSame)
-                {
-                    *curr = i;
-                }
-                else
-                {
-                    [item setValue:date forKey:@"date"];
-                }
+                *curr = i;
             }
-            
-            [data addObject:item];
+            else
+            {
+                [item setValue:date forKey:@"date"];
+            }
         }
+        
+        [data addObject:item];
     }
     
     return data;

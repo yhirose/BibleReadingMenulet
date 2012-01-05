@@ -88,48 +88,62 @@
     return [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
-+ (NSMutableArray *)getRangesForSchool
++ (NSMutableArray *)findRangesForSchoolSchedule:(NSString *)schoolSchedule
 {
     NSMutableArray *array = [NSMutableArray array];
     
-    NSString *schoolSchedule = [Utility fetchSchoolSchedule];
-    if (schoolSchedule)
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"yyyy-MM-dd"];
+    
+    NSDate *now = [NSDate date];
+    
+    NSArray *lines = [schoolSchedule componentsSeparatedByString:@"\n"];
+    
+    for (int i = 0; i < [lines count]; i++)
     {
-        NSDateFormatter *df = [[NSDateFormatter alloc] init];
-        [df setDateFormat:@"yyyy-MM-dd"];
+        NSString *line = [lines objectAtIndex:i];
+        NSArray *fields = [line componentsSeparatedByString:@","];
         
-        NSDate *now = [NSDate date];
+        NSDate *beg = [df dateFromString:[fields objectAtIndex:0]]; 
+        NSDate *end = [NSDate dateWithTimeInterval:7*24*60*60 sinceDate:beg];
         
-        NSArray *lines = [schoolSchedule componentsSeparatedByString:@"\n"];
+        NSTimeInterval val1 = [now timeIntervalSinceDate:beg];
+        NSTimeInterval val2 = [end timeIntervalSinceDate:now];
         
-        for (int i = 0; i < [lines count]; i++)
+        if (val1 >= 0 && val2 > 0)
         {
-            NSString *line = [lines objectAtIndex:i];
-            NSArray *fields = [line componentsSeparatedByString:@","];
+            [array addObject:[fields objectAtIndex:1]];
             
-            NSDate *beg = [df dateFromString:[fields objectAtIndex:0]]; 
-            NSDate *end = [NSDate dateWithTimeInterval:7*24*60*60 sinceDate:beg];
-            
-            NSTimeInterval val1 = [now timeIntervalSinceDate:beg];
-            NSTimeInterval val2 = [end timeIntervalSinceDate:now];
-            
-            if (val1 >= 0 && val2 > 0)
+            if (i + 1 < [lines count])
             {
+                NSString *line = [lines objectAtIndex:i + 1];
+                NSArray *fields = [line componentsSeparatedByString:@","];
                 [array addObject:[fields objectAtIndex:1]];
-                
-                if (i + 1 < [lines count])
-                {
-                    NSString *line = [lines objectAtIndex:i + 1];
-                    NSArray *fields = [line componentsSeparatedByString:@","];
-                    [array addObject:[fields objectAtIndex:1]];
-                }
-                
-                break;
             }
+            
+            break;
         }
-    }    
+    }
 
     return array;
+}
+
++ (NSMutableArray *)getRangesForSchool
+{
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    NSString *schoolSchedule = [ud stringForKey:@"SCHOOL_SCHEDULE"];
+    
+    NSMutableArray *ranges = [self findRangesForSchoolSchedule:schoolSchedule];
+    
+    if (![ranges count])
+    {
+        NSString *schoolSchedule = [Utility fetchSchoolSchedule];
+        [ud setValue:schoolSchedule forKey:@"SCHOOL_SCHEDULE"];
+        
+        ranges = [self findRangesForSchoolSchedule:schoolSchedule];
+    }    
+    
+    return ranges;
 }
 
 @end
