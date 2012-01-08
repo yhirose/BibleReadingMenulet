@@ -117,6 +117,9 @@
 		BA94AB5A149704D30040164E /* BibleReadingMenulet */ = {
 			isa = PBXGroup;
 			children = (
+				BA94AB62149704D30040164E /* BibleReadingMenulet-Prefix.pch */,
+				BA94AB66149704D30040164E /* AppDelegate.h */,
+				BA94AB67149704D30040164E /* AppDelegate.m */,
 				BA94AB88149BF9CE0040164E /* Utility.h */,
 				BA94AB8A149BFA140040164E /* Utility.mm */,
 				BAEB0BF514A40AE8006CBFD0 /* LanguageInformation.h */,
@@ -125,10 +128,8 @@
 				BA94AB91149E94C00040164E /* Schedule.m */,
 				BA7BC4CD14A97E5A00740694 /* SchedulePanelController.h */,
 				BA7BC4CE14A97E5A00740694 /* SchedulePanelController.m */,
-				BA94AB66149704D30040164E /* AppDelegate.h */,
-				BA94AB67149704D30040164E /* AppDelegate.m */,
-				BA94AB69149704D30040164E /* MainMenu.xib */,
-				BA99DD4414B0009A00C54386 /* SchedulePanel.xib */,
+				BACE777614A9692E00855A1C /* LaunchAtLoginController.h */,
+				BACE777714A9692E00855A1C /* LaunchAtLoginController.m */,
 				BA94AB5B149704D30040164E /* Supporting Files */,
 			);
 			path = BibleReadingMenulet;
@@ -138,8 +139,8 @@
 			isa = PBXGroup;
 			children = (
 				BA3E9F6514B1589D00006CC4 /* BibleReadingMenulet.icns */,
-				BACE777614A9692E00855A1C /* LaunchAtLoginController.h */,
-				BACE777714A9692E00855A1C /* LaunchAtLoginController.m */,
+				BA94AB69149704D30040164E /* MainMenu.xib */,
+				BA99DD4414B0009A00C54386 /* SchedulePanel.xib */,
 				BA99DD5014B0060300C54386 /* Localizable.strings */,
 				BA99DD4C14B0039D00C54386 /* MainMenu.strings */,
 				BA99DD4714B0017700C54386 /* SchedulePanel.strings */,
@@ -148,7 +149,6 @@
 				BA94AB5C149704D30040164E /* BibleReadingMenulet-Info.plist */,
 				BA94AB5D149704D30040164E /* InfoPlist.strings */,
 				BA94AB60149704D30040164E /* main.m */,
-				BA94AB62149704D30040164E /* BibleReadingMenulet-Prefix.pch */,
 				BA94AB63149704D30040164E /* Credits.rtf */,
 			);
 			name = "Supporting Files";
