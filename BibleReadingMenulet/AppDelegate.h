@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "Schedule.h"
 #import "LanguageInformation.h"
+#import "MainWindowController.h"
 
 @class SchedulePanelController;
 
@@ -22,7 +23,8 @@
     SchedulePanelController *_schedulePanelController;
 }
 
-@property (assign) IBOutlet NSMenu *menu;
+@property (unsafe_unretained) IBOutlet NSMenu *menu;
+@property (unsafe_unretained) IBOutlet MainWindowController *windowController;
 
 - (void)read:(id)sender chapterList:(NSMutableArray *)chapList;
 - (IBAction)readAction:(id)sender;

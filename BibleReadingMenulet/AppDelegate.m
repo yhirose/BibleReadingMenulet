@@ -12,6 +12,7 @@
 
 @implementation AppDelegate
 @synthesize menu = _menu;
+@synthesize windowController = _windowController;
 
 enum MenuTag
 {
@@ -250,7 +251,6 @@ enum MenuTag
     
     [defaults setObject:@"e" forKey:@"LANGUAGE"];
     [defaults setObject:@"Schedule.csv" forKey:@"SCHEDULE"];
-    [defaults setValue:0 forKey:@"READING_MODE"];
     
     [ud registerDefaults:defaults];
 }
@@ -283,34 +283,31 @@ enum MenuTag
     
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
     NSString *lang = [ud stringForKey:@"LANGUAGE"];
-    BOOL readingMode = [ud boolForKey:@"READING_MODE"];
 
-    NSURL *url;
-    if (readingMode)
-    {
-        NSString *urlStr = [self setupHTMLFileWithLanguage:lang
-                                                      book:[item valueForKey:@"book"]
-                                                   chapter:[item valueForKey:@"chap"]];
-        url = [NSURL fileURLWithPath:urlStr];        
-    }
-    else
-    {
-        NSString *urlStr = [_langInfo pageURLWithLanguage:lang
-                                                     book:[item valueForKey:@"book"]
-                                                  chapter:[item valueForKey:@"chap"]];
-        url = [NSURL URLWithString:urlStr];
-    }
+    NSString *urlStr = [_langInfo pageURLWithLanguage:lang
+                                                 book:[item valueForKey:@"book"]
+                                              chapter:[item valueForKey:@"chap"]];
     
+    NSURL *url = [NSURL URLWithString:urlStr];
+
     if (url == nil)
     {
         NSRunAlertPanel(NSLocalizedString(@"OPEN_ERR_TTL", @"Title for Open error"),
                         NSLocalizedString(@"OPEN_ERR_MSG", @"Message for open error"),
                         @"OK", nil, nil);
+        
+        return;
     }
-    else
-    {
-        [[NSWorkspace sharedWorkspace] openURL:url];
-    }    
+    
+    urlStr = [self setupHTMLFileWithLanguage:lang
+                                        book:[item valueForKey:@"book"]
+                                     chapter:[item valueForKey:@"chap"]];
+    
+    NSURL *urlFullScreen = [NSURL fileURLWithPath:urlStr];        
+    
+    //[[NSWorkspace sharedWorkspace] openURL:url];
+    [_windowController setupContentWithURL:url fullScreenURL:urlFullScreen title:[item valueForKey:@"label"]];
+    [_windowController showWindow:self];
 }
 
 - (IBAction)readAction:(id)sender
