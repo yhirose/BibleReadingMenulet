@@ -102,11 +102,8 @@ enum MenuTag
                                                    encoding:NSUTF8StringEncoding
                                                       error:nil];
 
-        NSString *mp3UrlStr = [_langInfo mp3URLWithLanguage:lang book:book chapter:chap];
-        
         NSString *html = [NSString stringWithFormat:tmpl, 
                           [Utility getTitle:nwtHTML],
-                          mp3UrlStr,
                           [Utility getContent:nwtHTML]];
         
         [html writeToFile:path
@@ -259,7 +256,7 @@ enum MenuTag
 {
     [self setupUserDefaults];
     [self setupScheduleFiles];
-    
+
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(setupStatusMenuTitle) name:@"currentRangeChanged" object:nil];
     [nc addObserver:self selector:@selector(setupStatusMenuTitle) name:@"languageChanged" object:nil];
@@ -281,12 +278,15 @@ enum MenuTag
     NSInteger i = [sender tag];
     NSDictionary *item = [chapList objectAtIndex:i];
     
+    NSString *book = [item valueForKey:@"book"];
+    NSNumber *chap = [item valueForKey:@"chap"];
+    
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
     NSString *lang = [ud stringForKey:@"LANGUAGE"];
 
     NSString *urlStr = [_langInfo pageURLWithLanguage:lang
-                                                 book:[item valueForKey:@"book"]
-                                              chapter:[item valueForKey:@"chap"]];
+                                                 book:book
+                                              chapter:chap];
     
     NSURL *url = [NSURL URLWithString:urlStr];
 
@@ -300,13 +300,22 @@ enum MenuTag
     }
     
     urlStr = [self setupHTMLFileWithLanguage:lang
-                                        book:[item valueForKey:@"book"]
-                                     chapter:[item valueForKey:@"chap"]];
+                                        book:book
+                                     chapter:chap];
     
     NSURL *urlFullScreen = [NSURL fileURLWithPath:urlStr];        
+
+    urlStr = [_langInfo mp3URLWithLanguage:lang
+                                      book:book
+                                   chapter:chap];
+
+    NSURL *urlAudioFile = [NSURL URLWithString:urlStr];
+
+    [_windowController setupContentWithURL:url
+                             fullScreenURL:urlFullScreen
+                              audioFileURL:urlAudioFile
+                                     title:[item valueForKey:@"label"]];
     
-    //[[NSWorkspace sharedWorkspace] openURL:url];
-    [_windowController setupContentWithURL:url fullScreenURL:urlFullScreen title:[item valueForKey:@"label"]];
     [_windowController showWindow:self];
 }
 

@@ -15,6 +15,12 @@
 + (NSString *)getContent:(NSString *)html;
 + (NSString *)getTitle:(NSString *)html;
 + (NSMutableArray *)getRangesForSchool;
++ (BOOL)isLionOrLater;
+
+/* Based on http://www.cocoadev.com/index.pl?DeterminingOSVersion */
++ (void)getSystemVersionMajor:(unsigned int *)major
+                        minor:(unsigned int *)minor
+                       bugFix:(unsigned int *)bugFix;
 @end
 
 #endif
