@@ -316,7 +316,10 @@ enum MenuTag
                               audioFileURL:urlAudioFile
                                      title:[item valueForKey:@"label"]];
     
+    [NSApp activateIgnoringOtherApps:YES];
     [_windowController showWindow:self];
+    [[_windowController window] makeKeyAndOrderFront:self];
+
 }
 
 - (IBAction)readAction:(id)sender

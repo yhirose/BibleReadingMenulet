@@ -83,6 +83,10 @@
     _audioFileURL = audioFileURL;
     _title = title;
     
+    _sound = nil;
+    _paused = NO;
+    [_playButton setTitle:@">"];
+    
     [[self window] setTitle:_title];
     [_closeButton setTransparent:YES];
     [_closeButton setEnabled:NO];
