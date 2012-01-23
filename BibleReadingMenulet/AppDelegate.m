@@ -157,6 +157,10 @@ enum MenuTag
         NSString *range = [_schedule currentRange];        
         
         NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+        
+        NSMutableDictionary *prevProgress = [ud valueForKey:@"SCHEDULE_PROGRESS"];
+        NSMutableDictionary *progress = [NSMutableDictionary dictionary];
+        
         NSString *lang = [ud stringForKey:@"LANGUAGE"];
         
         _chapList = [_langInfo makeChapterListFromRange:range language:lang];
@@ -166,16 +170,26 @@ enum MenuTag
         int i = 0;
         for (NSDictionary *item in _chapList)
         {
-            NSMenuItem *menuItem = [menuChapters addItemWithTitle:[item valueForKey:@"label"]
+            NSString *label = [item valueForKey:@"label"];
+
+            NSMenuItem *menuItem = [menuChapters addItemWithTitle:label
                                                            action:@selector(readAction:)
                                                     keyEquivalent:@""];
             
             [menuItem setTag:i];
             
+            if ([prevProgress valueForKey:label])
+            {
+                [menuItem setState:NSOnState];
+                [progress setValue:[NSNumber numberWithBool:YES] forKey:label];
+            }
+            
             i++;
         }
         
         [menuRead setSubmenu:menuChapters];
+        
+        [ud setValue:progress forKey:@"SCHEDULE_PROGRESS"];
     }    
 }
 
@@ -184,6 +198,7 @@ enum MenuTag
     NSMenu *menuLangs = [[NSMenu alloc] init];
 
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+
     NSString *currLangSymbol = [ud stringForKey:@"LANGUAGE"];
     
     int i = 0;
@@ -211,6 +226,9 @@ enum MenuTag
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
     NSString *lang = [ud stringForKey:@"LANGUAGE"];
     
+    NSMutableDictionary *prevProgress = [ud valueForKey:@"SCHOOL_SCHEDULE_PROGRESS"];
+    NSMutableDictionary *progress = [NSMutableDictionary dictionary];
+    
     _chapListForSchool = [NSMutableArray array];
     NSMenu *menuChapters = [[NSMenu alloc] init];
     
@@ -226,11 +244,19 @@ enum MenuTag
         
         for (NSDictionary *item in chapList)
         {
-            NSMenuItem *menuItem = [menuChapters addItemWithTitle:[item valueForKey:@"label"]
+            NSString *label = [item valueForKey:@"label"];
+                        
+            NSMenuItem *menuItem = [menuChapters addItemWithTitle:label
                                                            action:@selector(readActionForSchool:)
                                                     keyEquivalent:@""];
             
             [menuItem setTag:i];
+            
+            if ([prevProgress valueForKey:label])
+            {
+                [menuItem setState:NSOnState];
+                [progress setValue:[NSNumber numberWithBool:YES] forKey:label];
+            }
             
             i++;
         }
@@ -239,6 +265,8 @@ enum MenuTag
     }    
     
     [[_menu itemWithTag:SchoolMenuTag] setSubmenu:menuChapters];
+    
+    [ud setValue:progress forKey:@"SCHOOL_SCHEDULE_PROGRESS"];
 }
 
 - (void)setupUserDefaults
@@ -273,15 +301,19 @@ enum MenuTag
     [self setupStatusMenuTitle];
 }
 
-- (void)read:(id)sender chapterList:(NSMutableArray *)chapList
+- (void)read:(id)sender chapterList:(NSMutableArray *)chapList type:(NSString *)type
 {
     NSInteger i = [sender tag];
     NSDictionary *item = [chapList objectAtIndex:i];
-    
-    NSString *book = [item valueForKey:@"book"];
-    NSNumber *chap = [item valueForKey:@"chap"];
-    
+
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    
+    NSMutableDictionary *progress = [NSMutableDictionary dictionaryWithDictionary:[ud valueForKey:type]];
+    [progress setValue:[NSNumber numberWithBool:YES] forKey:[item valueForKey:@"label"]];
+    [ud setValue:progress forKey:type];
+
+    NSString *book = [item valueForKey:@"book"];
+    NSNumber *chap = [item valueForKey:@"chap"];    
     NSString *lang = [ud stringForKey:@"LANGUAGE"];
 
     NSString *urlStr = [_langInfo pageURLWithLanguage:lang
@@ -319,17 +351,16 @@ enum MenuTag
     [NSApp activateIgnoringOtherApps:YES];
     [_windowController showWindow:self];
     [[_windowController window] makeKeyAndOrderFront:self];
-
 }
 
 - (IBAction)readAction:(id)sender
 {
-    [self read:sender chapterList:_chapList];
+    [self read:sender chapterList:_chapList type:@"SCHEDULE_PROGRESS"];
 }
 
 - (IBAction)readActionForSchool:(id)sender
 {
-    [self read:sender chapterList:_chapListForSchool];
+    [self read:sender chapterList:_chapListForSchool type:@"SCHOOL_SCHEDULE_PROGRESS"];
 }
 
 - (IBAction)langAction:(id)sender

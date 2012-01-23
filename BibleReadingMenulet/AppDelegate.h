@@ -26,7 +26,7 @@
 @property (unsafe_unretained) IBOutlet NSMenu *menu;
 @property (unsafe_unretained) IBOutlet MainWindowController *windowController;
 
-- (void)read:(id)sender chapterList:(NSMutableArray *)chapList;
+- (void)read:(id)sender chapterList:(NSMutableArray *)chapList type:(NSString *)type;
 - (IBAction)readAction:(id)sender;
 - (IBAction)readActionForSchool:(id)sender;
 - (IBAction)langAction:(id)sender;
