@@ -23,11 +23,8 @@
 		BA99DD4914B0017700C54386 /* SchedulePanel.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD4714B0017700C54386 /* SchedulePanel.strings */; };
 		BA99DD4E14B0039D00C54386 /* MainMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD4C14B0039D00C54386 /* MainMenu.strings */; };
 		BA99DD5214B0060300C54386 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD5014B0060300C54386 /* Localizable.strings */; };
-		BA99DD5414B0061200C54386 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD5014B0060300C54386 /* Localizable.strings */; };
 		BAC3857514B92D9900A71AC6 /* ScheduleThematically.csv in Resources */ = {isa = PBXBuildFile; fileRef = BAC3857414B92D9900A71AC6 /* ScheduleThematically.csv */; };
-		BAC7A5DE14BB8EA400576A9C /* MainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC7A5DD14BB8EA400576A9C /* MainWindowController.m */; };
 		BACE777814A9692E00855A1C /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = BACE777714A9692E00855A1C /* LaunchAtLoginController.m */; };
-		BAEB0BE314A2D06D006CBFD0 /* Template.html in Resources */ = {isa = PBXBuildFile; fileRef = BAEB0BE214A2D06D006CBFD0 /* Template.html */; };
 		BAEB0BFA14A40BAD006CBFD0 /* LanguageInformation.mm in Sources */ = {isa = PBXBuildFile; fileRef = BAEB0BF914A40BAD006CBFD0 /* LanguageInformation.mm */; };
 /* End PBXBuildFile section */
 
@@ -64,11 +61,8 @@
 		BA99DD5314B0061200C54386 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BABC3B3014A6744B0089FEC9 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		BAC3857414B92D9900A71AC6 /* ScheduleThematically.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ScheduleThematically.csv; sourceTree = "<group>"; };
-		BAC7A5DC14BB8EA400576A9C /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindowController.h; sourceTree = "<group>"; };
-		BAC7A5DD14BB8EA400576A9C /* MainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindowController.m; sourceTree = "<group>"; };
 		BACE777614A9692E00855A1C /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LaunchAtLoginController.h; path = LaunchAtLoginController/LaunchAtLoginController.h; sourceTree = SOURCE_ROOT; };
 		BACE777714A9692E00855A1C /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LaunchAtLoginController.m; path = LaunchAtLoginController/LaunchAtLoginController.m; sourceTree = SOURCE_ROOT; };
-		BAEB0BE214A2D06D006CBFD0 /* Template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Template.html; sourceTree = "<group>"; };
 		BAEB0BF514A40AE8006CBFD0 /* LanguageInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageInformation.h; sourceTree = "<group>"; };
 		BAEB0BF914A40BAD006CBFD0 /* LanguageInformation.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LanguageInformation.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -139,8 +133,7 @@
 				BA7BC4CE14A97E5A00740694 /* SchedulePanelController.m */,
 				BACE777614A9692E00855A1C /* LaunchAtLoginController.h */,
 				BACE777714A9692E00855A1C /* LaunchAtLoginController.m */,
-				BAC7A5DC14BB8EA400576A9C /* MainWindowController.h */,
-				BAC7A5DD14BB8EA400576A9C /* MainWindowController.m */,
+				BA94AB60149704D30040164E /* main.m */,
 				BA94AB69149704D30040164E /* MainMenu.xib */,
 				BA99DD4414B0009A00C54386 /* SchedulePanel.xib */,
 				BA94AB5B149704D30040164E /* Supporting Files */,
@@ -153,14 +146,12 @@
 			children = (
 				BA94AB7514970A750040164E /* Schedule.csv */,
 				BAC3857414B92D9900A71AC6 /* ScheduleThematically.csv */,
-				BAEB0BE214A2D06D006CBFD0 /* Template.html */,
 				BA3E9F6514B1589D00006CC4 /* BibleReadingMenulet.icns */,
 				BA99DD5014B0060300C54386 /* Localizable.strings */,
 				BA99DD4C14B0039D00C54386 /* MainMenu.strings */,
 				BA99DD4714B0017700C54386 /* SchedulePanel.strings */,
 				BA94AB5C149704D30040164E /* BibleReadingMenulet-Info.plist */,
 				BA94AB5D149704D30040164E /* InfoPlist.strings */,
-				BA94AB60149704D30040164E /* main.m */,
 				BA94AB63149704D30040164E /* Credits.rtf */,
 			);
 			name = "Supporting Files";
@@ -192,7 +183,7 @@
 		BA94AB47149704D30040164E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = "Yuji Hirose";
 			};
 			buildConfigurationList = BA94AB4A149704D30040164E /* Build configuration list for PBXProject "BibleReadingMenulet" */;
@@ -222,12 +213,10 @@
 				BA94AB65149704D30040164E /* Credits.rtf in Resources */,
 				BA94AB6B149704D30040164E /* MainMenu.xib in Resources */,
 				BA94AB7614970A750040164E /* Schedule.csv in Resources */,
-				BAEB0BE314A2D06D006CBFD0 /* Template.html in Resources */,
 				BA99DD4614B0009A00C54386 /* SchedulePanel.xib in Resources */,
 				BA99DD4914B0017700C54386 /* SchedulePanel.strings in Resources */,
 				BA99DD4E14B0039D00C54386 /* MainMenu.strings in Resources */,
 				BA99DD5214B0060300C54386 /* Localizable.strings in Resources */,
-				BA99DD5414B0061200C54386 /* Localizable.strings in Resources */,
 				BA3E9F6614B1589D00006CC4 /* BibleReadingMenulet.icns in Resources */,
 				BAC3857514B92D9900A71AC6 /* ScheduleThematically.csv in Resources */,
 			);
@@ -247,7 +236,6 @@
 				BAEB0BFA14A40BAD006CBFD0 /* LanguageInformation.mm in Sources */,
 				BACE777814A9692E00855A1C /* LaunchAtLoginController.m in Sources */,
 				BA7BC4CF14A97E5A00740694 /* SchedulePanelController.m in Sources */,
-				BAC7A5DE14BB8EA400576A9C /* MainWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

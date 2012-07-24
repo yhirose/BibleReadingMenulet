@@ -14,10 +14,9 @@
 
 + (LanguageInformation *)instance;
 
-- (NSString *)pageURLWithLanguage:(NSString *)lang book:(NSString*)book chapter:(NSNumber *)chap;
-- (NSString *)mp3URLWithLanguage:(NSString *)lang book:(NSString*)book chapter:(NSNumber *)chap;
+- (int)getBookNo:(NSString *)name;
+- (NSString *)wolPageURLWithLanguage:(NSString *)lang book:(NSString*)book chapter:(NSNumber *)chap;
 - (NSMutableArray *)makeChapterListFromRange:(NSString *)range language:(NSString *)lang;
-- (NSString *)translateCitation:(NSString *)str language:(NSString *)lang;
 - (NSString *)translateRange:(NSString *)range language:(NSString *)lang;
 
 @end

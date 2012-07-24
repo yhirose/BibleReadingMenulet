@@ -12,8 +12,6 @@
 @interface Utility : NSObject
 + (NSString *)appDirPath;
 + (NSString *)schedulePath;
-+ (NSString *)getContent:(NSString *)html;
-+ (NSString *)getTitle:(NSString *)html;
 + (NSMutableArray *)getRangesForSchool;
 + (BOOL)isLionOrLater;
 

@@ -18,45 +18,45 @@ struct LanguageInfo
     const char* name;
     const char* symbol;
     const char* pageURL;
-    const char* mp3URL;
+    const char* wolPageURL;
     const char* bookNames;
 };
 
 const struct LanguageInfo langInfo[] =
 {
-    { "Afrikaans", "af", "http://www.watchtower.org/%@/bybel/%@/chapter_%03d.htm", "", "" },
+    { "", "*", "http://download.jw.org/files/media_bible/%02d_%@_%@_%02d.mp3", "", "" },
+    { "Afrikaans", "af", "", "", "" },
     { "Shqip", "al", "", "", "" },
     { "Česky", "b", "", "", "" },
     { "Български", "bl", "", "", "" },
-    { "Hrvatski", "c", "http://www.watchtower.org/%@/biblija/%@/chapter_%03d.htm", "", "" },
+    { "Hrvatski", "c", "", "", "" },
     { "汉语（简化字）", "ch", "", "", "" },
     { "漢語（繁體字）", "chs", "", "", "" },
-    { "Dansk", "d", "http://www.watchtower.org/%@/bibelen/%@/chapter_%03d.htm", "", "" },
-    { "English", "e", "http://www.watchtower.org/%@/bible/%@/chapter_%03d.htm", "http://download.jw.org/files/media_bible/%02d_%@_%@_%02d.mp3", "" },
+    { "Dansk", "d", "", "", "" },
+    { "English", "e", "", "http://wol.jw.org/en/wol/b/r1/lp-e/%d/%d", "" },
     { "Français", "f", "", "", "" },
-    { "Suomi", "fi", "http://www.watchtower.org/%@/raamattu/%@/chapter_%03d.htm", "", "" },
-    { "Magyar", "h", "http://www.watchtower.org/%@/biblia/%@/chapter_%03d.htm", "", "" },
-    { "Italiano", "i", "http://www.watchtower.org/%@/bibbia/%@/chapter_%03d.htm", "", "" },
-    { "日本語", "j", "", "", "創,出,レビ,民,申,ヨシ,裁,ルツ,サ一,サ二,王一,王二,代一,代二,エズ,ネヘ,エス,ヨブ,詩,箴,伝,歌,イザ,エレ,哀,エゼ,ダニ,ホセ,ヨエ,アモ,オバ,ヨナ,ミカ,ナホ,ハバ,ゼパ,ハガ,ゼカ,マラ,マタ,マル,ルカ,ヨハ,使徒,ロマ,コ一,コ二,ガラ,エフェ,フィリ,コロ,テサ一,テサ二,テモ一,テモ二,テト,フィレ,ヘブ,ヤコ,ペテ一,ペテ二,ヨハ一,ヨハ二,ヨハ三,ユダ,啓" },
-    { "한국어", "ko", "", "", "" },
-    { "Română", "m", "http://www.watchtower.org/%@/biblia/%@/chapter_%03d.htm", "", "" },
-    { "Norsk", "n", "http://www.watchtower.org/%@/bibelen/%@/chapter_%03d.htm", "", "" },
-    { "Nederlands", "o", "http://www.watchtower.org/%@/bijbel/%@/chapter_%03d.htm", "", "" },
-    { "Polski", "p", "http://www.watchtower.org/%@/biblia/%@/chapter_%03d.htm", "", "" },
+    { "Suomi", "fi", "", "", "" },
+    { "Magyar", "h", "", "", "" },
+    { "Italiano", "i", "", "http://wol.jw.org/it/wol/b/r6/lp-i", "" },
+    { "日本語", "j", "", "http://wol.jw.org/ja/wol/b/r7/lp-j/%d/%d", "創,出,レビ,民,申,ヨシ,裁,ルツ,サ一,サ二,王一,王二,代一,代二,エズ,ネヘ,エス,ヨブ,詩,箴,伝,歌,イザ,エレ,哀,エゼ,ダニ,ホセ,ヨエ,アモ,オバ,ヨナ,ミカ,ナホ,ハバ,ゼパ,ハガ,ゼカ,マラ,マタ,マル,ルカ,ヨハ,使徒,ロマ,コ一,コ二,ガラ,エフェ,フィリ,コロ,テサ一,テサ二,テモ一,テモ二,テト,フィレ,ヘブ,ヤコ,ペテ一,ペテ二,ヨハ一,ヨハ二,ヨハ三,ユダ,啓" },
+    { "한국어", "ko", "", "http://wol.jw.org/ko/wol/b/r8/lp-ko", "" },
+    { "Română", "m", "", "", "" },
+    { "Norsk", "n", "", "http://wol.jw.org/no/wol/b/r3/lp-n", "" },
+    { "Nederlands", "o", "", "", "" },
+    { "Polski", "p", "", "", "" },
     { "Հայերեն", "rea", "", "", "" },
-    { "Español", "s", "http://www.watchtower.org/%@/biblia/%@/chapter_%03d.htm", "", "" },
+    { "Español", "s", "", "http://wol.jw.org/es/wol/b/r4/lp-s", "" },
     { "Српски", "sb", "", "", "" },
-    { "Kiswahili", "sw", "http://www.watchtower.org/%@/biblia/%@/chapter_%03d.htm", "", "" },
-    { "V Slovenščini", "sv", "http://www.watchtower.org/%@/svetopismo/%@/chapter_%03d.htm", "", "" },
-    { "Português", "t", "http://www.watchtower.org/%@/biblia/%@/chapter_%03d.htm", "", "" },
-    { "Türkçe", "tk", "http://www.watchtower.org/%@/kutsalkitap/%@/chapter_%03d.htm", "", "" },
-    { "Setswana", "tn", "http://www.watchtower.org/%@/baebele/%@/chapter_%03d.htm", "", "" },
-    { "Русский", "u", "", "", "" },
-    { "Slovenský", "v", "http://www.watchtower.org/%@/biblia/%@/chapter_%03d.htm", "", "" },
-    { "Deutsch", "x", "http://www.watchtower.org/%@/bibel/%@/chapter_%03d.htm", "", "" },
-    { "Svenska", "z", "http://www.watchtower.org/%@/bibeln/%@/chapter_%03d.htm", "", "" },
-    { "IsiZulu", "zu", "http://www.watchtower.org/%@/ibhayibheli/%@/chapter_%03d.htm", "", "" },
-    
+    { "Kiswahili", "sw", "", "", "" },
+    { "V Slovenščini", "sv", "", "", "" },
+    { "Português", "t", "", "http://wol.jw.org/pt/wol/b/r5/lp-t", "" },
+    { "Türkçe", "tk", "", "", "" },
+    { "Setswana", "tn", "", "", "" },
+    { "Русский", "u", "", "http://wol.jw.org/ru/wol/b/r2/lp-u", "" },
+    { "Slovenský", "v", "", "", "" },
+    { "Deutsch", "x", "", "", "" },
+    { "Svenska", "z", "", "", "" },
+    { "IsiZulu", "zu", "", "", "" },
 };
 
 #define LANGUAGE_INFO_COUNT (sizeof(langInfo) / sizeof(langInfo[0]))
@@ -292,7 +292,7 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
                                  [NSString stringWithUTF8String:info.name], @"name",
                                  [NSString stringWithUTF8String:info.symbol], @"symbol",
                                  [NSString stringWithUTF8String:info.pageURL], @"pageURL",
-                                 [NSString stringWithUTF8String:info.mp3URL], @"mp3URL",
+                                 [NSString stringWithUTF8String:info.wolPageURL], @"wolPageURL",
                                  nil];
             
             [marray addObject:dic];
@@ -331,8 +331,8 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
     
     if (![format length])
     {
-        // Use English data
-        int i = [self getLanguageId:@"e"];    
+        // Use default data
+        int i = [self getLanguageId:@"*"];    
         format = [[_infoArray objectAtIndex:i] valueForKey:@"pageURL"];
     }
     
@@ -342,21 +342,21 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
             [chap intValue]];
 }
 
-- (NSString *)mp3URLWithLanguage:(NSString *)lang book:(NSString*)book chapter:(NSNumber *)chap
+- (NSString *)wolPageURLWithLanguage:(NSString *)lang book:(NSString*)book chapter:(NSNumber *)chap
 {
-    int i = [self getLanguageId:lang];
-    NSString *format = [[_infoArray objectAtIndex:i] valueForKey:@"mp3URL"];
+    int i = [self getLanguageId:lang];    
+    NSString *format = [[_infoArray objectAtIndex:i] valueForKey:@"wolPageURL"];
     
     if (![format length])
     {
-        i = [self getLanguageId:@"e"];
-        format = [[_infoArray objectAtIndex:i] valueForKey:@"mp3URL"];
+        // Use www.watchtower.org data
+        return [self pageURLWithLanguage:lang
+                                    book:book
+                                 chapter:chap];
     }
     
     return [NSString stringWithFormat:format,
             [self getBookNo:book],
-            book,
-            [lang uppercaseString],
             [chap intValue]];
 }
 
@@ -384,9 +384,14 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
                 
                 NSString *label = [NSString stringWithCString:item.label.c_str() encoding:NSUTF8StringEncoding];
                 label = [self translateCitation:label language:lang];
+
+                NSString *bookChapId = [NSString stringWithFormat:@"%d_%d",
+                                        [self getBookNo:book],
+                                        [chap intValue]];
                 
                 NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
                                      label, @"label",
+                                     bookChapId, @"bookChapId",
                                      book, @"book",
                                      chap, @"chap",
                                      verse, @"verse",

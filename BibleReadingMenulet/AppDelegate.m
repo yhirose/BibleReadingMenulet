@@ -12,7 +12,6 @@
 
 @implementation AppDelegate
 @synthesize menu = _menu;
-@synthesize windowController = _windowController;
 
 enum MenuTag
 {
@@ -47,72 +46,6 @@ enum MenuTag
             }   
         }
     }    
-}
-
-- (NSString *)htmlPathWithLanguage:(NSString *)lang book:(NSString *)book chapter:(NSNumber *)chap {
-    NSString *dirPath = [Utility appDirPath];
-    NSString *fileName = [NSString stringWithFormat:@"%@_%@_%@.html", book, chap, lang];
-    return [dirPath stringByAppendingPathComponent:fileName];
-}
-
-- (NSString *)htmlTemplatePath {
-    NSBundle *bundle = [NSBundle mainBundle];
-    return [bundle pathForResource:@"Template" ofType:@"html"];
-}
-
-- (NSString *)setupHTMLFileWithLanguage:(NSString *)lang book:(NSString *)book chapter:(NSNumber *)chap
-{
-    NSString *path = [self htmlPathWithLanguage:lang
-                                           book:book
-                                        chapter:chap];
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    if (![fileManager fileExistsAtPath:path]) {
-        
-        [fileManager createDirectoryAtPath:[Utility appDirPath]
-               withIntermediateDirectories:YES
-                                attributes:nil
-                                     error:nil];
-        
-        NSString *urlStr = [_langInfo pageURLWithLanguage:lang
-                                                    book:book
-                                                 chapter:chap];
-        
-        NSURL *url = [NSURL URLWithString:urlStr];
-        
-        NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
-        NSURLResponse *resp;
-        NSError *err;
-        
-        NSData *data = [NSURLConnection sendSynchronousRequest:req
-                                             returningResponse:&resp
-                                                         error:&err];
-        if (data == nil)
-        {
-            return nil;
-        }
-        
-        NSString *nwtHTML = [[NSString alloc] initWithData:data 
-                                                  encoding:NSUTF8StringEncoding];
-
-        NSString *tmplPath = [self htmlTemplatePath];
-        
-        NSString *tmpl = [NSString stringWithContentsOfFile:tmplPath 
-                                                   encoding:NSUTF8StringEncoding
-                                                      error:nil];
-
-        NSString *html = [NSString stringWithFormat:tmpl, 
-                          [Utility getTitle:nwtHTML],
-                          [Utility getContent:nwtHTML]];
-        
-        [html writeToFile:path
-               atomically:TRUE 
-                 encoding:NSUTF8StringEncoding 
-                    error:nil];
-    }
-    
-    return path;
 }
 
 - (void)setupStatusMenuTitle
@@ -245,6 +178,7 @@ enum MenuTag
         for (NSDictionary *item in chapList)
         {
             NSString *label = [item valueForKey:@"label"];
+            NSString *bookChapId = [item valueForKey:@"bookChapId"];
                         
             NSMenuItem *menuItem = [menuChapters addItemWithTitle:label
                                                            action:@selector(readActionForSchool:)
@@ -252,10 +186,10 @@ enum MenuTag
             
             [menuItem setTag:i];
             
-            if ([prevProgress valueForKey:label])
+            if ([prevProgress valueForKey:bookChapId])
             {
                 [menuItem setState:NSOnState];
-                [progress setValue:[NSNumber numberWithBool:YES] forKey:label];
+                [progress setValue:[NSNumber numberWithBool:YES] forKey:bookChapId];
             }
             
             i++;
@@ -309,16 +243,16 @@ enum MenuTag
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *progress = [NSMutableDictionary dictionaryWithDictionary:[ud valueForKey:type]];
-    [progress setValue:[NSNumber numberWithBool:YES] forKey:[item valueForKey:@"label"]];
+    [progress setValue:[NSNumber numberWithBool:YES] forKey:[item valueForKey:@"bookChapId"]];
     [ud setValue:progress forKey:type];
 
     NSString *book = [item valueForKey:@"book"];
     NSNumber *chap = [item valueForKey:@"chap"];    
     NSString *lang = [ud stringForKey:@"LANGUAGE"];
 
-    NSString *urlStr = [_langInfo pageURLWithLanguage:lang
-                                                 book:book
-                                              chapter:chap];
+    NSString *urlStr = [_langInfo wolPageURLWithLanguage:lang
+                                                    book:book
+                                                 chapter:chap];
     
     NSURL *url = [NSURL URLWithString:urlStr];
 
@@ -331,26 +265,7 @@ enum MenuTag
         return;
     }
     
-    urlStr = [self setupHTMLFileWithLanguage:lang
-                                        book:book
-                                     chapter:chap];
-    
-    NSURL *urlFullScreen = [NSURL fileURLWithPath:urlStr];        
-
-    urlStr = [_langInfo mp3URLWithLanguage:lang
-                                      book:book
-                                   chapter:chap];
-
-    NSURL *urlAudioFile = [NSURL URLWithString:urlStr];
-
-    [_windowController setupContentWithURL:url
-                             fullScreenURL:urlFullScreen
-                              audioFileURL:urlAudioFile
-                                     title:[item valueForKey:@"label"]];
-    
-    [NSApp activateIgnoringOtherApps:YES];
-    [_windowController showWindow:self];
-    [[_windowController window] makeKeyAndOrderFront:self];
+    //[[NSWorkspace sharedWorkspace] openURL:url];
 }
 
 - (IBAction)readAction:(id)sender

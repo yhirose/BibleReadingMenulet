@@ -65,12 +65,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "BibleReadingMenulet/AppDelegate.m"
-         timestampString = "348984753.561924"
+         timestampString = "364784818.021319"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "229"
-         endingLineNumber = "229"
-         landmarkName = "-setupSchoolMenu"
+         startingLineNumber = "223"
+         endingLineNumber = "223"
+         landmarkName = "-applicationDidFinishLaunching:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -79,26 +79,26 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "BibleReadingMenulet/AppDelegate.m"
-         timestampString = "348984753.561924"
+         timestampString = "364784818.021319"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "311"
-         endingLineNumber = "311"
+         startingLineNumber = "305"
+         endingLineNumber = "305"
+         landmarkName = "@implementation AppDelegate"
+         landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "BibleReadingMenulet/AppDelegate.m"
+         timestampString = "364784818.021319"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "251"
+         endingLineNumber = "251"
          landmarkName = "-read:chapterList:type:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "BibleReadingMenulet/AppDelegate.m"
-         timestampString = "348984753.561924"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "257"
-         endingLineNumber = "257"
-         landmarkName = "-setupSchoolMenu"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
