@@ -265,7 +265,7 @@ enum MenuTag
         return;
     }
     
-    //[[NSWorkspace sharedWorkspace] openURL:url];
+    [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
 - (IBAction)readAction:(id)sender
