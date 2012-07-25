@@ -104,6 +104,7 @@ enum MenuTag
         for (NSDictionary *item in _chapList)
         {
             NSString *label = [item valueForKey:@"label"];
+            NSString *bookChapId = [item valueForKey:@"bookChapId"];
 
             NSMenuItem *menuItem = [menuChapters addItemWithTitle:label
                                                            action:@selector(readAction:)
@@ -111,10 +112,10 @@ enum MenuTag
             
             [menuItem setTag:i];
             
-            if ([prevProgress valueForKey:label])
+            if ([prevProgress valueForKey:bookChapId])
             {
                 [menuItem setState:NSOnState];
-                [progress setValue:[NSNumber numberWithBool:YES] forKey:label];
+                [progress setValue:[NSNumber numberWithBool:YES] forKey:bookChapId];
             }
             
             i++;

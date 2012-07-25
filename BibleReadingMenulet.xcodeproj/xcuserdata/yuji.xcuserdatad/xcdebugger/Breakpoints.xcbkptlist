@@ -65,11 +65,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "BibleReadingMenulet/AppDelegate.m"
-         timestampString = "364784818.021319"
+         timestampString = "364879977.736566"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "223"
-         endingLineNumber = "223"
+         startingLineNumber = "224"
+         endingLineNumber = "224"
          landmarkName = "-applicationDidFinishLaunching:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -79,11 +79,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "BibleReadingMenulet/AppDelegate.m"
-         timestampString = "364784818.021319"
+         timestampString = "364879977.736566"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "305"
-         endingLineNumber = "305"
+         startingLineNumber = "306"
+         endingLineNumber = "306"
          landmarkName = "@implementation AppDelegate"
          landmarkType = "3">
       </FileBreakpoint>
@@ -93,12 +93,38 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "BibleReadingMenulet/AppDelegate.m"
-         timestampString = "364784818.021319"
+         timestampString = "364879977.736566"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "251"
-         endingLineNumber = "251"
+         startingLineNumber = "252"
+         endingLineNumber = "252"
          landmarkName = "-read:chapterList:type:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "BibleReadingMenulet/LanguageInformation.mm"
+         timestampString = "364839469.084796"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "329"
+         endingLineNumber = "329"
+         landmarkName = "-pageURLWithLanguage:book:chapter:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "BibleReadingMenulet/AppDelegate.m"
+         timestampString = "364879854.809649"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "77"
+         endingLineNumber = "77"
+         landmarkName = "-setupReadMenu"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
