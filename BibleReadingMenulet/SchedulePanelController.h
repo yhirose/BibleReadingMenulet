@@ -15,7 +15,7 @@
     NSColor *_yellow;
 }
 
-@property (assign) IBOutlet NSTableView *tableView;
+@property (unsafe_unretained) IBOutlet NSTableView *tableView;
 
 - (id)initWithSchedule:(Schedule *)schedule;
 - (Schedule *)schedule;
