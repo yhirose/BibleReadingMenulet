@@ -115,7 +115,7 @@ enum MenuTag
             if ([prevProgress valueForKey:bookChapId])
             {
                 [menuItem setState:NSOnState];
-                [progress setValue:[NSNumber numberWithBool:YES] forKey:bookChapId];
+                [progress setValue:@YES forKey:bookChapId];
             }
             
             i++;
@@ -193,7 +193,7 @@ enum MenuTag
             if ([prevProgress valueForKey:bookChapId])
             {
                 [menuItem setState:NSOnState];
-                [progress setValue:[NSNumber numberWithBool:YES] forKey:bookChapId];
+                [progress setValue:@YES forKey:bookChapId];
             }
             
             i++;
@@ -212,8 +212,8 @@ enum MenuTag
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
     NSMutableDictionary *defaults = [NSMutableDictionary dictionary];
     
-    [defaults setObject:@"e" forKey:@"LANGUAGE"];
-    [defaults setObject:@"Schedule.csv" forKey:@"SCHEDULE"];
+    defaults[@"LANGUAGE"] = @"e";
+    defaults[@"SCHEDULE"] = @"Schedule.csv";
     
     [ud registerDefaults:defaults];
 }
@@ -242,12 +242,12 @@ enum MenuTag
 - (void)read:(id)sender chapterList:(NSMutableArray *)chapList type:(NSString *)type
 {
     NSInteger i = [sender tag];
-    NSDictionary *item = [chapList objectAtIndex:i];
+    NSDictionary *item = chapList[i];
 
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *progress = [NSMutableDictionary dictionaryWithDictionary:[ud valueForKey:type]];
-    [progress setValue:[NSNumber numberWithBool:YES] forKey:[item valueForKey:@"bookChapId"]];
+    [progress setValue:@YES forKey:[item valueForKey:@"bookChapId"]];
     [ud setValue:progress forKey:type];
 
     NSString *book = [item valueForKey:@"book"];
@@ -285,7 +285,7 @@ enum MenuTag
 - (IBAction)langAction:(id)sender
 {
     NSInteger i = [sender tag];
-    NSDictionary *item = [_langInfo.infoArray objectAtIndex:i];
+    NSDictionary *item = (_langInfo.infoArray)[i];
     
     NSString *lang = [item valueForKey:@"symbol"];
     

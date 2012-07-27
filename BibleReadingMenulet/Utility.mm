@@ -6,7 +6,7 @@
 @implementation Utility
 
 + (NSString *)appDirPath {
-    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *rootPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
     return [rootPath stringByAppendingPathComponent:@"BibleReadingMenulet"];
 }
 
@@ -51,10 +51,10 @@
     
     for (int i = 0; i < [lines count]; i++)
     {
-        NSString *line = [lines objectAtIndex:i];
+        NSString *line = lines[i];
         NSArray *fields = [line componentsSeparatedByString:@","];
         
-        NSDate *beg = [df dateFromString:[fields objectAtIndex:0]]; 
+        NSDate *beg = [df dateFromString:fields[0]]; 
         NSDate *end = [NSDate dateWithTimeInterval:7*24*60*60 sinceDate:beg];
         
         NSTimeInterval val1 = [now timeIntervalSinceDate:beg];
@@ -62,13 +62,13 @@
         
         if (val1 >= 0 && val2 > 0)
         {
-            [array addObject:[fields objectAtIndex:1]];
+            [array addObject:fields[1]];
             
             if (i + 1 < [lines count])
             {
-                NSString *line = [lines objectAtIndex:i + 1];
+                NSString *line = lines[i + 1];
                 NSArray *fields = [line componentsSeparatedByString:@","];
-                [array addObject:[fields objectAtIndex:1]];
+                [array addObject:fields[1]];
             }
             
             break;

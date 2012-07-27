@@ -288,12 +288,10 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
         {
             const auto& info = langInfo[i];
             
-            NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
-                                 [NSString stringWithUTF8String:info.name], @"name",
-                                 [NSString stringWithUTF8String:info.symbol], @"symbol",
-                                 [NSString stringWithUTF8String:info.pageURL], @"pageURL",
-                                 [NSString stringWithUTF8String:info.wolPageURL], @"wolPageURL",
-                                 nil];
+            NSDictionary *dic = @{@"name": @(info.name),
+                                 @"symbol": @(info.symbol),
+                                 @"pageURL": @(info.pageURL),
+                                 @"wolPageURL": @(info.wolPageURL)};
             
             [marray addObject:dic];
         }
@@ -327,13 +325,13 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
 - (NSString *)pageURLWithLanguage:(NSString *)lang book:(NSString*)book chapter:(NSNumber *)chap
 {
     int i = [self getLanguageId:lang];    
-    NSString *format = [[_infoArray objectAtIndex:i] valueForKey:@"pageURL"];
+    NSString *format = [_infoArray[i] valueForKey:@"pageURL"];
     
     if (![format length])
     {
         // Use default data
         int i = [self getLanguageId:@"*"];    
-        format = [[_infoArray objectAtIndex:i] valueForKey:@"pageURL"];
+        format = [_infoArray[i] valueForKey:@"pageURL"];
     }
     
     return [NSString stringWithFormat:format,
@@ -345,7 +343,7 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
 - (NSString *)wolPageURLWithLanguage:(NSString *)lang book:(NSString*)book chapter:(NSNumber *)chap
 {
     int i = [self getLanguageId:lang];    
-    NSString *format = [[_infoArray objectAtIndex:i] valueForKey:@"wolPageURL"];
+    NSString *format = [_infoArray[i] valueForKey:@"wolPageURL"];
     
     if (![format length])
     {
@@ -378,24 +376,22 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
         {
             for (const auto& item: items)
             {
-                NSString *book = [NSString stringWithCString:item.book.c_str() encoding:NSUTF8StringEncoding];
-                NSNumber *chap = [NSNumber numberWithInt:item.chap];
-                NSNumber *verse = [NSNumber numberWithInt:item.verse];
+                NSString *book = @(item.book.c_str());
+                NSNumber *chap = @(item.chap);
+                NSNumber *verse = @(item.verse);
                 
-                NSString *label = [NSString stringWithCString:item.label.c_str() encoding:NSUTF8StringEncoding];
+                NSString *label = @(item.label.c_str());
                 label = [self translateCitation:label language:lang];
 
                 NSString *bookChapId = [NSString stringWithFormat:@"%d_%d",
                                         [self getBookNo:book],
                                         [chap intValue]];
                 
-                NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     label, @"label",
-                                     bookChapId, @"bookChapId",
-                                     book, @"book",
-                                     chap, @"chap",
-                                     verse, @"verse",
-                                     nil];
+                NSDictionary *dic = @{@"label": label,
+                                     @"bookChapId": bookChapId,
+                                     @"book": book,
+                                     @"chap": chap,
+                                     @"verse": verse};
                 
                 [list addObject:dic];
             }
@@ -408,7 +404,7 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
 - (NSString *)translateCitation:(NSString *)str language:(NSString *)lang
 {
     int langId = [self getLanguageId:lang];
-    NSString *bookNamesStr = [NSString stringWithUTF8String:langInfo[langId].bookNames];
+    NSString *bookNamesStr = @(langInfo[langId].bookNames);
     
     if (![bookNamesStr length])
     {
@@ -439,7 +435,7 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
             std::string book(&str[mbook.rm_so], &str[mbook.rm_eo]);
             
             int bookId = getBookId(book);            
-            book = [[bookNames objectAtIndex:bookId] UTF8String];
+            book = [bookNames[bookId] UTF8String];
             
             char buff[BUFSIZ];
             
@@ -455,7 +451,7 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
                 sprintf(buff, "%s", book.c_str());
             }
             
-            [citasVernacular addObject:[NSString stringWithUTF8String:buff]];
+            [citasVernacular addObject:@(buff)];
         }
         
         regfree(&re);

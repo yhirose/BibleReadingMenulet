@@ -84,8 +84,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "306"
          endingLineNumber = "306"
-         landmarkName = "@implementation AppDelegate"
-         landmarkType = "3">
+         landmarkName = "-quitAction:"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"

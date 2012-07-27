@@ -13,14 +13,14 @@
 - (int)advance:(int)curr
 {
     int i = curr;
-    for (; i < [_ranges count] && [[_ranges objectAtIndex:i] count] > 1; i++)
+    for (; i < [_ranges count] && [_ranges[i] count] > 1; i++)
     {
         ;
     }
     if (i == [_ranges count])
     {
         i = 0;
-        for (; i < curr && [[_ranges objectAtIndex:i] count] > 1; i++)
+        for (; i < curr && [_ranges[i] count] > 1; i++)
         {
             ;
         }
@@ -45,16 +45,16 @@
     
     for (int i = 0; i < [lines count]; i++)
     {
-        NSString *line = [lines objectAtIndex:i];
+        NSString *line = lines[i];
         NSArray *fields = [line componentsSeparatedByString:@","];
         NSUInteger count = [fields count];
         
-        NSMutableDictionary *item = [NSMutableDictionary dictionaryWithObject:[fields objectAtIndex:0]
+        NSMutableDictionary *item = [NSMutableDictionary dictionaryWithObject:fields[0]
                                                                        forKey:@"range"];
         
         if (count == 2)
         {
-            NSString *date = [fields objectAtIndex:1];
+            NSString *date = fields[1];
             if ([date compare:@"*" options:NSCaseInsensitiveSearch] == NSOrderedSame)
             {
                 *curr = i;
@@ -76,7 +76,7 @@
     NSMutableArray *lines = [NSMutableArray array];
     for (int i = 0; i < [_ranges count]; i++)
     {
-        NSMutableDictionary *item = [_ranges objectAtIndex:i];
+        NSMutableDictionary *item = _ranges[i];
         
         NSString *line = [NSString stringWithString:[item valueForKey:@"range"]];
         
@@ -140,7 +140,7 @@
 {
     if (![self isComplete])
     {
-        NSMutableArray *item = [_ranges objectAtIndex:index];
+        NSMutableArray *item = _ranges[index];
         
         if (![item valueForKey:@"date"])
         {
@@ -166,7 +166,7 @@
 
 - (void)markAsUnreadAtIndex:(NSInteger)index
 {
-    NSMutableArray *item = [_ranges objectAtIndex:index];
+    NSMutableArray *item = _ranges[index];
     
     if ([item valueForKey:@"date"])
     {
@@ -180,7 +180,7 @@
 
 - (NSString *)currentRange
 {
-    NSMutableArray *currItem = [_ranges objectAtIndex:self.currentIndex];
+    NSMutableArray *currItem = _ranges[self.currentIndex];
     return [currItem valueForKey:@"range"];
 }
 
