@@ -140,6 +140,9 @@ enum MenuTag
     {
         NSString *name = [val valueForKey:@"name"];
         NSString *symbol = [val valueForKey:@"symbol"];
+
+        if ([symbol isEqualToString:@"*"])
+            continue;
         
         NSMenuItem *menuItem = [menuLangs addItemWithTitle:name
                                                     action:@selector(langAction:)
