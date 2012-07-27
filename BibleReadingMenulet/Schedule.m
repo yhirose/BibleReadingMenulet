@@ -120,7 +120,7 @@
             curr = [self advance:0];            
         }
         
-        self.currentIndex = curr;
+        _curr = curr;
     }
     
     return self;

@@ -50,11 +50,6 @@ enum MenuTag
 
 - (void)setupStatusMenuTitle
 {
-    if (_schedule == nil)
-    {
-        return;
-    }
-    
     if ([_schedule isComplete])
     {
         [_statusItem setTitle:@"Congratulations!!"];
@@ -227,14 +222,14 @@ enum MenuTag
     [nc addObserver:self selector:@selector(setupStatusMenuTitle) name:@"currentRangeChanged" object:nil];
     [nc addObserver:self selector:@selector(setupStatusMenuTitle) name:@"languageChanged" object:nil];
         
-    _langInfo = [LanguageInformation instance];
-    _schedule = [[Schedule alloc] initWithPath:[Utility schedulePath]];
-    
     _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     [_statusItem setMenu:_menu];
     [_statusItem setHighlightMode:YES];
     
     [_menu setDelegate:self];
+    
+    _langInfo = [LanguageInformation instance];
+    _schedule = [[Schedule alloc] initWithPath:[Utility schedulePath]];
     
     [self setupStatusMenuTitle];
 }
@@ -321,6 +316,10 @@ enum MenuTag
 
 - (void)menuWillOpen:(NSMenu *)menu
 {
+    // Update language info and schedule.
+    _langInfo = [LanguageInformation instance];
+    _schedule = [[Schedule alloc] initWithPath:[Utility schedulePath]];
+    
     [self setupStatusMenuTitle];
     [self setupReadMenu];
     [self setupLanguageMenu];
