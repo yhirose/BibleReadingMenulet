@@ -90,7 +90,7 @@
         [lines addObject:line];
     }
     NSString *wdata = [lines componentsJoinedByString:@"\n"];
-    [wdata writeToFile:path atomically:TRUE encoding:NSUTF8StringEncoding error:nil];
+    [wdata writeToFile:path atomically:FALSE encoding:NSUTF8StringEncoding error:nil];
 }
 
 - (id)init

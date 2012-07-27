@@ -1,3 +1,10 @@
+//
+//  Utility.mm
+//  BibleReadingMenulet
+//
+//  Created by Yuji Hirose on 12/22/11.
+//  Copyright (c) 2011 Yuji Hirose. All rights reserved.
+//
 
 #import "Utility.h"
 #import <regex.h>
@@ -15,6 +22,43 @@
     NSString *fileName = [ud stringForKey:@"SCHEDULE"];
     NSString *dirPath = [Utility appDirPath];
     return [dirPath stringByAppendingPathComponent:fileName];
+}
+
++ (NSString *)progressPath {
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    NSString *fileName = [ud stringForKey:@"PROGRESS"];
+    NSString *dirPath = [Utility appDirPath];
+    return [dirPath stringByAppendingPathComponent:fileName];
+}
+
++ (NSMutableDictionary *)getProgressPropertyList
+{
+    NSMutableDictionary *plist = [NSMutableDictionary dictionary];
+    NSString* pgPath = [Utility progressPath];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:pgPath])
+    {
+        plist = [[NSMutableDictionary dictionary] initWithContentsOfFile:pgPath];
+    }
+    
+    return plist;
+}
+
++ (NSMutableDictionary *)getProgress:(NSString *)type
+{
+    NSMutableDictionary *plist = [self getProgressPropertyList];
+    NSMutableDictionary *progress = [[plist valueForKey:type] mutableCopy];
+    return progress;
+}
+
++ (void)setProgress:(NSMutableDictionary *)progress type:(NSString *)type
+{
+    NSMutableDictionary *plist = [self getProgressPropertyList];
+    NSString* pgPath = [Utility progressPath];
+    
+    [plist setValue:progress forKey:type];
+    [plist writeToFile:pgPath atomically:FALSE];
 }
 
 + (NSString *)fetchSchoolSchedule

@@ -6,12 +6,12 @@
 //  Copyright (c) 2011 Yuji Hirose. All rights reserved.
 //
 
-#ifndef BibleReadingMenulet_Utility_h
-#define BibleReadingMenulet_Utility_h
-
 @interface Utility : NSObject
 + (NSString *)appDirPath;
 + (NSString *)schedulePath;
++ (NSString *)progressPath;
++ (NSMutableDictionary *)getProgress:(NSString *)type;
++ (void)setProgress:(NSMutableDictionary *)progress type:(NSString *)type;
 + (NSMutableArray *)getRangesForSchool;
 + (BOOL)isLionOrLater;
 
@@ -20,5 +20,3 @@
                         minor:(unsigned int *)minor
                        bugFix:(unsigned int *)bugFix;
 @end
-
-#endif

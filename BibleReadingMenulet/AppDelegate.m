@@ -33,8 +33,8 @@ enum MenuTag
         {
             NSString *path = [[Utility appDirPath] stringByAppendingPathComponent:fileName];
             
-            if (![fileManager fileExistsAtPath:path]) {
-                
+            if (![fileManager fileExistsAtPath:path])
+            {
                 [fileManager createDirectoryAtPath:[Utility appDirPath]
                        withIntermediateDirectories:YES
                                         attributes:nil
@@ -90,11 +90,10 @@ enum MenuTag
         NSString *range = [_schedule currentRange];        
         
         NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
-        
-        NSMutableDictionary *prevProgress = [ud valueForKey:@"SCHEDULE_PROGRESS"];
-        NSMutableDictionary *progress = [NSMutableDictionary dictionary];
-        
         NSString *lang = [ud stringForKey:@"LANGUAGE"];
+
+        NSMutableDictionary *prevProgress = [Utility getProgress:@"SCHEDULE_PROGRESS"];
+        NSMutableDictionary *progress = [NSMutableDictionary dictionary];        
         
         _chapList = [_langInfo makeChapterListFromRange:range language:lang];
         
@@ -123,8 +122,8 @@ enum MenuTag
         
         [menuRead setSubmenu:menuChapters];
         
-        [ud setValue:progress forKey:@"SCHEDULE_PROGRESS"];
-    }    
+        [Utility setProgress:progress type:@"SCHEDULE_PROGRESS"];
+    }
 }
 
 - (void)setupLanguageMenu
@@ -163,7 +162,7 @@ enum MenuTag
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
     NSString *lang = [ud stringForKey:@"LANGUAGE"];
     
-    NSMutableDictionary *prevProgress = [ud valueForKey:@"SCHOOL_SCHEDULE_PROGRESS"];
+    NSMutableDictionary *prevProgress = [Utility getProgress:@"SCHOOL_SCHEDULE_PROGRESS"];
     NSMutableDictionary *progress = [NSMutableDictionary dictionary];
     
     _chapListForSchool = [NSMutableArray array];
@@ -204,7 +203,7 @@ enum MenuTag
     
     [[_menu itemWithTag:SchoolMenuTag] setSubmenu:menuChapters];
     
-    [ud setValue:progress forKey:@"SCHOOL_SCHEDULE_PROGRESS"];
+    [Utility setProgress:progress type:@"SCHOOL_SCHEDULE_PROGRESS"];
 }
 
 - (void)setupUserDefaults
@@ -214,6 +213,7 @@ enum MenuTag
     
     defaults[@"LANGUAGE"] = @"e";
     defaults[@"SCHEDULE"] = @"Schedule.csv";
+    defaults[@"PROGRESS"] = @"progress.xml";
     
     [ud registerDefaults:defaults];
 }
@@ -245,10 +245,10 @@ enum MenuTag
     NSDictionary *item = chapList[i];
 
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
-    
-    NSMutableDictionary *progress = [NSMutableDictionary dictionaryWithDictionary:[ud valueForKey:type]];
+    NSMutableDictionary *progress = [Utility getProgress:type];
+  
     [progress setValue:@YES forKey:[item valueForKey:@"bookChapId"]];
-    [ud setValue:progress forKey:type];
+    [Utility setProgress:progress type:type];
 
     NSString *book = [item valueForKey:@"book"];
     NSNumber *chap = [item valueForKey:@"chap"];    
@@ -321,6 +321,7 @@ enum MenuTag
 
 - (void)menuWillOpen:(NSMenu *)menu
 {
+    [self setupStatusMenuTitle];
     [self setupReadMenu];
     [self setupLanguageMenu];
     [self setupSchoolMenu];
