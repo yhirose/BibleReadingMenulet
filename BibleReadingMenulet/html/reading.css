@@ -2,7 +2,6 @@ body {
     margin: 0;
     padding: 0;
     font-size: 16pt;
-    /*background-color: #333;*/
     background-image: url('pattern17.png');
 }
 
@@ -16,10 +15,8 @@ a {
 
 .dc > *, .dv > * {
     line-height: 0.5em;
-    vertical-align: baseline;
-    position: relative;
-    top: -0.2em;
-    color: #7A547A;
+    vertical-align: top;
+    color: #BCA78D;
 }
 
 .dv * {
@@ -27,16 +24,14 @@ a {
 }
 
 .dc a, .dv a {
-    color: #BBC000;
+    color: #C4BC36;
+    color: #CCB79D;
 }
 
 .fn, .mr {
     font-size: .85em;
     line-height: 0.5em;
-    vertical-align: baseline;
-    position: relative;
-    top: -0.4em;
-    color: gray;
+    vertical-align: top;
     color: #41676D;
 }
 
@@ -49,15 +44,26 @@ a {
 }
 
 #content {
-    margin: 40px auto 0;
+    margin: 40px auto;
     width: 30em;
     line-height: 1.6em;
-    color: #ccc;
-    overflow: scroll;
+    color: #A8A8A8;
 }
 
-#playerContainer {
-    margin-top: 12px;
+#header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 30px;
+    background-image: url('pattern17.png');
+}
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    background-image: url('pattern17.png');
 }
 
 #player {

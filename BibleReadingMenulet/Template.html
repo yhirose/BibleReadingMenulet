@@ -7,10 +7,11 @@
 <link rel="stylesheet" href="reading.css" />
 </head>
 <body>
+<div id="header"></div>
 <div id="content">
 %@
 </div>
-<div id="playerContainer" />
+<div id="footer"></div>
 <script src="jquery-1.7.2.min.js"></script>
 <script src="underscore-min.js"></script>
 <script src="underscore.string.min.js"></script>
@@ -33,7 +34,7 @@
             return;
         }
 
-        fmt = 'http://download.jw.org/files/media_bible/%%02d_%%s_%%s_%%0' + (book == 19 ? 3 : 2) + 'd.mp3';
+        fmt = 'http://download.jw.org/files/media_bible/%02d_%s_%s_%0' + (book == 19 ? 3 : 2) + 'd.mp3';
         url = _.str.sprintf(
             fmt,
             book,
@@ -45,17 +46,11 @@
         return $('<audio id="player" src="' + url + '" type="audio/mp3" controls="controls" preload="none"></audio>');
     }
 
-    function layout() {
-        var h = $(window).height() - 80;
-        $('#content').height(h);
-    }
-
-
-    var $player = makePlayer('%@', %@, %@);
-    $player.appendTo('#playerContainer');
+    var $player = makePlayer('j', 26, 18);
+    $player.appendTo('#footer');
     $('#player').mediaelementplayer({
         features: ['playpause','progress'],
-        audioWidth: $('#playerContainer').width(),
+        audioWidth: $('#footer').width(),
     });
 
     $.each($('a'), function (i, e) {
@@ -63,9 +58,6 @@
             href = $(e).attr('href');
         $e.attr('href', 'http://wol.jw.org' + href);
     });
-
-    $(window).resize(layout);
-    layout();
 </script>
 </body>
 </html>
