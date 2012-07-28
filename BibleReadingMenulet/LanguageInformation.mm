@@ -266,8 +266,6 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
 
 @implementation LanguageInformation
 
-@synthesize infoArray = _infoArray;
-
 + (LanguageInformation *)instance {
     
     static LanguageInformation *_instance = nil;
