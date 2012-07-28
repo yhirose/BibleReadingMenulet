@@ -34,7 +34,7 @@
             return;
         }
 
-        fmt = 'http://download.jw.org/files/media_bible/%02d_%s_%s_%0' + (book == 19 ? 3 : 2) + 'd.mp3';
+        fmt = 'http://download.jw.org/files/media_bible/%%02d_%%s_%%s_%%0' + (book == 19 ? 3 : 2) + 'd.mp3';
         url = _.str.sprintf(
             fmt,
             book,
