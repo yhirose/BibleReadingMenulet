@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>%@</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="mediaelementplayer.css" />
+<link rel="stylesheet" href="reading.css" />
+</head>
+<body>
+<div id="content">
+%@
+</div>
+<div id="playerContainer" />
+<script src="jquery-1.7.2.min.js"></script>
+<script src="underscore-min.js"></script>
+<script src="underscore.string.min.js"></script>
+<script src="mediaelement-and-player.min.js"></script>
+<script>
+    function makePlayer(lang, book, chap) {
+        var fmt,
+            url,
+            names = [
+                'Ge', 'Ex', 'Le', 'Nu', 'De', 'Jos', 'Jg', 'Ru', '1Sa', '2Sa',
+                '1Ki', '2Ki', '1Ch', '2Ch', 'Ezr', 'Ne', 'Es', 'Job', 'Ps', 'Pr',
+                'Ec', 'Ca', 'Isa', 'Jer', 'La', 'Eze', 'Da', 'Ho', 'Joe', 'Am',
+                'Ob', 'Jon', 'Mic', 'Na', 'Hab', 'Zep', 'Hag', 'Zec', 'Mal', 'Mt',
+                'Mr', 'Lu', 'Joh', 'Ac', 'Ro', '1Co', '2Co', 'Ga', 'Eph', 'Php',
+                'Col', '1Th', '2Th', '1Ti', '2Ti', 'Tit', 'Phm', 'Heb', 'Jas', '1Pe',
+                '2Pe', '1Jo', '2Jo', '3Jo', 'Jude', 'Re'
+            ];
+            
+        if ($('audio').length) {
+            return;
+        }
+
+        fmt = 'http://download.jw.org/files/media_bible/%%02d_%%s_%%s_%%0' + (book == 19 ? 3 : 2) + 'd.mp3';
+        url = _.str.sprintf(
+            fmt,
+            book,
+            names[book - 1],
+            lang.toUpperCase(), 
+            chap
+        );
+        
+        return $('<audio id="player" src="' + url + '" type="audio/mp3" controls="controls" preload="none"></audio>');
+    }
+
+    function layout() {
+        var h = $(window).height() - 80;
+        $('#content').height(h);
+    }
+
+
+    var $player = makePlayer('%@', %@, %@);
+    $player.appendTo('#playerContainer');
+    $('#player').mediaelementplayer({
+        features: ['playpause','progress'],
+        audioWidth: $('#playerContainer').width(),
+    });
+
+    $.each($('a'), function (i, e) {
+        var $e = $(e),
+            href = $(e).attr('href');
+        $e.attr('href', 'http://wol.jw.org' + href);
+    });
+
+    $(window).resize(layout);
+    layout();
+</script>
+</body>
+</html>

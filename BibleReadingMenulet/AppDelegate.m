@@ -11,7 +11,6 @@
 #import "Utility.h"
 
 @implementation AppDelegate
-@synthesize menu = _menu;
 
 enum MenuTag
 {
@@ -119,6 +118,97 @@ enum MenuTag
         
         [Utility setProgress:progress type:@"SCHEDULE_PROGRESS"];
     }
+}
+
+- (NSString *)htmlDirPath {
+    NSString *dirPath = [Utility appDirPath];
+    return [dirPath stringByAppendingPathComponent:@"html"];
+}
+
+- (NSString *)htmlPathWithLanguage:(NSString *)lang book:(NSString *)book chapter:(NSNumber *)chap {
+    NSString *dirPath = [self htmlDirPath];
+    NSString *fileName = [NSString stringWithFormat:@"%@_%@_%@.html", book, chap, lang];
+    return [dirPath stringByAppendingPathComponent:fileName];
+}
+
+- (NSString *)htmlTemplatePath {
+    NSBundle *bundle = [NSBundle mainBundle];
+    return [bundle pathForResource:@"Template" ofType:@"html"];
+}
+
+- (NSString *)setupHTMLFileWithLanguage:(NSString *)lang book:(NSString *)book chapter:(NSNumber *)chap
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    // Copy HTML support files
+    if (![fileManager fileExistsAtPath:[self htmlDirPath]])
+    {
+        NSBundle *bundle = [NSBundle mainBundle];
+        NSString *srcPath = [[bundle resourcePath] stringByAppendingPathComponent:@"html"];
+        
+        NSString *dstPath = [self htmlDirPath];
+        
+        NSError *error;
+        [fileManager moveItemAtPath:srcPath toPath:dstPath error:&error];
+    }
+    
+    // Create a reading HTML file.
+    NSString *path = [self htmlPathWithLanguage:lang
+                                           book:book
+                                        chapter:chap];
+    
+    if (![fileManager fileExistsAtPath:path])
+    {
+        [fileManager createDirectoryAtPath:[Utility appDirPath]
+               withIntermediateDirectories:YES
+                                attributes:nil
+                                     error:nil];
+        
+        NSString *urlStr = [_langInfo wolPageURLWithLanguage:lang
+                                                        book:book
+                                                     chapter:chap];
+        if (urlStr == nil)
+        {
+            return nil;
+        }
+        
+        NSURL *url = [NSURL URLWithString:urlStr];
+        
+        NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+        NSURLResponse *resp;
+        NSError *err;
+        
+        NSData *data = [NSURLConnection sendSynchronousRequest:req
+                                             returningResponse:&resp
+                                                         error:&err];
+        if (data == nil)
+        {
+            return nil;
+        }
+        
+        NSString *nwtHTML = [[NSString alloc] initWithData:data
+                                                  encoding:NSUTF8StringEncoding];
+        
+        NSString *tmplPath = [self htmlTemplatePath];
+        
+        NSString *tmpl = [NSString stringWithContentsOfFile:tmplPath
+                                                   encoding:NSUTF8StringEncoding
+                                                      error:nil];
+        
+        NSString *html = [NSString stringWithFormat:tmpl,
+                          [Utility getTitleWol:nwtHTML],
+                          [Utility getContentWol:nwtHTML],
+                          lang,
+                          @([_langInfo getBookNo:book]),
+                          chap];
+        
+        [html writeToFile:path
+               atomically:YES
+                 encoding:NSUTF8StringEncoding
+                    error:nil];
+    }
+    
+    return path;
 }
 
 - (void)setupLanguageMenu
@@ -249,11 +339,24 @@ enum MenuTag
     NSNumber *chap = [item valueForKey:@"chap"];    
     NSString *lang = [ud stringForKey:@"LANGUAGE"];
 
-    NSString *urlStr = [_langInfo wolPageURLWithLanguage:lang
-                                                    book:book
-                                                 chapter:chap];
+    NSString *urlStr = [self setupHTMLFileWithLanguage:lang
+                                                  book:book
+                                               chapter:chap];
+
+    NSURL *url = nil;
     
-    NSURL *url = [NSURL URLWithString:urlStr];
+    if (urlStr)
+    {
+        url = [NSURL fileURLWithPath:urlStr];
+    }
+    else
+    {
+        urlStr = [_langInfo pageURLWithLanguage:lang
+                                           book:book
+                                        chapter:chap];
+        
+        url = [NSURL URLWithString:urlStr];
+    }
 
     if (url == nil)
     {

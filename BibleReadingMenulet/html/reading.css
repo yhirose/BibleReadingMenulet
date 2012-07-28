@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 16pt;
+    /*background-color: #333;*/
+    background-image: url('pattern17.png');
+}
+
+p {
+    padding: 0 1em;
+}
+
+a {
+    text-decoration: none;
+}
+
+.dc > *, .dv > * {
+    line-height: 0.5em;
+    vertical-align: baseline;
+    position: relative;
+    top: -0.2em;
+    color: #7A547A;
+}
+
+.dv * {
+    font-size: .85em;
+}
+
+.dc a, .dv a {
+    color: #BBC000;
+}
+
+.fn, .mr {
+    font-size: .85em;
+    line-height: 0.5em;
+    vertical-align: baseline;
+    position: relative;
+    top: -0.4em;
+    color: gray;
+    color: #41676D;
+}
+
+.mejs-container .mejs-controls {
+    background: url('pattern17.png');
+}
+
+.mejs-controls .mejs-time-rail .mejs-time-total {
+    background: none;
+}
+
+#content {
+    margin: 40px auto 0;
+    width: 30em;
+    line-height: 1.6em;
+    color: #ccc;
+    overflow: scroll;
+}
+
+#playerContainer {
+    margin-top: 12px;
+}
+
+#player {
+    width: 100%;
+    margin: 0 auto;
+}
+

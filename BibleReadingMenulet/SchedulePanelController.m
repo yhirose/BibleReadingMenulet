@@ -10,7 +10,6 @@
 #import "LanguageInformation.h"
 
 @implementation SchedulePanelController
-@synthesize tableView = _tableView;
 
 - (id)initWithSchedule:(Schedule *)schedule
 {

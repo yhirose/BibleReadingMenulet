@@ -15,6 +15,8 @@
 + (LanguageInformation *)instance;
 
 - (int)getBookNo:(NSString *)name;
+- (NSString *)pageURLWithLanguage:(NSString *)lang book:(NSString*)book chapter:(NSNumber *)chap;
+- (NSString *)wtPageURLWithLanguage:(NSString *)lang book:(NSString*)book chapter:(NSNumber *)chap;
 - (NSString *)wolPageURLWithLanguage:(NSString *)lang book:(NSString*)book chapter:(NSNumber *)chap;
 - (NSMutableArray *)makeChapterListFromRange:(NSString *)range language:(NSString *)lang;
 - (NSString *)translateRange:(NSString *)range language:(NSString *)lang;

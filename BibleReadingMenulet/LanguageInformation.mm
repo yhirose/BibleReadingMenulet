@@ -326,6 +326,16 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
 
 - (NSString *)pageURLWithLanguage:(NSString *)lang book:(NSString*)book chapter:(NSNumber *)chap
 {
+    NSString *url = [self wolPageURLWithLanguage:lang book:book chapter:chap];
+    if (url == nil)
+    {
+        url = [self wtPageURLWithLanguage:lang book:book chapter:chap];
+    }
+    return url;
+}
+
+- (NSString *)wtPageURLWithLanguage:(NSString *)lang book:(NSString*)book chapter:(NSNumber *)chap
+{
     int i = [self getLanguageId:lang];    
     NSString *format = [_infoArray[i] valueForKey:@"pageURL"];
     
@@ -350,9 +360,12 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
     if (![format length])
     {
         // Use www.watchtower.org data
+        /*
         return [self pageURLWithLanguage:lang
                                     book:book
                                  chapter:chap];
+                                 */
+        return nil;
     }
     
     return [NSString stringWithFormat:format,

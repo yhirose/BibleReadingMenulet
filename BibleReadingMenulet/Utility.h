@@ -12,6 +12,10 @@
 + (NSString *)progressPath;
 + (NSMutableDictionary *)getProgress:(NSString *)type;
 + (void)setProgress:(NSMutableDictionary *)progress type:(NSString *)type;
++ (NSString *)getContentWt:(NSString *)html;
++ (NSString *)getContentWol:(NSString *)html;
++ (NSString *)getTitleWt:(NSString *)html;
++ (NSString *)getTitleWol:(NSString *)html;
 + (NSMutableArray *)getRangesForSchool;
 + (BOOL)isLionOrLater;
 
