@@ -46,7 +46,7 @@
         return $('<audio id="player" src="' + url + '" type="audio/mp3" controls="controls" preload="none"></audio>');
     }
 
-    var $player = makePlayer('j', 26, 18);
+    var $player = makePlayer('%@', %@, %@);
     $player.appendTo('#footer');
     $('#player').mediaelementplayer({
         features: ['playpause','progress'],
