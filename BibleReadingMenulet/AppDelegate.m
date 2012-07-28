@@ -34,11 +34,6 @@ enum MenuTag
             
             if (![fileManager fileExistsAtPath:path])
             {
-                [fileManager createDirectoryAtPath:[Utility appDirPath]
-                       withIntermediateDirectories:YES
-                                        attributes:nil
-                                             error:nil];
-                
                 NSString *tmplPath = [resourcePath stringByAppendingPathComponent:fileName];
                 
                 [fileManager copyItemAtPath:tmplPath toPath:path error:nil];
@@ -159,11 +154,6 @@ enum MenuTag
     
     if (![fileManager fileExistsAtPath:path])
     {
-        [fileManager createDirectoryAtPath:[Utility appDirPath]
-               withIntermediateDirectories:YES
-                                attributes:nil
-                                     error:nil];
-        
         NSString *urlStr = [_langInfo wolPageURLWithLanguage:lang
                                                         book:book
                                                      chapter:chap];
@@ -308,14 +298,25 @@ enum MenuTag
     [self setupUserDefaults];
     [self setupScheduleFiles];
 
+    // Create the application directory
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:[Utility appDirPath]])
+    {
+        [fileManager createDirectoryAtPath:[Utility appDirPath]
+               withIntermediateDirectories:YES
+                                attributes:nil
+                                     error:nil];
+    }
+    
+    // Register event observers
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(setupStatusMenuTitle) name:@"currentRangeChanged" object:nil];
     [nc addObserver:self selector:@selector(setupStatusMenuTitle) name:@"languageChanged" object:nil];
-        
+    
+    // Make menulet
     _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     [_statusItem setMenu:_menu];
-    [_statusItem setHighlightMode:YES];
-    
+    [_statusItem setHighlightMode:YES];    
     [_menu setDelegate:self];
     
     _langInfo = [LanguageInformation instance];
