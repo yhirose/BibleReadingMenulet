@@ -161,9 +161,9 @@
     return [NSString stringWithUTF8String:title.c_str()];
 }
 
-+ (NSString *)fetchSchoolSchedule
++ (NSString *)fetchFile:(NSString *)urlStr
 {
-    NSURL *url = [NSURL URLWithString:@"http://yhirose.github.com/private/school.csv"];
+    NSURL *url = [NSURL URLWithString:urlStr];
     
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
     NSURLResponse *resp;
@@ -180,6 +180,11 @@
     NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
     return [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
+
++ (NSString *)fetchSchoolSchedule
+{
+    return [self fetchFile:@"http://yhirose.github.com/BibleReadingMenulet/SchoolSchedule.csv"];
 }
 
 + (NSMutableArray *)findRangesForSchoolSchedule:(NSString *)schoolSchedule

@@ -13,56 +13,6 @@
 #import <string>
 #import <vector>
 
-struct LanguageInfo
-{
-    const char* name;
-    const char* symbol;
-    const char* pageURL;
-    const char* wolPageURL;
-    const char* bookNames;
-};
-
-const struct LanguageInfo langInfo[] =
-{
-    { "Afrikaans", "af", "http://www.watchtower.org/%@/bybel/%@/chapter_%03d.htm", "", "" },
-    { "Shqip", "al", "", "", "" },
-    { "Česky", "b", "", "", "" },
-    { "Български", "bl", "", "", "" },
-    { "Hrvatski", "c", "http://www.watchtower.org/%@/biblija/%@/chapter_%03d.htm", "", "" },
-    { "汉语（简化字）", "ch", "", "", "" },
-    { "漢語（繁體字）", "chs", "", "", "" },
-    { "Dansk", "d", "", "http://wol.jw.org/da/wol/b/r9/lp-d/%d/%d", "" },
-    { "English", "e", "", "http://wol.jw.org/en/wol/b/r1/lp-e/%d/%d", "" },
-    { "Français", "f", "", "", "" },
-    { "Suomi", "fi", "", "http://wol.jw.org/fi/wol/b/r16/lp-fi/%d/%d", "" },
-    { "Ελληνική", "g", "", "http://wol.jw.org/el/wol/b/r11/lp-g/%d/%d", "" },
-    { "Magyar", "h", "", "http://wol.jw.org/hu/wol/b/r17/lp-h/%d/%d", "" },
-    { "Italiano", "i", "", "http://wol.jw.org/it/wol/b/r6/lp-i/%d/%d", "" },
-    { "日本語", "j", "", "http://wol.jw.org/ja/wol/b/r7/lp-j/%d/%d", "創,出,レビ,民,申,ヨシ,裁,ルツ,サ一,サ二,王一,王二,代一,代二,エズ,ネヘ,エス,ヨブ,詩,箴,伝,歌,イザ,エレ,哀,エゼ,ダニ,ホセ,ヨエ,アモ,オバ,ヨナ,ミカ,ナホ,ハバ,ゼパ,ハガ,ゼカ,マラ,マタ,マル,ルカ,ヨハ,使徒,ロマ,コ一,コ二,ガラ,エフェ,フィリ,コロ,テサ一,テサ二,テモ一,テモ二,テト,フィレ,ヘブ,ヤコ,ペテ一,ペテ二,ヨハ一,ヨハ二,ヨハ三,ユダ,啓" },
-    { "Українська", "k", "", "http://wol.jw.org/uk/wol/b/r15/lp-k/%d/%d", "" },
-    { "한국어", "ko", "", "http://wol.jw.org/ko/wol/b/r8/lp-ko/%d/%d", "" },
-    { "Română", "m", "http://www.watchtower.org/%@/biblia/%@/chapter_%03d.htm", "", "" },
-    { "Norsk", "n", "", "http://wol.jw.org/no/wol/b/r3/lp-n/%d/%d", "" },
-    { "Nederlands", "o", "http://www.watchtower.org/%@/bijbel/%@/chapter_%03d.htm", "", "" },
-    { "Polski", "p", "", "http://wol.jw.org/pl/wol/b/r12/lp-p/%d/%d", "" },
-    { "Հայերեն", "rea", "", "", "" },
-    { "Español", "s", "", "http://wol.jw.org/es/wol/b/r4/lp-s/%d/%d", "" },
-    { "Српски", "sb", "", "", "" },
-    { "Kiswahili", "sw", "", "http://wol.jw.org/sw/wol/b/r13/lp-sw/%d/%d", "" },
-    { "V Slovenščini", "sv", "http://www.watchtower.org/%@/svetopismo/%@/chapter_%03d.htm", "", "" },
-    { "Português", "t", "", "http://wol.jw.org/pt/wol/b/r5/lp-t/%d/%d", "" },
-    { "Türkçe", "tk", "http://www.watchtower.org/%@/kutsalkitap/%@/chapter_%03d.htm", "", "" },
-    { "Setswana", "tn", "http://www.watchtower.org/%@/baebele/%@/chapter_%03d.htm", "", "" },
-    { "Русский", "u", "", "http://wol.jw.org/ru/wol/b/r2/lp-u/%d/%d", "" },
-    { "Slovenský", "v", "http://www.watchtower.org/%@/biblia/%@/chapter_%03d.htm", "", "" },
-    { "Deutsch", "x", "", "http://wol.jw.org/de/wol/b/r10/lp-x/%d/%d", "" },
-    { "Svenska", "z", "", "http://wol.jw.org/sv/wol/b/r14/lp-z/%d/%d", "" },
-    { "IsiZulu", "zu", "http://www.watchtower.org/%@/ibhayibheli/%@/chapter_%03d.htm", "", "" },
-    { "", "*", "http://www.watchtower.org/%@/bible/%@/chapter_%03d.htm", "", "" },
-};
-
-#define LANGUAGE_INFO_COUNT (sizeof(langInfo) / sizeof(langInfo[0]))
-
 static int getBookId(const std::string& name)
 {
     const char* names[] =
@@ -284,14 +234,26 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
     {
         NSMutableArray *marray = [NSMutableArray array];
         
-        for (int i = 0; i < LANGUAGE_INFO_COUNT; i++)
+        NSString *rdata = [Utility fetchFile:@"http://yhirose.github.com/BibleReadingMenulet/LanguageInformation.csv"];
+
+        NSArray *lines = [[rdata stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]
+                          componentsSeparatedByString:@"\n"];
+        
+        for (NSString *line in lines)
         {
-            const auto& info = langInfo[i];
+            NSArray *fields = [line componentsSeparatedByString:@","];
             
-            NSDictionary *dic = @{@"name": @(info.name),
-                                 @"symbol": @(info.symbol),
-                                 @"pageURL": @(info.pageURL),
-                                 @"wolPageURL": @(info.wolPageURL)};
+            NSArray *bookNames = [fields[4] length] > 0
+                ? [fields[4] componentsSeparatedByString:@":"]
+                : @[];
+            
+            NSDictionary *dic = @{
+                @"name": fields[0],
+                @"symbol": fields[1],
+                @"pageURL": fields[2],
+                @"wolPageURL": fields[3],
+                @"bookNames" : bookNames
+            };
             
             [marray addObject:dic];
         }
@@ -357,12 +319,6 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
     
     if (![format length])
     {
-        // Use www.watchtower.org data
-        /*
-        return [self pageURLWithLanguage:lang
-                                    book:book
-                                 chapter:chap];
-                                 */
         return nil;
     }
     
@@ -417,14 +373,11 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
 - (NSString *)translateCitation:(NSString *)str language:(NSString *)lang
 {
     int langId = [self getLanguageId:lang];
-    NSString *bookNamesStr = @(langInfo[langId].bookNames);
-    
-    if (![bookNamesStr length])
+    NSArray *bookNames = [_infoArray[langId] valueForKey:@"bookNames"];
+    if (![bookNames count])
     {
         return str;
     }
-    
-    NSArray *bookNames = [bookNamesStr componentsSeparatedByString:@","];
     
     NSMutableArray *citasVernacular = [NSMutableArray array];
     

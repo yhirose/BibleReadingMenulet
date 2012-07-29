@@ -16,6 +16,7 @@
 + (NSString *)getContentWol:(NSString *)html;
 + (NSString *)getTitleWt:(NSString *)html;
 + (NSString *)getTitleWol:(NSString *)html;
++ (NSString *)fetchFile:(NSString *)url;
 + (NSMutableArray *)getRangesForSchool;
 + (BOOL)isLionOrLater;
 
