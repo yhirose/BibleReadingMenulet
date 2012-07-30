@@ -296,8 +296,11 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
 
 - (NSString *)wtPageURLWithLanguage:(NSString *)lang book:(NSString*)book chapter:(NSNumber *)chap
 {
-    int i = [self getLanguageId:lang];    
-    NSString *format = [_infoArray[i] valueForKey:@"pageURL"];
+    int langId = [self getLanguageId:lang];
+    if (langId == -1)
+        return nil;
+    
+    NSString *format = [_infoArray[langId] valueForKey:@"pageURL"];
     
     if (![format length])
     {
@@ -314,13 +317,13 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
 
 - (NSString *)wolPageURLWithLanguage:(NSString *)lang book:(NSString*)book chapter:(NSNumber *)chap
 {
-    int i = [self getLanguageId:lang];    
-    NSString *format = [_infoArray[i] valueForKey:@"wolPageURL"];
-    
-    if (![format length])
-    {
+    int langId = [self getLanguageId:lang];
+    if (langId == -1)
         return nil;
-    }
+    
+    NSString *format = [_infoArray[langId] valueForKey:@"wolPageURL"];
+    if (![format length])
+        return nil;
     
     return [NSString stringWithFormat:format,
             [self getBookNo:book],
@@ -373,11 +376,12 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
 - (NSString *)translateCitation:(NSString *)str language:(NSString *)lang
 {
     int langId = [self getLanguageId:lang];
+    if (langId == -1)
+        return str;
+    
     NSArray *bookNames = [_infoArray[langId] valueForKey:@"bookNames"];
     if (![bookNames count])
-    {
         return str;
-    }
     
     NSMutableArray *citasVernacular = [NSMutableArray array];
     
