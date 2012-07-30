@@ -327,14 +327,12 @@ enum MenuTag
 
 - (void)read:(id)sender chapterList:(NSMutableArray *)chapList type:(NSString *)type
 {
+    // Get the selected menu item
     NSInteger i = [sender tag];
     NSDictionary *item = chapList[i];
 
+    // Make a reading page
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *progress = [Utility getProgress:type];
-  
-    [progress setValue:@YES forKey:[item valueForKey:@"bookChapId"]];
-    [Utility setProgress:progress type:type];
 
     NSString *book = [item valueForKey:@"book"];
     NSNumber *chap = [item valueForKey:@"chap"];    
@@ -368,7 +366,13 @@ enum MenuTag
         return;
     }
     
+    // Show the reading page with the default browser
     [[NSWorkspace sharedWorkspace] openURL:url];
+
+    // Check the selected item
+    NSMutableDictionary *progress = [Utility getProgress:type];
+    [progress setValue:@YES forKey:[item valueForKey:@"bookChapId"]];
+    [Utility setProgress:progress type:type];
 }
 
 - (IBAction)readAction:(id)sender
