@@ -163,7 +163,7 @@ static bool parseOneChapter(const char* str, std::vector<Cita>& list)
     return !ret;
 }
 
-static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
+static bool parseChapterVerseRange(const char* str, std::vector<Cita>& list)
 {
     const char* pat = "([1-3]?[a-z]+) ([0-9]+):([0-9]+)-([0-9]+)";
     
@@ -179,34 +179,23 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
         const auto& mbook = matches[1];
         const auto& mchap1 = matches[2];
         const auto& mverse1 = matches[3];
-        const auto& mchap2 = matches[4];
+        const auto& mverse2 = matches[4];
         
         std::string book(&str[mbook.rm_so], &str[mbook.rm_eo]);
         int chap1 = atoi(std::string(&str[mchap1.rm_so], &str[mchap1.rm_eo]).c_str());
         int verse1 = atoi(std::string(&str[mverse1.rm_so], &str[mverse1.rm_eo]).c_str());
-        int chap2 = atoi(std::string(&str[mchap2.rm_so], &str[mchap2.rm_eo]).c_str());
+        int verse2 = atoi(std::string(&str[mverse2.rm_so], &str[mverse2.rm_eo]).c_str());
         
-        for (int i = chap1; i <= chap2; i++)
-        {            
-            Cita cita;
-            
-            cita.book = book;            
-            cita.chap = i;
-            
-            char buff[BUFSIZ];
-            if (i == chap1)
-            {
-                cita.verse = verse1;
-                sprintf(buff, "%s %d:%d", book.c_str(), i, verse1);
-            }
-            else
-            {
-                sprintf(buff, "%s %d", book.c_str(), i);
-            }            
-            cita.label = buff;
-            
-            list.push_back(cita);
-        }        
+        Cita cita;
+        
+        cita.book = book;            
+        cita.chap = chap1;        
+        cita.verse = verse1;
+        char buff[BUFSIZ];
+        sprintf(buff, "%s %d:%d-%d", book.c_str(), chap1, verse1, verse2);
+        cita.label = buff;
+        
+        list.push_back(cita);
     }
     
     regfree(&re);
@@ -342,7 +331,7 @@ static bool parseFromVerseToChapter(const char* str, std::vector<Cita>& list)
         bool ret = parseChapterRange(str, items) ||
         parseBookNameOnly(str, items) ||
         parseOneChapter(str, items) ||
-        parseFromVerseToChapter(str, items);
+        parseChapterVerseRange(str, items);
         
         if (ret)
         {
