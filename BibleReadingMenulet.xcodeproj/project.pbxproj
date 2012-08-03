@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		BA3E9F6614B1589D00006CC4 /* BibleReadingMenulet.icns in Resources */ = {isa = PBXBuildFile; fileRef = BA3E9F6514B1589D00006CC4 /* BibleReadingMenulet.icns */; };
-		BA6E11EC15CB4E420058DEE5 /* ScheduleChronologically.csv in Resources */ = {isa = PBXBuildFile; fileRef = BA6E11EB15CB4E420058DEE5 /* ScheduleChronologically.csv */; };
 		BA7BC4CF14A97E5A00740694 /* SchedulePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7BC4CE14A97E5A00740694 /* SchedulePanelController.m */; };
 		BA94AB55149704D30040164E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA94AB54149704D30040164E /* Cocoa.framework */; };
 		BA94AB5F149704D30040164E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA94AB5D149704D30040164E /* InfoPlist.strings */; };
@@ -16,14 +15,12 @@
 		BA94AB65149704D30040164E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BA94AB63149704D30040164E /* Credits.rtf */; };
 		BA94AB68149704D30040164E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA94AB67149704D30040164E /* AppDelegate.m */; };
 		BA94AB6B149704D30040164E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA94AB69149704D30040164E /* MainMenu.xib */; };
-		BA94AB7614970A750040164E /* Schedule.csv in Resources */ = {isa = PBXBuildFile; fileRef = BA94AB7514970A750040164E /* Schedule.csv */; };
 		BA94AB8B149BFA140040164E /* Utility.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA94AB8A149BFA140040164E /* Utility.mm */; };
 		BA94AB92149E94C10040164E /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = BA94AB91149E94C00040164E /* Schedule.m */; };
 		BA99DD4614B0009A00C54386 /* SchedulePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD4414B0009A00C54386 /* SchedulePanel.xib */; };
 		BA99DD4914B0017700C54386 /* SchedulePanel.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD4714B0017700C54386 /* SchedulePanel.strings */; };
 		BA99DD4E14B0039D00C54386 /* MainMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD4C14B0039D00C54386 /* MainMenu.strings */; };
 		BA99DD5214B0060300C54386 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD5014B0060300C54386 /* Localizable.strings */; };
-		BAC3857514B92D9900A71AC6 /* ScheduleThematically.csv in Resources */ = {isa = PBXBuildFile; fileRef = BAC3857414B92D9900A71AC6 /* ScheduleThematically.csv */; };
 		BAC99BAE15C386F200057CB2 /* Template.html in Resources */ = {isa = PBXBuildFile; fileRef = BAC99BAD15C386F200057CB2 /* Template.html */; };
 		BAC99BC215C4326000057CB2 /* html in Resources */ = {isa = PBXBuildFile; fileRef = BAC99BC115C4326000057CB2 /* html */; };
 		BACE777814A9692E00855A1C /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = BACE777714A9692E00855A1C /* LaunchAtLoginController.m */; };
@@ -32,7 +29,6 @@
 
 /* Begin PBXFileReference section */
 		BA3E9F6514B1589D00006CC4 /* BibleReadingMenulet.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = BibleReadingMenulet.icns; sourceTree = "<group>"; };
-		BA6E11EB15CB4E420058DEE5 /* ScheduleChronologically.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ScheduleChronologically.csv; sourceTree = "<group>"; };
 		BA7BC4CD14A97E5A00740694 /* SchedulePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchedulePanelController.h; sourceTree = "<group>"; };
 		BA7BC4CE14A97E5A00740694 /* SchedulePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchedulePanelController.m; sourceTree = "<group>"; };
 		BA94AB50149704D30040164E /* BibleReadingMenulet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BibleReadingMenulet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,7 +44,6 @@
 		BA94AB66149704D30040164E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BA94AB67149704D30040164E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BA94AB6A149704D30040164E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		BA94AB7514970A750040164E /* Schedule.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Schedule.csv; sourceTree = "<group>"; };
 		BA94AB88149BF9CE0040164E /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		BA94AB8A149BFA140040164E /* Utility.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Utility.mm; sourceTree = "<group>"; };
 		BA94AB90149E94C00040164E /* Schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schedule.h; sourceTree = "<group>"; };
@@ -62,7 +57,6 @@
 		BA99DD5114B0060300C54386 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BA99DD5314B0061200C54386 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BABC3B3014A6744B0089FEC9 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		BAC3857414B92D9900A71AC6 /* ScheduleThematically.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ScheduleThematically.csv; sourceTree = "<group>"; };
 		BAC99BAD15C386F200057CB2 /* Template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Template.html; sourceTree = "<group>"; };
 		BAC99BC115C4326000057CB2 /* html */ = {isa = PBXFileReference; lastKnownFileType = folder; path = html; sourceTree = "<group>"; };
 		BACE777614A9692E00855A1C /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LaunchAtLoginController.h; path = LaunchAtLoginController/LaunchAtLoginController.h; sourceTree = SOURCE_ROOT; };
@@ -148,9 +142,6 @@
 			children = (
 				BAC99BC115C4326000057CB2 /* html */,
 				BAC99BAD15C386F200057CB2 /* Template.html */,
-				BA94AB7514970A750040164E /* Schedule.csv */,
-				BA6E11EB15CB4E420058DEE5 /* ScheduleChronologically.csv */,
-				BAC3857414B92D9900A71AC6 /* ScheduleThematically.csv */,
 				BA3E9F6514B1589D00006CC4 /* BibleReadingMenulet.icns */,
 				BA99DD5014B0060300C54386 /* Localizable.strings */,
 				BA99DD4C14B0039D00C54386 /* MainMenu.strings */,
@@ -217,16 +208,13 @@
 				BA94AB5F149704D30040164E /* InfoPlist.strings in Resources */,
 				BA94AB65149704D30040164E /* Credits.rtf in Resources */,
 				BA94AB6B149704D30040164E /* MainMenu.xib in Resources */,
-				BA94AB7614970A750040164E /* Schedule.csv in Resources */,
 				BA99DD4614B0009A00C54386 /* SchedulePanel.xib in Resources */,
 				BA99DD4914B0017700C54386 /* SchedulePanel.strings in Resources */,
 				BA99DD4E14B0039D00C54386 /* MainMenu.strings in Resources */,
 				BA99DD5214B0060300C54386 /* Localizable.strings in Resources */,
 				BA3E9F6614B1589D00006CC4 /* BibleReadingMenulet.icns in Resources */,
-				BAC3857514B92D9900A71AC6 /* ScheduleThematically.csv in Resources */,
 				BAC99BAE15C386F200057CB2 /* Template.html in Resources */,
 				BAC99BC215C4326000057CB2 /* html in Resources */,
-				BA6E11EC15CB4E420058DEE5 /* ScheduleChronologically.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

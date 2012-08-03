@@ -23,10 +23,11 @@ enum MenuTag
 {
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *resourcePath = [bundle resourcePath];
+    NSString *dirPath = [resourcePath stringByAppendingPathComponent:@"schedule"];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    for (NSString *fileName in [fileManager contentsOfDirectoryAtPath:resourcePath error:nil])
+    for (NSString *fileName in [fileManager contentsOfDirectoryAtPath:dirPath error:nil])
     {
         if ([fileName hasSuffix:@".csv"])
         {
@@ -410,7 +411,7 @@ enum MenuTag
     [NSApp terminate:self];
 }
 
-- (IBAction)showSchedulePanel:(id)sender
+- (IBAction)showSchedulePanel:(id)sender    
 {
     if (!_schedulePanelController)
     {
