@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BA3E9F6614B1589D00006CC4 /* BibleReadingMenulet.icns in Resources */ = {isa = PBXBuildFile; fileRef = BA3E9F6514B1589D00006CC4 /* BibleReadingMenulet.icns */; };
+		BA6E11EC15CB4E420058DEE5 /* ScheduleChronologically.csv in Resources */ = {isa = PBXBuildFile; fileRef = BA6E11EB15CB4E420058DEE5 /* ScheduleChronologically.csv */; };
 		BA7BC4CF14A97E5A00740694 /* SchedulePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7BC4CE14A97E5A00740694 /* SchedulePanelController.m */; };
 		BA94AB55149704D30040164E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA94AB54149704D30040164E /* Cocoa.framework */; };
 		BA94AB5F149704D30040164E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA94AB5D149704D30040164E /* InfoPlist.strings */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		BA3E9F6514B1589D00006CC4 /* BibleReadingMenulet.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = BibleReadingMenulet.icns; sourceTree = "<group>"; };
+		BA6E11EB15CB4E420058DEE5 /* ScheduleChronologically.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ScheduleChronologically.csv; sourceTree = "<group>"; };
 		BA7BC4CD14A97E5A00740694 /* SchedulePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchedulePanelController.h; sourceTree = "<group>"; };
 		BA7BC4CE14A97E5A00740694 /* SchedulePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchedulePanelController.m; sourceTree = "<group>"; };
 		BA94AB50149704D30040164E /* BibleReadingMenulet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BibleReadingMenulet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +149,7 @@
 				BAC99BC115C4326000057CB2 /* html */,
 				BAC99BAD15C386F200057CB2 /* Template.html */,
 				BA94AB7514970A750040164E /* Schedule.csv */,
+				BA6E11EB15CB4E420058DEE5 /* ScheduleChronologically.csv */,
 				BAC3857414B92D9900A71AC6 /* ScheduleThematically.csv */,
 				BA3E9F6514B1589D00006CC4 /* BibleReadingMenulet.icns */,
 				BA99DD5014B0060300C54386 /* Localizable.strings */,
@@ -223,6 +226,7 @@
 				BAC3857514B92D9900A71AC6 /* ScheduleThematically.csv in Resources */,
 				BAC99BAE15C386F200057CB2 /* Template.html in Resources */,
 				BAC99BC215C4326000057CB2 /* html in Resources */,
+				BA6E11EC15CB4E420058DEE5 /* ScheduleChronologically.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
