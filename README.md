@@ -3,7 +3,7 @@ Bible Reading Menulet
 
 Menulet for daily Bible reading.
 
-![](./thumbnail.png)
+![](https://raw.github.com/yhirose/BibleReadingMenulet/master/thumbnail.png)
 
 
 Features
