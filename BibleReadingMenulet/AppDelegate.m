@@ -188,6 +188,7 @@ enum MenuTag
         
         NSString *html = [NSString stringWithFormat:tmpl,
                           [Utility getTitleWol:nwtHTML],
+                          urlStr,
                           [Utility getContentWol:nwtHTML],
                           lang,
                           @([_langInfo getBookNo:book]),

@@ -16,7 +16,7 @@ a {
 .dc > *, .dv > * {
     line-height: 0.5em;
     vertical-align: top;
-    color: #BCA78D;
+    color: #9F945F;
 }
 
 .dv * {
@@ -25,7 +25,6 @@ a {
 
 .dc a, .dv a {
     color: #C4BC36;
-    color: #CCB79D;
 }
 
 .fn, .mr {
@@ -56,6 +55,18 @@ a {
     width: 100%;
     height: 30px;
     background-image: url('pattern17.png');
+}
+
+#wol {
+    margin-top: 10px;
+    margin-right: 20px;
+    font-size: 0.85em;
+    font-style: italic;
+    float: right;
+}
+
+#wol a {
+    color: #909278;
 }
 
 #footer {

@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="reading.css" />
 </head>
 <body>
-<div id="header"></div>
+<div id="header"><span id="wol"><a href="%@">To Watchtower Online Library</a></span></div>
 <div id="content">
 %@
 </div>
@@ -53,7 +53,7 @@
         audioWidth: $('#footer').width(),
     });
 
-    $.each($('a'), function (i, e) {
+    $.each($('#content a'), function (i, e) {
         var $e = $(e),
             href = $(e).attr('href');
         $e.attr('href', 'http://wol.jw.org' + href);
