@@ -9,5 +9,5 @@ Menulet for daily Bible reading.
 Features
 --------
 
-* One year Bible reading schedle
+* One year Bible reading schedule
 * Ministry school reading schedule (for this week and next week)
