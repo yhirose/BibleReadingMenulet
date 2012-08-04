@@ -255,7 +255,7 @@ static bool parseChapterVerseRange(const char* str, std::vector<Cita>& list)
 
 - (int)getBookNo:(NSString *)name
 {
-    std::string s = [name UTF8String];
+    const auto s = [name UTF8String];
     return getBookId(s) + 1;
 }
 
