@@ -92,8 +92,8 @@ enum MenuTag
         int i = 0;
         for (NSDictionary *item in _chapList)
         {
-            NSString *label = [item valueForKey:@"label"];
-            NSString *bookChapId = [item valueForKey:@"bookChapId"];
+            NSString *label = item[@"label"];
+            NSString *bookChapId = item[@"bookChapId"];
 
             NSMenuItem *menuItem = [menuChapters addItemWithTitle:label
                                                            action:@selector(readAction:)
@@ -101,7 +101,7 @@ enum MenuTag
             
             [menuItem setTag:i];
             
-            if ([prevProgress valueForKey:bookChapId])
+            if (prevProgress[bookChapId])
             {
                 [menuItem setState:NSOnState];
                 [progress setValue:@YES forKey:bookChapId];
@@ -214,8 +214,8 @@ enum MenuTag
     int i = 0;
     for (NSDictionary* val in _langInfo.infoArray)
     {
-        NSString *name = [val valueForKey:@"name"];
-        NSString *symbol = [val valueForKey:@"symbol"];
+        NSString *name = val[@"name"];
+        NSString *symbol = val[@"symbol"];
 
         if ([symbol isEqualToString:@"*"])
             continue;
@@ -257,8 +257,8 @@ enum MenuTag
         
         for (NSDictionary *item in chapList)
         {
-            NSString *label = [item valueForKey:@"label"];
-            NSString *bookChapId = [item valueForKey:@"bookChapId"];
+            NSString *label = item[@"label"];
+            NSString *bookChapId = item[@"bookChapId"];
                         
             NSMenuItem *menuItem = [menuChapters addItemWithTitle:label
                                                            action:@selector(readActionForSchool:)
@@ -266,7 +266,7 @@ enum MenuTag
             
             [menuItem setTag:i];
             
-            if ([prevProgress valueForKey:bookChapId])
+            if (prevProgress[bookChapId])
             {
                 [menuItem setState:NSOnState];
                 [progress setValue:@YES forKey:bookChapId];
@@ -336,8 +336,8 @@ enum MenuTag
     // Make a reading page
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
 
-    NSString *book = [item valueForKey:@"book"];
-    NSNumber *chap = [item valueForKey:@"chap"];    
+    NSString *book = item[@"book"];
+    NSNumber *chap = item[@"chap"];
     NSString *lang = [ud stringForKey:@"LANGUAGE"];
 
     NSString *urlStr = [self setupHTMLFileWithLanguage:lang
@@ -373,7 +373,7 @@ enum MenuTag
 
     // Check the selected item
     NSMutableDictionary *progress = [Utility getProgress:type];
-    [progress setValue:@YES forKey:[item valueForKey:@"bookChapId"]];
+    [progress setValue:@YES forKey:item[@"bookChapId"]];
     [Utility setProgress:progress type:type];
 }
 
@@ -392,7 +392,7 @@ enum MenuTag
     NSInteger i = [sender tag];
     NSDictionary *item = (_langInfo.infoArray)[i];
     
-    NSString *lang = [item valueForKey:@"symbol"];
+    NSString *lang = item[@"symbol"];
     
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     [ud setObject:lang forKey:@"LANGUAGE"];

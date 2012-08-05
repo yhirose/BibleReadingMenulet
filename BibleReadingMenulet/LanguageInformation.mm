@@ -264,7 +264,7 @@ static bool parseChapterVerseRange(const char* str, std::vector<Cita>& list)
     int i = 0;
     for (NSDictionary *item in _infoArray)
     {
-        if ([[item valueForKey:@"symbol"] isEqualToString:lang])
+        if ([item[@"symbol"] isEqualToString:lang])
         {
             return i;
         }
@@ -289,13 +289,13 @@ static bool parseChapterVerseRange(const char* str, std::vector<Cita>& list)
     if (langId == -1)
         return nil;
     
-    NSString *format = [_infoArray[langId] valueForKey:@"pageURL"];
+    NSString *format = _infoArray[langId][@"pageURL"];
     
     if (![format length])
     {
         // Use default data
         int i = [self getLanguageId:@"*"];    
-        format = [_infoArray[i] valueForKey:@"pageURL"];
+        format = _infoArray[i][@"pageURL"];
     }
     
     return [NSString stringWithFormat:format,
@@ -310,7 +310,7 @@ static bool parseChapterVerseRange(const char* str, std::vector<Cita>& list)
     if (langId == -1)
         return nil;
     
-    NSString *format = [_infoArray[langId] valueForKey:@"wolPageURL"];
+    NSString *format = _infoArray[langId][@"wolPageURL"];
     if (![format length])
         return nil;
     
@@ -368,7 +368,7 @@ static bool parseChapterVerseRange(const char* str, std::vector<Cita>& list)
     if (langId == -1)
         return str;
     
-    NSArray *bookNames = [_infoArray[langId] valueForKey:@"bookNames"];
+    NSArray *bookNames = _infoArray[langId][@"bookNames"];
     if (![bookNames count])
         return str;
     

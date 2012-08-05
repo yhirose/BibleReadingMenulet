@@ -48,7 +48,7 @@
 + (NSMutableDictionary *)getProgress:(NSString *)type
 {
     NSMutableDictionary *plist = [self getProgressPropertyList];
-    NSMutableDictionary *progress = [[plist valueForKey:type] mutableCopy];
+    NSMutableDictionary *progress = [plist[type] mutableCopy];
     return progress;
 }
 

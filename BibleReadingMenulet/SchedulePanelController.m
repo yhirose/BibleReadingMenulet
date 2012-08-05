@@ -108,13 +108,13 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
         NSString *lang = [ud stringForKey:@"LANGUAGE"];
         
-        NSString *str = [(_schedule.ranges)[row] valueForKey:@"range"];
+        NSString *str = _schedule.ranges[row][@"range"];
         
         return [[LanguageInformation instance] translateRange:str language:lang];
     }
     else // "date"
     {
-        return [(_schedule.ranges)[row] valueForKey:@"date"];
+        return _schedule.ranges[row][@"date"];
     }
 }
 

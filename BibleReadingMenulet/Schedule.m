@@ -76,11 +76,9 @@
     NSMutableArray *lines = [NSMutableArray array];
     for (int i = 0; i < [_ranges count]; i++)
     {
-        NSMutableDictionary *item = _ranges[i];
+        NSString *line = [NSString stringWithString:_ranges[i][@"range"]];
         
-        NSString *line = [NSString stringWithString:[item valueForKey:@"range"]];
-        
-        NSString *date = (i == self.currentIndex) ? @"*" : [item valueForKey:@"date"];
+        NSString *date = (i == self.currentIndex) ? @"*" : _ranges[i][@"date"];
         
         if (date)
         {
@@ -140,16 +138,14 @@
 {
     if (![self isComplete])
     {
-        NSMutableArray *item = _ranges[index];
-        
-        if (![item valueForKey:@"date"])
+        if (!_ranges[index][@"date"])
         {
             NSDate *now = [NSDate date];
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             [formatter setDateFormat:@"yyyy-MM-dd(E) HH:mm:ss"];
             NSString *date = [formatter stringFromDate:now];
             
-            [item setValue:date forKey:@"date"];
+            _ranges[index][@"date"] = date;
             
             if (index == self.currentIndex)
             {
@@ -166,11 +162,10 @@
 
 - (void)markAsUnreadAtIndex:(NSInteger)index
 {
-    NSMutableArray *item = _ranges[index];
-    
-    if ([item valueForKey:@"date"])
+    if (_ranges[index][@"date"])
     {
-        [item setValue:nil forKey:@"date"];
+        _ranges[index][@"date"] = nil;
+        
         [self saveData:_ranges toFile:_path];
         
         NSNotification *n = [NSNotification notificationWithName:@"markChanged" object:self];
@@ -180,8 +175,7 @@
 
 - (NSString *)currentRange
 {
-    NSMutableArray *currItem = _ranges[self.currentIndex];
-    return [currItem valueForKey:@"range"];
+    return _ranges[self.currentIndex][@"range"];
 }
 
 - (NSMutableArray *)ranges
