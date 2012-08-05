@@ -261,7 +261,6 @@ enum MenuTag {
     
     defaults[@"LANGUAGE"] = @"e";
     defaults[@"SCHEDULE"] = @"Schedule.csv";
-    defaults[@"PROGRESS"] = @"progress.xml";
     
     [ud registerDefaults:defaults];
 }

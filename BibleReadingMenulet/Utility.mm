@@ -25,10 +25,8 @@
 }
 
 + (NSString *)progressPath {
-    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
-    NSString *fileName = [ud stringForKey:@"PROGRESS"];
     NSString *dirPath = [Utility appDirPath];
-    return [dirPath stringByAppendingPathComponent:fileName];
+    return [dirPath stringByAppendingPathComponent:@"progress.xml"];
 }
 
 + (NSMutableDictionary *)getProgressPropertyList {
