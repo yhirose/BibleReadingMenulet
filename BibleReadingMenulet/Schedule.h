@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Schedule : NSObject {
-    @private
+  @private
     NSString       *_path;
     int             _curr;
     NSMutableArray *_ranges;

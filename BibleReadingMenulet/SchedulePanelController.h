@@ -10,6 +10,7 @@
 #import "Schedule.h"
 
 @interface SchedulePanelController : NSWindowController {
+  @private
     Schedule *_schedule;
     NSColor *_white;
     NSColor *_yellow;

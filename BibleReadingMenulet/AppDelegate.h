@@ -13,7 +13,7 @@
 @class SchedulePanelController;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate> {
-    @private
+  @private
     NSStatusItem *_statusItem;
     LanguageInformation *_langInfo;
     Schedule *_schedule;

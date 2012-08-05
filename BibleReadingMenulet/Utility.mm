@@ -31,29 +31,25 @@
     return [dirPath stringByAppendingPathComponent:fileName];
 }
 
-+ (NSMutableDictionary *)getProgressPropertyList
-{
++ (NSMutableDictionary *)getProgressPropertyList {
     NSMutableDictionary *plist = [NSMutableDictionary dictionary];
     NSString* pgPath = [Utility progressPath];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:pgPath])
-    {
+    if ([fileManager fileExistsAtPath:pgPath]) {
         plist = [[NSMutableDictionary dictionary] initWithContentsOfFile:pgPath];
     }
     
     return plist;
 }
 
-+ (NSMutableDictionary *)getProgress:(NSString *)type
-{
++ (NSMutableDictionary *)getProgress:(NSString *)type {
     NSMutableDictionary *plist = [self getProgressPropertyList];
     NSMutableDictionary *progress = [plist[type] mutableCopy];
     return progress;
 }
 
-+ (void)setProgress:(NSMutableDictionary *)progress type:(NSString *)type
-{
++ (void)setProgress:(NSMutableDictionary *)progress type:(NSString *)type {
     NSMutableDictionary *plist = [self getProgressPropertyList];
     NSString* pgPath = [Utility progressPath];
     
@@ -61,8 +57,7 @@
     [plist writeToFile:pgPath atomically:NO];
 }
 
-+ (NSString *)getContentWt:(NSString *)html
-{
++ (NSString *)getContentWt:(NSString *)html {
     const char* str = [html UTF8String];
     const char* pat = "</h3>(.*)<div class=\"footer\"";
     
@@ -75,8 +70,7 @@
     regcomp(&re, pat, REG_EXTENDED);
     
     int ret = regexec(&re, str, nmatch, matches, REG_NOTBOL|REG_NOTEOL);
-    if (!ret)
-    {
+    if (!ret) {
         const auto& m1 = matches[1];
         content.assign(&str[m1.rm_so], &str[m1.rm_eo]);
     }
@@ -86,8 +80,7 @@
     return [NSString stringWithUTF8String:content.c_str()];
 }
 
-+ (NSString *)getContentWol:(NSString *)html
-{
++ (NSString *)getContentWol:(NSString *)html {
     const char* str = [html UTF8String];
     const char* pat = "<div class='document'>(.*)</div></div>";
     
@@ -100,8 +93,7 @@
     regcomp(&re, pat, REG_EXTENDED);
     
     int ret = regexec(&re, str, nmatch, matches, REG_NOTBOL|REG_NOTEOL);
-    if (!ret)
-    {
+    if (!ret) {
         const auto& m1 = matches[1];
         content.assign(&str[m1.rm_so], &str[m1.rm_eo]);
     }
@@ -111,8 +103,7 @@
     return [NSString stringWithUTF8String:content.c_str()];
 }
 
-+ (NSString *)getTitleWt:(NSString *)html
-{
++ (NSString *)getTitleWt:(NSString *)html {
     const char* str = [html UTF8String];
     const char* pat = "<h3>(.*)</h3>";
     
@@ -136,8 +127,7 @@
     return [NSString stringWithUTF8String:title.c_str()];
 }
 
-+ (NSString *)getTitleWol:(NSString *)html
-{
++ (NSString *)getTitleWol:(NSString *)html {
     const char* str = [html UTF8String];
     const char* pat = "<title>(.*)</title>";
     
@@ -150,8 +140,7 @@
     regcomp(&re, pat, REG_EXTENDED);
     
     int ret = regexec(&re, str, nmatch, matches, 0);
-    if (!ret)
-    {
+    if (!ret) {
         const auto& m1 = matches[1];
         title.assign(&str[m1.rm_so], &str[m1.rm_eo]);
     }
@@ -161,8 +150,7 @@
     return [NSString stringWithUTF8String:title.c_str()];
 }
 
-+ (NSString *)fetchFile:(NSString *)urlStr
-{
++ (NSString *)fetchFile:(NSString *)urlStr {
     NSURL *url = [NSURL URLWithString:urlStr];
     
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
@@ -172,8 +160,7 @@
     NSData *data = [NSURLConnection sendSynchronousRequest:req
                                          returningResponse:&resp
                                                      error:&err];
-    if (data == nil)
-    {
+    if (data == nil) {
         return nil;
     }
     
@@ -182,13 +169,11 @@
     return [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
-+ (NSString *)fetchSchoolSchedule
-{
++ (NSString *)fetchSchoolSchedule {
     return [self fetchFile:@"http://yhirose.github.com/BibleReadingMenulet/SchoolSchedule.csv"];
 }
 
-+ (NSMutableArray *)findRangesForSchoolSchedule:(NSString *)schoolSchedule
-{
++ (NSMutableArray *)findRangesForSchoolSchedule:(NSString *)schoolSchedule {
     NSMutableArray *array = [NSMutableArray array];
     
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
@@ -198,8 +183,7 @@
     
     NSArray *lines = [schoolSchedule componentsSeparatedByString:@"\n"];
     
-    for (int i = 0; i < [lines count]; i++)
-    {
+    for (int i = 0; i < [lines count]; i++) {
         NSString *line = lines[i];
         NSArray *fields = [line componentsSeparatedByString:@","];
         
@@ -209,12 +193,10 @@
         NSTimeInterval val1 = [now timeIntervalSinceDate:beg];
         NSTimeInterval val2 = [end timeIntervalSinceDate:now];
         
-        if (val1 >= 0 && val2 > 0)
-        {
+        if (val1 >= 0 && val2 > 0) {
             [array addObject:fields[1]];
             
-            if (i + 1 < [lines count])
-            {
+            if (i + 1 < [lines count]) {
                 NSString *line = lines[i + 1];
                 NSArray *fields = [line componentsSeparatedByString:@","];
                 [array addObject:fields[1]];
@@ -227,15 +209,13 @@
     return array;
 }
 
-+ (NSMutableArray *)getRangesForSchool
-{
++ (NSMutableArray *)getRangesForSchool {
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
     NSString *schoolSchedule = [ud stringForKey:@"SCHOOL_SCHEDULE"];
     
     NSMutableArray *ranges = [self findRangesForSchoolSchedule:schoolSchedule];
     
-    if (![ranges count])
-    {
+    if (![ranges count]) {
         NSString *schoolSchedule = [Utility fetchSchoolSchedule];
         [ud setValue:schoolSchedule forKey:@"SCHOOL_SCHEDULE"];
         

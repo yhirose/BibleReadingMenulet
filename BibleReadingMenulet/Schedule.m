@@ -10,30 +10,24 @@
 
 @implementation Schedule
 
-- (int)advance:(int)curr
-{
+- (int)advance:(int)curr {
     int i = curr;
-    for (; i < [_ranges count] && [_ranges[i] count] > 1; i++)
-    {
+    for (; i < [_ranges count] && [_ranges[i] count] > 1; i++) {
         ;
     }
-    if (i == [_ranges count])
-    {
+    if (i == [_ranges count]) {
         i = 0;
-        for (; i < curr && [_ranges[i] count] > 1; i++)
-        {
+        for (; i < curr && [_ranges[i] count] > 1; i++) {
             ;
         }
-        if (i == curr)
-        {
+        if (i == curr) {
             return -1;
         }
     }
     return i;
 }
 
-- (NSMutableArray *)loadDataOfFile:(NSString *)path currIndex:(int *)curr
-{
+- (NSMutableArray *)loadDataOfFile:(NSString *)path currIndex:(int *)curr {
     NSMutableArray *data = [NSMutableArray array];
     *curr = -1;
     
@@ -43,8 +37,7 @@
     NSArray *lines = [[rdata stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]
                       componentsSeparatedByString:@"\n"];
     
-    for (int i = 0; i < [lines count]; i++)
-    {
+    for (int i = 0; i < [lines count]; i++) {
         NSString *line = lines[i];
         NSArray *fields = [line componentsSeparatedByString:@","];
         NSUInteger count = [fields count];
@@ -52,15 +45,11 @@
         NSMutableDictionary *item = [NSMutableDictionary dictionaryWithObject:fields[0]
                                                                        forKey:@"range"];
         
-        if (count == 2)
-        {
+        if (count == 2) {
             NSString *date = fields[1];
-            if ([date compare:@"*" options:NSCaseInsensitiveSearch] == NSOrderedSame)
-            {
+            if ([date compare:@"*" options:NSCaseInsensitiveSearch] == NSOrderedSame) {
                 *curr = i;
-            }
-            else
-            {
+            } else {
                 [item setValue:date forKey:@"date"];
             }
         }
@@ -71,17 +60,14 @@
     return data;
 }
 
-- (void)saveData:(NSMutableArray *)data toFile:(NSString *)path
-{
+- (void)saveData:(NSMutableArray *)data toFile:(NSString *)path {
     NSMutableArray *lines = [NSMutableArray array];
-    for (int i = 0; i < [_ranges count]; i++)
-    {
+    for (int i = 0; i < [_ranges count]; i++) {
         NSString *line = [NSString stringWithString:_ranges[i][@"range"]];
         
         NSString *date = (i == self.currentIndex) ? @"*" : _ranges[i][@"date"];
         
-        if (date)
-        {
+        if (date) {
             line = [line stringByAppendingFormat:@",%@", date];
         }
         
@@ -91,20 +77,17 @@
     [wdata writeToFile:path atomically:NO encoding:NSUTF8StringEncoding error:nil];
 }
 
-- (id)init
-{
+- (id)init {
     @throw [NSException exceptionWithName:@"BadInitCall"
                                    reason:@"Initialize Schedule with initWithPath:"
                                  userInfo:nil];
     return nil;
 }
 
-- (id)initWithPath:(NSString *)path
-{
+- (id)initWithPath:(NSString *)path {
     self = [super init];
     
-    if (self)
-    {
+    if (self) {
         _path = path;
         int curr = -1;
         
@@ -112,8 +95,7 @@
         _ranges = [self loadDataOfFile:path currIndex:&curr];
 
         // There is no '*' mark.
-        if (curr == -1)
-        {
+        if (curr == -1) {
             // Try to find an available spot.
             curr = [self advance:0];            
         }
@@ -124,22 +106,17 @@
     return self;
 }
 
-- (BOOL)isComplete
-{
+- (BOOL)isComplete {
     return self.currentIndex == -1;
 }
 
-- (void)markAsRead
-{
+- (void)markAsRead {
     [self markAsReadAtIndex:self.currentIndex];
 }
 
-- (void)markAsReadAtIndex:(NSInteger)index
-{
-    if (![self isComplete])
-    {
-        if (!_ranges[index][@"date"])
-        {
+- (void)markAsReadAtIndex:(NSInteger)index {
+    if (![self isComplete]) {
+        if (!_ranges[index][@"date"]) {
             NSDate *now = [NSDate date];
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             [formatter setDateFormat:@"yyyy-MM-dd(E) HH:mm:ss"];
@@ -147,8 +124,7 @@
             
             _ranges[index][@"date"] = date;
             
-            if (index == self.currentIndex)
-            {
+            if (index == self.currentIndex) {
                 self.currentIndex = [self advance:self.currentIndex + 1];
             }
             
@@ -160,10 +136,8 @@
     }
 }
 
-- (void)markAsUnreadAtIndex:(NSInteger)index
-{
-    if (_ranges[index][@"date"])
-    {
+- (void)markAsUnreadAtIndex:(NSInteger)index {
+    if (_ranges[index][@"date"]) {
         _ranges[index][@"date"] = nil;
         
         [self saveData:_ranges toFile:_path];
@@ -173,23 +147,19 @@
     }
 }
 
-- (NSString *)currentRange
-{
+- (NSString *)currentRange {
     return _ranges[self.currentIndex][@"range"];
 }
 
-- (NSMutableArray *)ranges
-{
+- (NSMutableArray *)ranges {
     return _ranges;
 }
 
-- (int)currentIndex
-{
+- (int)currentIndex {
     return _curr;
 }
 
-- (void)setCurrentIndex:(NSInteger)index
-{
+- (void)setCurrentIndex:(NSInteger)index {
     _curr = (int)index;
     [self saveData:_ranges toFile:_path];
     
