@@ -116,21 +116,38 @@ enum MenuTag {
     return [bundle pathForResource:@"Template" ofType:@"html"];
 }
 
-- (NSString *)setupHTMLFileWithLanguage:(NSString *)lang book:(NSString *)book chapter:(NSNumber *)chap {
+// Create html directory in application directory, and copy support files to it.
+- (void)setupHTMLDirectory {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    // Copy HTML support files
     if (![fileManager fileExistsAtPath:[self htmlDirPath]]) {
         NSBundle *bundle = [NSBundle mainBundle];
         NSString *srcPath = [[bundle resourcePath] stringByAppendingPathComponent:@"html"];
         
         NSString *dstPath = [self htmlDirPath];
         
-        NSError *error;
-        [fileManager moveItemAtPath:srcPath toPath:dstPath error:&error];
+        NSError *err;
+        [fileManager moveItemAtPath:srcPath toPath:dstPath error:&err];
     }
     
+}
+
+// Remove html directory in application directory
+- (void)removeHTMLDirectory {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if ([fileManager fileExistsAtPath:[self htmlDirPath]]) {
+        NSError *err;
+        [fileManager removeItemAtPath:[self htmlDirPath] error:&err];
+    }
+}
+
+- (NSString *)setupHTMLFileWithLanguage:(NSString *)lang book:(NSString *)book chapter:(NSNumber *)chap {
+    
+    [self setupHTMLDirectory];
+    
     // Create a reading HTML file.
+    NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *path = [self htmlPathWithLanguage:lang
                                            book:book
                                         chapter:chap];
@@ -266,6 +283,7 @@ enum MenuTag {
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    [self removeHTMLDirectory];
     [self setupUserDefaults];
     [self setupScheduleFiles];
 
