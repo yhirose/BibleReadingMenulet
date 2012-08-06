@@ -389,11 +389,11 @@ enum MenuTag {
 }
 
 - (IBAction)showSchedulePanel:(id)sender    {
-    if (!_schedulePanelController)
-    {
+    if (_schedulePanelController) {
+        [_schedulePanelController setSchedule:_schedule];
+    } else {
         _schedulePanelController = [[SchedulePanelController alloc] initWithSchedule:_schedule];
-    }
-    
+    }    
     [NSApp activateIgnoringOtherApps:YES];
     [_schedulePanelController showWindow:self];
     [[_schedulePanelController window] makeKeyAndOrderFront:self];

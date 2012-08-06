@@ -122,7 +122,7 @@
             [formatter setDateFormat:@"yyyy-MM-dd(E) HH:mm:ss"];
             NSString *date = [formatter stringFromDate:now];
             
-            _ranges[index][@"date"] = date;
+            [_ranges[index] setValue:date forKey:@"date"];
             
             if (index == self.currentIndex) {
                 self.currentIndex = [self advance:self.currentIndex + 1];
@@ -138,7 +138,7 @@
 
 - (void)markAsUnreadAtIndex:(NSInteger)index {
     if (_ranges[index][@"date"]) {
-        _ranges[index][@"date"] = nil;
+        [_ranges[index] setValue:nil forKey:@"date"];
         
         [self saveData:_ranges toFile:_path];
         

@@ -36,6 +36,10 @@
     return _schedule;
 }
 
+- (void)setSchedule:(Schedule *)schedule {
+    _schedule = schedule;
+}
+
 - (IBAction)actionMarkAsRead:(id)sender {
     NSIndexSet *indexes = [_tableView selectedRowIndexes];
     NSInteger index = [indexes firstIndex];

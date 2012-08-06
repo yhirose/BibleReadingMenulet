@@ -20,6 +20,7 @@
 
 - (id)initWithSchedule:(Schedule *)schedule;
 - (Schedule *)schedule;
+- (void)setSchedule:(Schedule *)schedule;
 - (IBAction)actionMarkAsRead:(id)sender;
 - (IBAction)actionMarkAsUnread:(id)sender;
 - (IBAction)actionSetCurrent:(id)sender;
