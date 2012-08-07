@@ -18,7 +18,8 @@ enum MenuTag {
     LanguageMenuTag = 2
 };
 
-- (void)setupScheduleFiles {
+- (void)setupScheduleFiles
+{
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *resourcePath = [bundle resourcePath];
     NSString *dirPath = [resourcePath stringByAppendingPathComponent:@"schedule"];
@@ -38,7 +39,8 @@ enum MenuTag {
     }    
 }
 
-- (void)setupStatusMenuTitle {
+- (void)setupStatusMenuTitle
+{
     if ([_schedule isComplete]) {
         [_statusItem setTitle:@"Congratulations!!"];
     } else {
@@ -53,7 +55,8 @@ enum MenuTag {
     }    
 }
 
-- (void)setupReadMenu {
+- (void)setupReadMenu
+{
     NSMenuItem *menuRead = [_menu itemWithTag:ReadMenuTag];
     
     if (_schedule == nil) {
@@ -100,24 +103,28 @@ enum MenuTag {
     }
 }
 
-- (NSString *)htmlDirPath {
+- (NSString *)htmlDirPath
+{
     NSString *dirPath = [Utility appDirPath];
     return [dirPath stringByAppendingPathComponent:@"html"];
 }
 
-- (NSString *)htmlPathWithLanguage:(NSString *)lang book:(NSString *)book chapter:(NSNumber *)chap {
+- (NSString *)htmlPathWithLanguage:(NSString *)lang book:(NSString *)book chapter:(NSNumber *)chap
+{
     NSString *dirPath = [self htmlDirPath];
     NSString *fileName = [NSString stringWithFormat:@"%@_%@_%@.html", book, chap, lang];
     return [dirPath stringByAppendingPathComponent:fileName];
 }
 
-- (NSString *)htmlTemplatePath {
+- (NSString *)htmlTemplatePath
+{
     NSBundle *bundle = [NSBundle mainBundle];
     return [bundle pathForResource:@"Template" ofType:@"html"];
 }
 
 // Create html directory in application directory, and copy support files to it.
-- (void)setupHTMLDirectory {
+- (void)setupHTMLDirectory
+{
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     if (![fileManager fileExistsAtPath:[self htmlDirPath]]) {
@@ -133,7 +140,8 @@ enum MenuTag {
 }
 
 // Remove html directory in application directory
-- (void)removeHTMLDirectory {
+- (void)removeHTMLDirectory
+{
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     if ([fileManager fileExistsAtPath:[self htmlDirPath]]) {
@@ -142,8 +150,8 @@ enum MenuTag {
     }
 }
 
-- (NSString *)setupHTMLFileWithLanguage:(NSString *)lang book:(NSString *)book chapter:(NSNumber *)chap {
-    
+- (NSString *)setupHTMLFileWithLanguage:(NSString *)lang book:(NSString *)book chapter:(NSNumber *)chap
+{
     [self setupHTMLDirectory];
     
     // Create a reading HTML file.
@@ -199,7 +207,8 @@ enum MenuTag {
     return path;
 }
 
-- (void)setupLanguageMenu {    
+- (void)setupLanguageMenu
+{    
     NSMenu *menuLangs = [[NSMenu alloc] init];
 
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
@@ -228,7 +237,8 @@ enum MenuTag {
     [[_menu itemWithTag:LanguageMenuTag] setSubmenu:menuLangs];    
 }
 
-- (void)setupSchoolMenu {
+- (void)setupSchoolMenu
+{
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
     NSString *lang = [ud stringForKey:@"LANGUAGE"];
     
@@ -272,7 +282,8 @@ enum MenuTag {
     [Utility setProgress:progress type:@"SCHOOL_SCHEDULE_PROGRESS"];
 }
 
-- (void)setupUserDefaults {
+- (void)setupUserDefaults
+{
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
     NSMutableDictionary *defaults = [NSMutableDictionary dictionary];
     
@@ -282,7 +293,8 @@ enum MenuTag {
     [ud registerDefaults:defaults];
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
     [self removeHTMLDirectory];
     [self setupUserDefaults];
     [self setupScheduleFiles];
@@ -313,7 +325,8 @@ enum MenuTag {
     [self setupStatusMenuTitle];
 }
 
-- (void)read:(id)sender chapterList:(NSMutableArray *)chapList type:(NSString *)type {
+- (void)read:(id)sender chapterList:(NSMutableArray *)chapList type:(NSString *)type
+{
     // Get the selected menu item
     NSInteger i = [sender tag];
     NSDictionary *item = chapList[i];
@@ -358,15 +371,18 @@ enum MenuTag {
     [Utility setProgress:progress type:type];
 }
 
-- (IBAction)readAction:(id)sender {
+- (IBAction)readAction:(id)sender
+{
     [self read:sender chapterList:_chapList type:@"SCHEDULE_PROGRESS"];
 }
 
-- (IBAction)readActionForSchool:(id)sender {
+- (IBAction)readActionForSchool:(id)sender
+{
     [self read:sender chapterList:_chapListForSchool type:@"SCHOOL_SCHEDULE_PROGRESS"];
 }
 
-- (IBAction)langAction:(id)sender {
+- (IBAction)langAction:(id)sender
+{
     NSInteger i = [sender tag];
     NSDictionary *item = (_langInfo.infoArray)[i];
     
@@ -380,15 +396,18 @@ enum MenuTag {
     [[NSNotificationCenter defaultCenter] postNotification:n];
 }
 
-- (IBAction)markAsReadAction:(id)sender {
+- (IBAction)markAsReadAction:(id)sender
+{
     [_schedule markAsRead];
 }
 
-- (IBAction)quitAction:(id)sender {
+- (IBAction)quitAction:(id)sender
+{
     [NSApp terminate:self];
 }
 
-- (IBAction)showSchedulePanel:(id)sender    {
+- (IBAction)showSchedulePanel:(id)sender
+{
     if (_schedulePanelController) {
         [_schedulePanelController setSchedule:_schedule];
     } else {
@@ -399,7 +418,8 @@ enum MenuTag {
     [[_schedulePanelController window] makeKeyAndOrderFront:self];
 }
 
-- (void)menuWillOpen:(NSMenu *)menu {
+- (void)menuWillOpen:(NSMenu *)menu
+{
     // Update language info and schedule.
     _langInfo = [LanguageInformation instance];
     _schedule = [[Schedule alloc] initWithPath:[Utility schedulePath]];

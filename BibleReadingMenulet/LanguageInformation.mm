@@ -13,7 +13,8 @@
 #import <string>
 #import <vector>
 
-static int getBookId(const std::string& name) {
+static int getBookId(const std::string& name)
+{
     const char* names[] = {
         "Ge", "Ex", "Le", "Nu", "De",
         "Jos", "Jg", "Ru", "1Sa", "2Sa",
@@ -40,7 +41,8 @@ static int getBookId(const std::string& name) {
     return -1;
 }
 
-struct Cita {
+struct Cita
+{
     std::string book;
     int chap;
     int verse;
@@ -49,7 +51,8 @@ struct Cita {
     Cita() : chap(-1), verse(-1) {}
 };
 
-static bool parseChapterRange(const char* str, std::vector<Cita>& list) {
+static bool parseChapterRange(const char* str, std::vector<Cita>& list)
+{
     const char* pat = "([1-3]?[a-z]+) ([0-9]+)-([0-9]+)";
     
     regex_t re;
@@ -87,7 +90,8 @@ static bool parseChapterRange(const char* str, std::vector<Cita>& list) {
     return !ret;
 }
 
-static bool parseBookNameOnly(const char* str, std::vector<Cita>& list) {
+static bool parseBookNameOnly(const char* str, std::vector<Cita>& list)
+{
     const char* pat = "^([1-3]?[a-z]+)$";
     
     regex_t re;
@@ -117,7 +121,8 @@ static bool parseBookNameOnly(const char* str, std::vector<Cita>& list) {
     return !ret;
 }
 
-static bool parseOneChapter(const char* str, std::vector<Cita>& list) {
+static bool parseOneChapter(const char* str, std::vector<Cita>& list)
+{
     const char* pat = "^([1-3]?[a-z]+) ([0-9]+)$";
     
     regex_t re;
@@ -151,7 +156,8 @@ static bool parseOneChapter(const char* str, std::vector<Cita>& list) {
     return !ret;
 }
 
-static bool parseChapterVerseRange(const char* str, std::vector<Cita>& list) {
+static bool parseChapterVerseRange(const char* str, std::vector<Cita>& list)
+{
     const char* pat = "([1-3]?[a-z]+) ([0-9]+):([0-9]+)-([0-9]+)";
     
     regex_t re;
@@ -191,7 +197,8 @@ static bool parseChapterVerseRange(const char* str, std::vector<Cita>& list) {
 
 @implementation LanguageInformation
 
-+ (LanguageInformation *)instance {
++ (LanguageInformation *)instance
+{
     
     static LanguageInformation *_instance = nil;
     
@@ -201,7 +208,8 @@ static bool parseChapterVerseRange(const char* str, std::vector<Cita>& list) {
     return _instance;
 }
 
-- (id)init {
+- (id)init
+{
     self = [super init];
     
     if (self) {
@@ -236,12 +244,14 @@ static bool parseChapterVerseRange(const char* str, std::vector<Cita>& list) {
     return self;
 }
 
-- (int)getBookNo:(NSString *)name {
+- (int)getBookNo:(NSString *)name
+{
     const auto s = [name UTF8String];
     return getBookId(s) + 1;
 }
 
-- (int)getLanguageId:(NSString *)lang {
+- (int)getLanguageId:(NSString *)lang
+{
     int i = 0;
     for (NSDictionary *item in _infoArray) {
         if ([item[@"symbol"] isEqualToString:lang]) {
@@ -252,7 +262,8 @@ static bool parseChapterVerseRange(const char* str, std::vector<Cita>& list) {
     return -1;
 }
 
-- (NSString *)pageURLWithLanguage:(NSString *)lang book:(NSString*)book chapter:(NSNumber *)chap {
+- (NSString *)pageURLWithLanguage:(NSString *)lang book:(NSString*)book chapter:(NSNumber *)chap
+{
     NSString *url = [self wolPageURLWithLanguage:lang book:book chapter:chap];
     if (url == nil) {
         url = [self wtPageURLWithLanguage:lang book:book chapter:chap];
@@ -260,7 +271,8 @@ static bool parseChapterVerseRange(const char* str, std::vector<Cita>& list) {
     return url;
 }
 
-- (NSString *)wtPageURLWithLanguage:(NSString *)lang book:(NSString*)book chapter:(NSNumber *)chap {
+- (NSString *)wtPageURLWithLanguage:(NSString *)lang book:(NSString*)book chapter:(NSNumber *)chap
+{
     int langId = [self getLanguageId:lang];
     if (langId == -1)
         return nil;
@@ -279,7 +291,8 @@ static bool parseChapterVerseRange(const char* str, std::vector<Cita>& list) {
             [chap intValue]];
 }
 
-- (NSString *)wolPageURLWithLanguage:(NSString *)lang book:(NSString*)book chapter:(NSNumber *)chap {
+- (NSString *)wolPageURLWithLanguage:(NSString *)lang book:(NSString*)book chapter:(NSNumber *)chap
+{
     int langId = [self getLanguageId:lang];
     if (langId == -1)
         return nil;
@@ -293,7 +306,8 @@ static bool parseChapterVerseRange(const char* str, std::vector<Cita>& list) {
             [chap intValue]];
 }
 
-- (NSMutableArray *)makeChapterListFromRange:(NSString *)range language:(NSString *)lang; {
+- (NSMutableArray *)makeChapterListFromRange:(NSString *)range language:(NSString *)lang;
+{
     NSMutableArray *list = [NSMutableArray array];
     
     NSArray *citas = [range componentsSeparatedByString:@"/"];
@@ -332,7 +346,8 @@ static bool parseChapterVerseRange(const char* str, std::vector<Cita>& list) {
     return list;
 }
 
-- (NSString *)translateCitation:(NSString *)str language:(NSString *)lang {
+- (NSString *)translateCitation:(NSString *)str language:(NSString *)lang
+{
     int langId = [self getLanguageId:lang];
     if (langId == -1)
         return str;
@@ -385,7 +400,8 @@ static bool parseChapterVerseRange(const char* str, std::vector<Cita>& list) {
     return [NSString stringWithString:rangeVernacular];
 }
 
-- (NSString *)translateRange:(NSString *)range language:(NSString *)lang {
+- (NSString *)translateRange:(NSString *)range language:(NSString *)lang
+{
     NSMutableArray *citasVernacular = [NSMutableArray array];
     
     NSArray *citas = [range componentsSeparatedByString:@"/"];

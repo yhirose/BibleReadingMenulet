@@ -11,7 +11,8 @@
 
 @implementation SchedulePanelController
 
-- (id)initWithSchedule:(Schedule *)schedule {
+- (id)initWithSchedule:(Schedule *)schedule
+{
     self = [super initWithWindowNibName:@"SchedulePanel"];
     _schedule = schedule;
     _white = [NSColor whiteColor];
@@ -19,7 +20,8 @@
     return self;
 }
 
-- (void)windowDidLoad {
+- (void)windowDidLoad
+{
     [super windowDidLoad];
     
     // Implement this method to handle any initialization after your window
@@ -32,15 +34,18 @@
     [_tableView scrollRowToVisible:[_schedule currentIndex]];
 }
 
-- (Schedule *)schedule {
+- (Schedule *)schedule
+{
     return _schedule;
 }
 
-- (void)setSchedule:(Schedule *)schedule {
+- (void)setSchedule:(Schedule *)schedule
+{
     _schedule = schedule;
 }
 
-- (IBAction)actionMarkAsRead:(id)sender {
+- (IBAction)actionMarkAsRead:(id)sender
+{
     NSIndexSet *indexes = [_tableView selectedRowIndexes];
     NSInteger index = [indexes firstIndex];
     while(index != NSNotFound) {
@@ -49,7 +54,8 @@
     }
 }
 
-- (IBAction)actionMarkAsUnread:(id)sender {
+- (IBAction)actionMarkAsUnread:(id)sender
+{
     NSIndexSet *indexes = [_tableView selectedRowIndexes];
     NSInteger index = [indexes firstIndex];
     while(index != NSNotFound) {
@@ -58,25 +64,30 @@
     }
 }
 
-- (IBAction)actionSetCurrent:(id)sender {
+- (IBAction)actionSetCurrent:(id)sender
+{
     NSInteger row = [_tableView selectedRow];
     [_schedule setCurrentIndex:row];
 }
 
-- (void)tableView:(NSTableView*)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn*)tableColumn row:(int)row {
+- (void)tableView:(NSTableView*)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn*)tableColumn row:(int)row
+{
     [cell setDrawsBackground:YES];
     [cell setBackgroundColor:(row == [_schedule currentIndex] ? _yellow : _white)];
 }
 
-- (void)redraw {
+- (void)redraw
+{
     [_tableView reloadData];
 }
 
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView; {
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView;
+{
     return [_schedule.ranges count];
 }
 
-- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
     if ([[tableColumn identifier] isEqualToString:@"range"]) {
         NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
         NSString *lang = [ud stringForKey:@"LANGUAGE"];

@@ -10,7 +10,8 @@
 
 @implementation Schedule
 
-- (int)advance:(int)curr {
+- (int)advance:(int)curr
+{
     int i = curr;
     for (; i < [_ranges count] && [_ranges[i] count] > 1; i++) {
         ;
@@ -27,7 +28,8 @@
     return i;
 }
 
-- (NSMutableArray *)loadDataOfFile:(NSString *)path currIndex:(int *)curr {
+- (NSMutableArray *)loadDataOfFile:(NSString *)path currIndex:(int *)curr
+{
     NSMutableArray *data = [NSMutableArray array];
     *curr = -1;
     
@@ -60,7 +62,8 @@
     return data;
 }
 
-- (void)saveData:(NSMutableArray *)data toFile:(NSString *)path {
+- (void)saveData:(NSMutableArray *)data toFile:(NSString *)path
+{
     NSMutableArray *lines = [NSMutableArray array];
     for (int i = 0; i < [_ranges count]; i++) {
         NSString *line = [NSString stringWithString:_ranges[i][@"range"]];
@@ -77,14 +80,16 @@
     [wdata writeToFile:path atomically:NO encoding:NSUTF8StringEncoding error:nil];
 }
 
-- (id)init {
+- (id)init
+{
     @throw [NSException exceptionWithName:@"BadInitCall"
                                    reason:@"Initialize Schedule with initWithPath:"
                                  userInfo:nil];
     return nil;
 }
 
-- (id)initWithPath:(NSString *)path {
+- (id)initWithPath:(NSString *)path
+{
     self = [super init];
     
     if (self) {
