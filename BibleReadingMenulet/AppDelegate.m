@@ -18,13 +18,6 @@ enum MenuTag {
     LanguageMenuTag = 2
 };
 
-void fsEventsCallBack(ConstFSEventStreamRef streamRef,
-                      void *userData,
-                      size_t numEvents,
-                      void *eventPaths,
-                      const FSEventStreamEventFlags eventFlags[],
-                      const FSEventStreamEventId eventIds[]);
-
 - (void)setupScheduleFiles
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -430,16 +423,14 @@ void fsEventsCallBack(ConstFSEventStreamRef streamRef,
     [self setupSchoolMenu];
 }
 
-void fsEventsCallBack(ConstFSEventStreamRef streamRef,
-                      void *userData,
-                      size_t numEvents,
-                      void *eventPaths,
-                      const FSEventStreamEventFlags eventFlags[],
-                      const FSEventStreamEventId eventIds[])
+static void fsEventsCallBack(ConstFSEventStreamRef streamRef,
+                             void *userData,
+                             size_t numEvents,
+                             void *eventPaths,
+                             const FSEventStreamEventFlags eventFlags[],
+                             const FSEventStreamEventId eventIds[])
 {
-    if (numEvents > 0 && (eventFlags[0] & kFSEventStreamEventFlagItemIsFile)) {
-        [Schedule clearSchedule];
-    }
+    [Schedule clearSchedule];
 }
 
 - (void)setupFSEventListener
