@@ -375,7 +375,9 @@ static bool parseChapterVerseRange(const char* str, std::vector<Cita>& list)
             const auto& mbook = matches[1];
             std::string book(&str[mbook.rm_so], &str[mbook.rm_eo]);
             
-            int bookId = getBookId(book);            
+            int bookId = getBookId(book);
+            assert(0 <= bookId && bookId < 66);
+            
             book = [bookNames[bookId] UTF8String];
             
             char buff[BUFSIZ];
