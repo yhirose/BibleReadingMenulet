@@ -22,3 +22,12 @@
 
 /* Class = "NSButtonCell"; title = "Set Current"; ObjectID = "18"; */
 "18.title" = "Set as Current";
+
+/* Class = "NSComboBoxCell"; 117.ibShadowedObjectValues[0] = "Regular"; ObjectID = "117"; */
+"117.ibShadowedObjectValues[0]" = "Regular";
+
+/* Class = "NSComboBoxCell"; 117.ibShadowedObjectValues[1] = "Chronologically"; ObjectID = "117"; */
+"117.ibShadowedObjectValues[1]" = "Chronologically";
+
+/* Class = "NSComboBoxCell"; 117.ibShadowedObjectValues[2] = "Thematically"; ObjectID = "117"; */
+"117.ibShadowedObjectValues[2]" = "Thematically";

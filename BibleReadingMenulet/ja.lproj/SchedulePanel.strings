@@ -22,3 +22,12 @@
 
 /* Class = "NSButtonCell"; title = "Set Current"; ObjectID = "18"; */
 "18.title" = "現在範囲に設定";
+
+/* Class = "NSComboBoxCell"; 117.ibShadowedObjectValues[0] = "Regular"; ObjectID = "117"; */
+"117.ibShadowedObjectValues[0]" = "書名順";
+
+/* Class = "NSComboBoxCell"; 117.ibShadowedObjectValues[1] = "Chronologically"; ObjectID = "117"; */
+"117.ibShadowedObjectValues[1]" = "年代順";
+
+/* Class = "NSComboBoxCell"; 117.ibShadowedObjectValues[2] = "Thematically"; ObjectID = "117"; */
+"117.ibShadowedObjectValues[2]" = "主題別";
