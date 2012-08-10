@@ -430,7 +430,7 @@ static void fsEventsCallBack(ConstFSEventStreamRef streamRef,
                              const FSEventStreamEventFlags eventFlags[],
                              const FSEventStreamEventId eventIds[])
 {
-    [Schedule clearSchedule];
+    [Schedule reloadSchedule];
 }
 
 - (void)setupFSEventListener

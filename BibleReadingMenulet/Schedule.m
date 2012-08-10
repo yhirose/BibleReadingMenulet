@@ -175,7 +175,7 @@ static Schedule *_instance = nil;
     return _instance;
 }
 
-+ (void)clearSchedule
++ (void)reloadSchedule
 {
     _instance = nil;
     
@@ -191,8 +191,7 @@ static Schedule *_instance = nil;
 
 + (NSString *)progressPath
 {
-    NSString *dirPath = [Utility appDirPath];
-    return [dirPath stringByAppendingPathComponent:@"progress.xml"];
+    return [[self scheduleDirPath] stringByAppendingPathComponent:@"progress.xml"];
 }
 
 + (NSInteger) scheduleType
@@ -207,7 +206,7 @@ static Schedule *_instance = nil;
     [ud setValue:@(type) forKey:@"SCHEDULE_TYPE"];
     [ud synchronize];
     
-    [self clearSchedule];
+    [self reloadSchedule];
 }
 
 + (NSString *) scheduleDirPath
