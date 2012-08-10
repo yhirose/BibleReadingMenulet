@@ -7,6 +7,7 @@
 //
 
 #import "Schedule.h"
+#import "Utility.h"
 
 @implementation Schedule
 
@@ -134,9 +135,6 @@
             }
             
             [self saveData:_ranges toFile:_path];
-            
-            NSNotification *n = [NSNotification notificationWithName:@"markChanged" object:self];
-            [[NSNotificationCenter defaultCenter] postNotification:n];
         }
     }
 }
@@ -146,9 +144,6 @@
         [_ranges[index] setValue:nil forKey:@"date"];
         
         [self saveData:_ranges toFile:_path];
-        
-        NSNotification *n = [NSNotification notificationWithName:@"markChanged" object:self];
-        [[NSNotificationCenter defaultCenter] postNotification:n];
     }
 }
 
@@ -167,9 +162,87 @@
 - (void)setCurrentIndex:(NSInteger)index {
     _curr = (int)index;
     [self saveData:_ranges toFile:_path];
+}
+
+static Schedule *_instance = nil;
+
++ (Schedule *)currentSchedule
+{
+    if (!_instance) {
+        NSInteger type = [self scheduleType];
+        _instance = [[Schedule alloc] initWithPath:[self schedulePath:type]];
+    }
+    return _instance;
+}
+
++ (void)clearSchedule
+{
+    _instance = nil;
     
-    NSNotification *n = [NSNotification notificationWithName:@"currentRangeChanged" object:self];
+    NSNotification *n = [NSNotification notificationWithName:@"scheduleChanged" object:self];
     [[NSNotificationCenter defaultCenter] postNotification:n];
+}
+
++ (NSString *)schedulePath:(NSInteger)type
+{
+    NSArray *fileNames = @[@"Schedule.csv", @"ScheduleChronologically.csv", @"ScheduleThematically.csv"];
+    return [[self scheduleDirPath] stringByAppendingPathComponent:fileNames[type]];
+}
+
++ (NSString *)progressPath
+{
+    NSString *dirPath = [Utility appDirPath];
+    return [dirPath stringByAppendingPathComponent:@"progress.xml"];
+}
+
++ (NSInteger) scheduleType
+{
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    return [ud integerForKey:@"SCHEDULE_TYPE"];
+}
+
++ (void)setScheduleType:(NSInteger)type
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud setValue:@(type) forKey:@"SCHEDULE_TYPE"];
+    [ud synchronize];
+    
+    [self clearSchedule];
+}
+
++ (NSString *) scheduleDirPath
+{
+    NSString *dirPath = [Utility appDirPath];
+    return [dirPath stringByAppendingPathComponent:@"schedule"];
+}
+
++ (NSMutableDictionary *)getProgressPropertyList
+{
+    NSMutableDictionary *plist = [NSMutableDictionary dictionary];
+    NSString* pgPath = [self progressPath];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:pgPath]) {
+        plist = [[NSMutableDictionary dictionary] initWithContentsOfFile:pgPath];
+    }
+    
+    return plist;
+}
+
++ (NSMutableDictionary *)getProgress:(NSString *)type
+{
+    NSMutableDictionary *plist = [self getProgressPropertyList];
+    NSMutableDictionary *progress = [plist[type] mutableCopy];
+    return progress;
+}
+
++ (void)setProgress:(NSMutableDictionary *)progress type:(NSString *)type
+{
+    NSMutableDictionary *plist = [self getProgressPropertyList];
+    NSString* pgPath = [self progressPath];
+    
+    [plist setValue:progress forKey:type];
+    [plist writeToFile:pgPath atomically:NO];
 }
 
 @end

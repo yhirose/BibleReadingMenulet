@@ -18,33 +18,35 @@ enum MenuTag {
     LanguageMenuTag = 2
 };
 
+void fsEventsCallBack(ConstFSEventStreamRef streamRef,
+                      void *userData,
+                      size_t numEvents,
+                      void *eventPaths,
+                      const FSEventStreamEventFlags eventFlags[],
+                      const FSEventStreamEventId eventIds[]);
+
 - (void)setupScheduleFiles
 {
-    NSBundle *bundle = [NSBundle mainBundle];
-    NSString *resourcePath = [bundle resourcePath];
-    NSString *dirPath = [resourcePath stringByAppendingPathComponent:@"schedule"];
-    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    for (NSString *fileName in [fileManager contentsOfDirectoryAtPath:dirPath error:nil]) {
-        if ([fileName hasSuffix:@".csv"]) {
-            NSString *path = [[Utility appDirPath] stringByAppendingPathComponent:fileName];
-            
-            if (![fileManager fileExistsAtPath:path]) {
-                NSString *tmplPath = [resourcePath stringByAppendingPathComponent:fileName];
-                
-                [fileManager copyItemAtPath:tmplPath toPath:path error:nil];
-            }   
-        }
-    }    
+    NSString *dstPath = [Schedule scheduleDirPath];
+    if (![fileManager fileExistsAtPath:dstPath]) {
+        NSBundle *bundle = [NSBundle mainBundle];
+        NSString *srcPath = [[bundle resourcePath] stringByAppendingPathComponent:@"schedule"];
+        
+        NSError *err;
+        [fileManager moveItemAtPath:srcPath toPath:dstPath error:&err];
+    }
 }
 
 - (void)setupStatusMenuTitle
 {
-    if ([_schedule isComplete]) {
+    Schedule *schedule = [Schedule currentSchedule];
+    
+    if ([schedule isComplete]) {
         [_statusItem setTitle:@"Congratulations!!"];
     } else {
-        NSString *range = [_schedule currentRange];        
+        NSString *range = [schedule currentRange];        
         
         NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
         NSString *lang = [ud stringForKey:@"LANGUAGE"];
@@ -57,21 +59,23 @@ enum MenuTag {
 
 - (void)setupReadMenu
 {
-    NSMenuItem *menuRead = [_menu itemWithTag:ReadMenuTag];
+    Schedule *schedule = [Schedule currentSchedule];
     
-    if (_schedule == nil) {
+    if (schedule == nil) {
         return;
     }
     
-    if ([_schedule isComplete]) {
+    NSMenuItem *menuRead = [_menu itemWithTag:ReadMenuTag];
+    
+    if ([schedule isComplete]) {
         [menuRead setSubmenu:nil];
     } else {
-        NSString *range = [_schedule currentRange];        
+        NSString *range = [schedule currentRange];        
         
         NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
         NSString *lang = [ud stringForKey:@"LANGUAGE"];
 
-        NSMutableDictionary *prevProgress = [Utility getProgress:@"SCHEDULE_PROGRESS"];
+        NSMutableDictionary *prevProgress = [Schedule getProgress:@"SCHEDULE_PROGRESS"];
         NSMutableDictionary *progress = [NSMutableDictionary dictionary];        
         
         _chapList = [_langInfo makeChapterListFromRange:range language:lang];
@@ -99,7 +103,7 @@ enum MenuTag {
         
         [menuRead setSubmenu:menuChapters];
         
-        [Utility setProgress:progress type:@"SCHEDULE_PROGRESS"];
+        [Schedule setProgress:progress type:@"SCHEDULE_PROGRESS"];
     }
 }
 
@@ -127,16 +131,14 @@ enum MenuTag {
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    if (![fileManager fileExistsAtPath:[self htmlDirPath]]) {
+    NSString *dstPath = [self htmlDirPath];
+    if (![fileManager fileExistsAtPath:dstPath]) {
         NSBundle *bundle = [NSBundle mainBundle];
         NSString *srcPath = [[bundle resourcePath] stringByAppendingPathComponent:@"html"];
         
-        NSString *dstPath = [self htmlDirPath];
-        
         NSError *err;
         [fileManager moveItemAtPath:srcPath toPath:dstPath error:&err];
-    }
-    
+    }    
 }
 
 // Remove html directory in application directory
@@ -242,7 +244,7 @@ enum MenuTag {
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
     NSString *lang = [ud stringForKey:@"LANGUAGE"];
     
-    NSMutableDictionary *prevProgress = [Utility getProgress:@"SCHOOL_SCHEDULE_PROGRESS"];
+    NSMutableDictionary *prevProgress = [Schedule getProgress:@"SCHOOL_SCHEDULE_PROGRESS"];
     NSMutableDictionary *progress = [NSMutableDictionary dictionary];
     
     _chapListForSchool = [NSMutableArray array];
@@ -279,7 +281,7 @@ enum MenuTag {
     
     [[_menu itemWithTag:SchoolMenuTag] setSubmenu:menuChapters];
     
-    [Utility setProgress:progress type:@"SCHOOL_SCHEDULE_PROGRESS"];
+    [Schedule setProgress:progress type:@"SCHOOL_SCHEDULE_PROGRESS"];
 }
 
 - (void)setupUserDefaults
@@ -288,7 +290,7 @@ enum MenuTag {
     NSMutableDictionary *defaults = [NSMutableDictionary dictionary];
     
     defaults[@"LANGUAGE"] = @"e";
-    defaults[@"SCHEDULE"] = @"Schedule.csv";
+    defaults[@"SCHEDULE_TYPE"] = @(0);
     
     [ud registerDefaults:defaults];
 }
@@ -298,6 +300,7 @@ enum MenuTag {
     [self removeHTMLDirectory];
     [self setupUserDefaults];
     [self setupScheduleFiles];
+    [self setupFSEventListener];
 
     // Create the application directory
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -310,7 +313,7 @@ enum MenuTag {
     
     // Register event observers
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc addObserver:self selector:@selector(setupStatusMenuTitle) name:@"currentRangeChanged" object:nil];
+    [nc addObserver:self selector:@selector(setupStatusMenuTitle) name:@"scheduleChanged" object:nil];
     [nc addObserver:self selector:@selector(setupStatusMenuTitle) name:@"languageChanged" object:nil];
     
     // Make menulet
@@ -320,7 +323,6 @@ enum MenuTag {
     [_menu setDelegate:self];
     
     _langInfo = [LanguageInformation instance];
-    _schedule = [[Schedule alloc] initWithPath:[Utility schedulePath]];
     
     [self setupStatusMenuTitle];
 }
@@ -366,9 +368,9 @@ enum MenuTag {
     [[NSWorkspace sharedWorkspace] openURL:url];
 
     // Check the selected item
-    NSMutableDictionary *progress = [Utility getProgress:type];
+    NSMutableDictionary *progress = [Schedule getProgress:type];
     [progress setValue:@YES forKey:item[@"bookChapId"]];
-    [Utility setProgress:progress type:type];
+    [Schedule setProgress:progress type:type];
 }
 
 - (IBAction)readAction:(id)sender
@@ -398,7 +400,8 @@ enum MenuTag {
 
 - (IBAction)markAsReadAction:(id)sender
 {
-    [_schedule markAsRead];
+    Schedule *schedule = [Schedule currentSchedule];
+    [schedule markAsRead];
 }
 
 - (IBAction)quitAction:(id)sender
@@ -408,10 +411,8 @@ enum MenuTag {
 
 - (IBAction)showSchedulePanel:(id)sender
 {
-    if (_schedulePanelController) {
-        [_schedulePanelController setSchedule:_schedule];
-    } else {
-        _schedulePanelController = [[SchedulePanelController alloc] initWithSchedule:_schedule];
+    if (!_schedulePanelController) {
+        _schedulePanelController = [[SchedulePanelController alloc] init];
     }    
     [NSApp activateIgnoringOtherApps:YES];
     [_schedulePanelController showWindow:self];
@@ -420,14 +421,49 @@ enum MenuTag {
 
 - (void)menuWillOpen:(NSMenu *)menu
 {
-    // Update language info and schedule.
+    // Update language info
     _langInfo = [LanguageInformation instance];
-    _schedule = [[Schedule alloc] initWithPath:[Utility schedulePath]];
     
     [self setupStatusMenuTitle];
     [self setupReadMenu];
     [self setupLanguageMenu];
     [self setupSchoolMenu];
+}
+
+void fsEventsCallBack(ConstFSEventStreamRef streamRef,
+                      void *userData,
+                      size_t numEvents,
+                      void *eventPaths,
+                      const FSEventStreamEventFlags eventFlags[],
+                      const FSEventStreamEventId eventIds[])
+{
+    if (numEvents > 0 && (eventFlags[0] & kFSEventStreamEventFlagItemIsFile)) {
+        [Schedule clearSchedule];
+    }
+}
+
+- (void)setupFSEventListener
+{
+	NSArray* pathsToWatch = @[[Schedule scheduleDirPath]];
+    
+	FSEventStreamContext context = {0, NULL, NULL, NULL, NULL};
+    FSEventStreamRef stream;
+    NSTimeInterval latency = 3.0; /* Latency in seconds */
+    
+    stream = FSEventStreamCreate(NULL,
+                                 &fsEventsCallBack,
+                                 &context,
+                                 (__bridge CFArrayRef)pathsToWatch,
+                                 kFSEventStreamEventIdSinceNow,
+                                 latency,
+                                 kFSEventStreamCreateFlagNone /* Flags explained in reference */
+                                 );
+    
+    FSEventStreamScheduleWithRunLoop(stream,
+                                     CFRunLoopGetCurrent(), kCFRunLoopDefaultMode
+                                     );
+    
+	FSEventStreamStart(stream);
 }
 
 @end

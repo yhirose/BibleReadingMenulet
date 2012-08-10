@@ -18,49 +18,6 @@
     return [rootPath stringByAppendingPathComponent:@"BibleReadingMenulet"];
 }
 
-+ (NSString *)schedulePath
-{
-    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
-    NSString *fileName = [ud stringForKey:@"SCHEDULE"];
-    NSString *dirPath = [Utility appDirPath];
-    return [dirPath stringByAppendingPathComponent:fileName];
-}
-
-+ (NSString *)progressPath
-{
-    NSString *dirPath = [Utility appDirPath];
-    return [dirPath stringByAppendingPathComponent:@"progress.xml"];
-}
-
-+ (NSMutableDictionary *)getProgressPropertyList
-{
-    NSMutableDictionary *plist = [NSMutableDictionary dictionary];
-    NSString* pgPath = [Utility progressPath];
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:pgPath]) {
-        plist = [[NSMutableDictionary dictionary] initWithContentsOfFile:pgPath];
-    }
-    
-    return plist;
-}
-
-+ (NSMutableDictionary *)getProgress:(NSString *)type
-{
-    NSMutableDictionary *plist = [self getProgressPropertyList];
-    NSMutableDictionary *progress = [plist[type] mutableCopy];
-    return progress;
-}
-
-+ (void)setProgress:(NSMutableDictionary *)progress type:(NSString *)type
-{
-    NSMutableDictionary *plist = [self getProgressPropertyList];
-    NSString* pgPath = [Utility progressPath];
-    
-    [plist setValue:progress forKey:type];
-    [plist writeToFile:pgPath atomically:NO];
-}
-
 + (NSString *)getContentWt:(NSString *)html
 {
     const char* str = [html UTF8String];
@@ -82,7 +39,7 @@
     
     regfree(&re);
     
-    return [NSString stringWithUTF8String:content.c_str()];
+    return @(content.c_str());
 }
 
 + (NSString *)getContentWol:(NSString *)html
@@ -106,7 +63,7 @@
     
     regfree(&re);
     
-    return [NSString stringWithUTF8String:content.c_str()];
+    return @(content.c_str());
 }
 
 + (NSString *)getTitleWt:(NSString *)html
@@ -131,7 +88,7 @@
     
     regfree(&re);
     
-    return [NSString stringWithUTF8String:title.c_str()];
+    return @(title.c_str());
 }
 
 + (NSString *)getTitleWol:(NSString *)html
@@ -155,7 +112,7 @@
     
     regfree(&re);
     
-    return [NSString stringWithUTF8String:title.c_str()];
+    return @(title.c_str());
 }
 
 + (NSString *)fetchFile:(NSString *)urlStr

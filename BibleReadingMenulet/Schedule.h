@@ -16,7 +16,6 @@
 }
 
 - (id)init;
-- (id)initWithPath:(NSString *)path;
 - (BOOL)isComplete;
 - (void)markAsRead;
 - (void)markAsReadAtIndex:(NSInteger)index;
@@ -25,5 +24,15 @@
 - (NSMutableArray *)ranges;
 - (int)currentIndex;
 - (void)setCurrentIndex:(NSInteger)index;
+
++ (Schedule *)currentSchedule;
++ (void)clearSchedule;
+
++ (NSInteger) scheduleType;
++ (void)setScheduleType:(NSInteger)type;
++ (NSString *) scheduleDirPath;
+
++ (NSMutableDictionary *)getProgress:(NSString *)type;
++ (void)setProgress:(NSMutableDictionary *)progress type:(NSString *)type;
 
 @end

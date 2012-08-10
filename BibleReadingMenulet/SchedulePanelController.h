@@ -7,20 +7,17 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "Schedule.h"
 
 @interface SchedulePanelController : NSWindowController {
   @private
-    Schedule *_schedule;
     NSColor *_white;
     NSColor *_yellow;
 }
 
 @property (unsafe_unretained) IBOutlet NSTableView *tableView;
+@property (unsafe_unretained) IBOutlet NSComboBox *scheduleTypeCombo;
 
-- (id)initWithSchedule:(Schedule *)schedule;
-- (Schedule *)schedule;
-- (void)setSchedule:(Schedule *)schedule;
+- (id)init;
 - (IBAction)actionMarkAsRead:(id)sender;
 - (IBAction)actionMarkAsUnread:(id)sender;
 - (IBAction)actionSetCurrent:(id)sender;

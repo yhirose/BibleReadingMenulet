@@ -16,7 +16,6 @@
   @private
     NSStatusItem *_statusItem;
     LanguageInformation *_langInfo;
-    Schedule *_schedule;
     NSMutableArray *_chapList;
     NSMutableArray *_chapListForSchool;
     SchedulePanelController *_schedulePanelController;

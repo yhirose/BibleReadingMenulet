@@ -22,9 +22,10 @@
 		BA99DD4914B0017700C54386 /* SchedulePanel.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD4714B0017700C54386 /* SchedulePanel.strings */; };
 		BA99DD4E14B0039D00C54386 /* MainMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD4C14B0039D00C54386 /* MainMenu.strings */; };
 		BA99DD5214B0060300C54386 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD5014B0060300C54386 /* Localizable.strings */; };
+		BAC7402C15D4885C006FC090 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC7402A15D4885C006FC090 /* LaunchAtLoginController.m */; };
+		BAC7402D15D4885C006FC090 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BAC7402B15D4885C006FC090 /* README.md */; };
 		BAC99BAE15C386F200057CB2 /* Template.html in Resources */ = {isa = PBXBuildFile; fileRef = BAC99BAD15C386F200057CB2 /* Template.html */; };
 		BAC99BC215C4326000057CB2 /* html in Resources */ = {isa = PBXBuildFile; fileRef = BAC99BC115C4326000057CB2 /* html */; };
-		BACE777814A9692E00855A1C /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = BACE777714A9692E00855A1C /* LaunchAtLoginController.m */; };
 		BAEB0BFA14A40BAD006CBFD0 /* LanguageInformation.mm in Sources */ = {isa = PBXBuildFile; fileRef = BAEB0BF914A40BAD006CBFD0 /* LanguageInformation.mm */; };
 /* End PBXBuildFile section */
 
@@ -59,10 +60,11 @@
 		BA99DD5114B0060300C54386 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BA99DD5314B0061200C54386 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BABC3B3014A6744B0089FEC9 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		BAC7402915D4885C006FC090 /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
+		BAC7402A15D4885C006FC090 /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
+		BAC7402B15D4885C006FC090 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		BAC99BAD15C386F200057CB2 /* Template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Template.html; sourceTree = "<group>"; };
 		BAC99BC115C4326000057CB2 /* html */ = {isa = PBXFileReference; lastKnownFileType = folder; path = html; sourceTree = "<group>"; };
-		BACE777614A9692E00855A1C /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LaunchAtLoginController.h; path = LaunchAtLoginController/LaunchAtLoginController.h; sourceTree = SOURCE_ROOT; };
-		BACE777714A9692E00855A1C /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LaunchAtLoginController.m; path = LaunchAtLoginController/LaunchAtLoginController.m; sourceTree = SOURCE_ROOT; };
 		BAEB0BF514A40AE8006CBFD0 /* LanguageInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageInformation.h; sourceTree = "<group>"; };
 		BAEB0BF914A40BAD006CBFD0 /* LanguageInformation.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LanguageInformation.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,7 +120,6 @@
 		BA94AB5A149704D30040164E /* BibleReadingMenulet */ = {
 			isa = PBXGroup;
 			children = (
-				BA94AB62149704D30040164E /* BibleReadingMenulet-Prefix.pch */,
 				BA94AB66149704D30040164E /* AppDelegate.h */,
 				BA94AB67149704D30040164E /* AppDelegate.m */,
 				BA94AB88149BF9CE0040164E /* Utility.h */,
@@ -129,9 +130,6 @@
 				BA94AB91149E94C00040164E /* Schedule.m */,
 				BA7BC4CD14A97E5A00740694 /* SchedulePanelController.h */,
 				BA7BC4CE14A97E5A00740694 /* SchedulePanelController.m */,
-				BACE777614A9692E00855A1C /* LaunchAtLoginController.h */,
-				BACE777714A9692E00855A1C /* LaunchAtLoginController.m */,
-				BA94AB60149704D30040164E /* main.m */,
 				BA94AB69149704D30040164E /* MainMenu.xib */,
 				BA99DD4414B0009A00C54386 /* SchedulePanel.xib */,
 				BA94AB5B149704D30040164E /* Supporting Files */,
@@ -142,6 +140,7 @@
 		BA94AB5B149704D30040164E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BAC7402815D4885C006FC090 /* LaunchAtLoginController */,
 				BA6E11F315CCA9C90058DEE5 /* schedule */,
 				BAC99BC115C4326000057CB2 /* html */,
 				BAC99BAD15C386F200057CB2 /* Template.html */,
@@ -149,12 +148,24 @@
 				BA99DD5014B0060300C54386 /* Localizable.strings */,
 				BA99DD4C14B0039D00C54386 /* MainMenu.strings */,
 				BA99DD4714B0017700C54386 /* SchedulePanel.strings */,
+				BA94AB60149704D30040164E /* main.m */,
+				BA94AB62149704D30040164E /* BibleReadingMenulet-Prefix.pch */,
 				BA94AB5C149704D30040164E /* BibleReadingMenulet-Info.plist */,
 				BA94AB5D149704D30040164E /* InfoPlist.strings */,
 				BA94AB63149704D30040164E /* Credits.rtf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
+		};
+		BAC7402815D4885C006FC090 /* LaunchAtLoginController */ = {
+			isa = PBXGroup;
+			children = (
+				BAC7402915D4885C006FC090 /* LaunchAtLoginController.h */,
+				BAC7402A15D4885C006FC090 /* LaunchAtLoginController.m */,
+				BAC7402B15D4885C006FC090 /* README.md */,
+			);
+			path = LaunchAtLoginController;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -219,6 +230,7 @@
 				BAC99BAE15C386F200057CB2 /* Template.html in Resources */,
 				BAC99BC215C4326000057CB2 /* html in Resources */,
 				BA6E11F415CCA9C90058DEE5 /* schedule in Resources */,
+				BAC7402D15D4885C006FC090 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,8 +246,8 @@
 				BA94AB8B149BFA140040164E /* Utility.mm in Sources */,
 				BA94AB92149E94C10040164E /* Schedule.m in Sources */,
 				BAEB0BFA14A40BAD006CBFD0 /* LanguageInformation.mm in Sources */,
-				BACE777814A9692E00855A1C /* LaunchAtLoginController.m in Sources */,
 				BA7BC4CF14A97E5A00740694 /* SchedulePanelController.m in Sources */,
+				BAC7402C15D4885C006FC090 /* LaunchAtLoginController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,7 +376,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BibleReadingMenulet/BibleReadingMenulet-Prefix.pch";
 				INFOPLIST_FILE = "BibleReadingMenulet/BibleReadingMenulet-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -379,7 +391,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BibleReadingMenulet/BibleReadingMenulet-Prefix.pch";
 				INFOPLIST_FILE = "BibleReadingMenulet/BibleReadingMenulet-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
