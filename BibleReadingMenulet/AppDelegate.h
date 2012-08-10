@@ -14,10 +14,10 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate> {
   @private
-    NSStatusItem *_statusItem;
-    LanguageInformation *_langInfo;
-    NSMutableArray *_chapList;
-    NSMutableArray *_chapListForSchool;
+    NSStatusItem            *_statusItem;
+    LanguageInformation     *_langInfo;
+    NSMutableArray          *_chapList;
+    NSMutableArray          *_chapListForSchool;
     SchedulePanelController *_schedulePanelController;
 }
 

@@ -7,6 +7,7 @@
 //
 
 @interface Utility : NSObject
+
 + (NSString *)appDirPath;
 + (NSString *)getContentWt:(NSString *)html;
 + (NSString *)getContentWol:(NSString *)html;
@@ -14,4 +15,5 @@
 + (NSString *)getTitleWol:(NSString *)html;
 + (NSString *)fetchFile:(NSString *)url;
 + (NSMutableArray *)getRangesForSchool;
+
 @end

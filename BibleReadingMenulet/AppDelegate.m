@@ -447,8 +447,7 @@ static void fsEventsCallBack(ConstFSEventStreamRef streamRef,
                                  (__bridge CFArrayRef)pathsToWatch,
                                  kFSEventStreamEventIdSinceNow,
                                  latency,
-                                 kFSEventStreamCreateFlagNone /* Flags explained in reference */
-                                 );
+                                 kFSEventStreamCreateFlagNone);
     
     FSEventStreamScheduleWithRunLoop(stream,
                                      CFRunLoopGetCurrent(), kCFRunLoopDefaultMode

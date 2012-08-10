@@ -80,8 +80,7 @@
     regcomp(&re, pat, REG_EXTENDED);
     
     int ret = regexec(&re, str, nmatch, matches, 0);
-    if (!ret)
-    {
+    if (!ret) {
         const auto& m1 = matches[1];
         title.assign(&str[m1.rm_so], &str[m1.rm_eo]);
     }
