@@ -211,8 +211,8 @@ static Schedule *_instance = nil;
 
 + (NSString *) scheduleDirPath
 {
-    NSString *dirPath = [Utility appDirPath];
-    return [dirPath stringByAppendingPathComponent:@"schedule"];
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    return [ud stringForKey:@"SCHEDULE_DIR"];
 }
 
 + (NSMutableDictionary *)getProgressPropertyList

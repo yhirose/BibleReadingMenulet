@@ -284,6 +284,7 @@ enum MenuTag {
     
     defaults[@"LANGUAGE"] = @"e";
     defaults[@"SCHEDULE_TYPE"] = @(0);
+    defaults[@"SCHEDULE_DIR"] = [[Utility appDirPath] stringByAppendingPathComponent:@"schedule"];
     
     [ud registerDefaults:defaults];
 }
