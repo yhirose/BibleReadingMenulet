@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA3D13F015D6CD9700F04B0D /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3D13EF15D6CD9700F04B0D /* Sparkle.framework */; };
+		BA3D13F215D6CDDD00F04B0D /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BA3D13EF15D6CD9700F04B0D /* Sparkle.framework */; };
+		BA3D13F415D7116600F04B0D /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = BA3D13F315D7116600F04B0D /* dsa_pub.pem */; };
 		BA3E9F6614B1589D00006CC4 /* BibleReadingMenulet.icns in Resources */ = {isa = PBXBuildFile; fileRef = BA3E9F6514B1589D00006CC4 /* BibleReadingMenulet.icns */; };
 		BA6E11F415CCA9C90058DEE5 /* schedule in Resources */ = {isa = PBXBuildFile; fileRef = BA6E11F315CCA9C90058DEE5 /* schedule */; };
 		BA7BC4CF14A97E5A00740694 /* SchedulePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7BC4CE14A97E5A00740694 /* SchedulePanelController.m */; };
@@ -29,7 +32,22 @@
 		BAEB0BFA14A40BAD006CBFD0 /* LanguageInformation.mm in Sources */ = {isa = PBXBuildFile; fileRef = BAEB0BF914A40BAD006CBFD0 /* LanguageInformation.mm */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		BA3D13E915D68C6B00F04B0D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BA3D13F215D6CDDD00F04B0D /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		BA3D13EF15D6CD9700F04B0D /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		BA3D13F315D7116600F04B0D /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		BA3E9F6514B1589D00006CC4 /* BibleReadingMenulet.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = BibleReadingMenulet.icns; sourceTree = "<group>"; };
 		BA6E11F315CCA9C90058DEE5 /* schedule */ = {isa = PBXFileReference; lastKnownFileType = folder; path = schedule; sourceTree = "<group>"; };
 		BA7BC4CD14A97E5A00740694 /* SchedulePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchedulePanelController.h; sourceTree = "<group>"; };
@@ -75,6 +93,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA94AB55149704D30040164E /* Cocoa.framework in Frameworks */,
+				BA3D13F015D6CD9700F04B0D /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +120,7 @@
 		BA94AB53149704D30040164E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BA3D13EF15D6CD9700F04B0D /* Sparkle.framework */,
 				BA94AB54149704D30040164E /* Cocoa.framework */,
 				BA94AB56149704D30040164E /* Other Frameworks */,
 			);
@@ -152,6 +172,7 @@
 				BA94AB62149704D30040164E /* BibleReadingMenulet-Prefix.pch */,
 				BA94AB5C149704D30040164E /* BibleReadingMenulet-Info.plist */,
 				BA94AB5D149704D30040164E /* InfoPlist.strings */,
+				BA3D13F315D7116600F04B0D /* dsa_pub.pem */,
 				BA94AB63149704D30040164E /* Credits.rtf */,
 			);
 			name = "Supporting Files";
@@ -177,6 +198,7 @@
 				BA94AB4C149704D30040164E /* Sources */,
 				BA94AB4D149704D30040164E /* Frameworks */,
 				BA94AB4E149704D30040164E /* Resources */,
+				BA3D13E915D68C6B00F04B0D /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -231,6 +253,7 @@
 				BAC99BC215C4326000057CB2 /* html in Resources */,
 				BA6E11F415CCA9C90058DEE5 /* schedule in Resources */,
 				BAC7402D15D4885C006FC090 /* README.md in Resources */,
+				BA3D13F415D7116600F04B0D /* dsa_pub.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +396,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BibleReadingMenulet/BibleReadingMenulet-Prefix.pch";
 				INFOPLIST_FILE = "BibleReadingMenulet/BibleReadingMenulet-Info.plist";
@@ -388,6 +415,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BibleReadingMenulet/BibleReadingMenulet-Prefix.pch";
 				INFOPLIST_FILE = "BibleReadingMenulet/BibleReadingMenulet-Info.plist";
