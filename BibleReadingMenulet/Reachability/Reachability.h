@@ -3,7 +3,7 @@
  File: Reachability.h
  Abstract: Basic demonstration of how to use the SystemConfiguration Reachablity APIs.
  
- Version: 2.2
+ Version: 2.2 - ARCified
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple Inc.
  ("Apple") in consideration of your agreement to the following terms, and your
@@ -43,11 +43,13 @@
  
  Copyright (C) 2010 Apple Inc. All Rights Reserved.
  
-*/
+ */
 
 
 #import <Foundation/Foundation.h>
 #import <SystemConfiguration/SystemConfiguration.h>
+
+struct sockaddr_in;
 
 typedef enum {
 	NotReachable = 0,
@@ -57,18 +59,14 @@ typedef enum {
 #define kReachabilityChangedNotification @"kNetworkReachabilityChangedNotification"
 
 @interface Reachability: NSObject
-{
-	BOOL localWiFiRef;
-	SCNetworkReachabilityRef reachabilityRef;
-}
 
-//reachabilityWithHostName- Use to check the reachability of a particular host name. 
+//reachabilityWithHostName- Use to check the reachability of a particular host name.
 + (Reachability*) reachabilityWithHostName: (NSString*) hostName;
 
-//reachabilityWithAddress- Use to check the reachability of a particular IP address. 
+//reachabilityWithAddress- Use to check the reachability of a particular IP address.
 + (Reachability*) reachabilityWithAddress: (const struct sockaddr_in*) hostAddress;
 
-//reachabilityForInternetConnection- checks whether the default route is available.  
+//reachabilityForInternetConnection- checks whether the default route is available.
 //  Should be used by applications that do not connect to a particular host
 + (Reachability*) reachabilityForInternetConnection;
 
@@ -83,6 +81,5 @@ typedef enum {
 //WWAN may be available, but not active until a connection has been established.
 //WiFi may require a connection for VPN on Demand.
 - (BOOL) connectionRequired;
+
 @end
-
-

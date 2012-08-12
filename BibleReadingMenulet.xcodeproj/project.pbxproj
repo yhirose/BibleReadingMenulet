@@ -26,6 +26,7 @@
 		BA99DD4E14B0039D00C54386 /* MainMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD4C14B0039D00C54386 /* MainMenu.strings */; };
 		BA99DD5214B0060300C54386 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD5014B0060300C54386 /* Localizable.strings */; };
 		BABC6B9515D75FE0006E865F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = BABC6B9415D75FE0006E865F /* Reachability.m */; };
+		BABC6B9815D764CB006E865F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BABC6B9715D764CB006E865F /* SystemConfiguration.framework */; };
 		BAC7402C15D4885C006FC090 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC7402A15D4885C006FC090 /* LaunchAtLoginController.m */; };
 		BAC7402D15D4885C006FC090 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BAC7402B15D4885C006FC090 /* README.md */; };
 		BAC99BAE15C386F200057CB2 /* Template.html in Resources */ = {isa = PBXBuildFile; fileRef = BAC99BAD15C386F200057CB2 /* Template.html */; };
@@ -81,6 +82,7 @@
 		BABC3B3014A6744B0089FEC9 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		BABC6B9315D75FE0006E865F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		BABC6B9415D75FE0006E865F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		BABC6B9715D764CB006E865F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = ../../../../System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<group>"; };
 		BAC7402915D4885C006FC090 /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
 		BAC7402A15D4885C006FC090 /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
 		BAC7402B15D4885C006FC090 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			files = (
 				BA94AB55149704D30040164E /* Cocoa.framework in Frameworks */,
 				BA3D13F015D6CD9700F04B0D /* Sparkle.framework in Frameworks */,
+				BABC6B9815D764CB006E865F /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +136,7 @@
 		BA94AB56149704D30040164E /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BABC6B9715D764CB006E865F /* SystemConfiguration.framework */,
 				BA94AB57149704D30040164E /* AppKit.framework */,
 				BA94AB58149704D30040164E /* CoreData.framework */,
 				BA94AB59149704D30040164E /* Foundation.framework */,
