@@ -323,8 +323,6 @@ enum MenuTag {
     [_statusItem setHighlightMode:YES];    
     [_menu setDelegate:self];
     
-    //_langInfo = [[LanguageInformation alloc] init];
-    
     [self setupStatusMenuTitle];
 }
 
@@ -425,9 +423,6 @@ enum MenuTag {
 
 - (void)menuWillOpen:(NSMenu *)menu
 {
-    // Update language info
-    //_langInfo = [LanguageInformation instance];
-    
     [self setupStatusMenuTitle];
     [self setupReadMenu];
     [self setupLanguageMenu];
