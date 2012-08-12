@@ -9,5 +9,6 @@ Menulet for daily Bible reading.
 Features
 --------
 
-* One year Bible reading schedule
+* Personal Bible reading schedules (Regular, Chronologically, Thematically)
 * Ministry school reading schedule (for this week and next week)
+* [WOL](http://wol.jw.org/) Bible chapter page with non-distractive CSS style
