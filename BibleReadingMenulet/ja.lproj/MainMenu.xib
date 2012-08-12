@@ -107,9 +107,27 @@
 						<reference key="NSMixedImage" ref="471944683"/>
 						<int key="NSTag">2</int>
 					</object>
+					<object class="NSMenuItem" id="1021190516">
+						<reference key="NSMenu" ref="81072856"/>
+						<bool key="NSIsDisabled">YES</bool>
+						<bool key="NSIsSeparator">YES</bool>
+						<string key="NSTitle"/>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="626792289"/>
+						<reference key="NSMixedImage" ref="471944683"/>
+					</object>
 					<object class="NSMenuItem" id="745170148">
 						<reference key="NSMenu" ref="81072856"/>
 						<string key="NSTitle">ログイン時に起動</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="626792289"/>
+						<reference key="NSMixedImage" ref="471944683"/>
+					</object>
+					<object class="NSMenuItem" id="868196310">
+						<reference key="NSMenu" ref="81072856"/>
+						<string key="NSTitle">アップデートの確認...</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="626792289"/>
@@ -204,6 +222,14 @@
 					</object>
 					<int key="connectionID">562</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">checkForUpdates:</string>
+						<reference key="source" ref="752263597"/>
+						<reference key="destination" ref="868196310"/>
+					</object>
+					<int key="connectionID">627</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -250,6 +276,8 @@
 							<reference ref="395299729"/>
 							<reference ref="165694159"/>
 							<reference ref="232991179"/>
+							<reference ref="1021190516"/>
+							<reference ref="868196310"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -319,6 +347,16 @@
 						<reference key="object" ref="752263597"/>
 						<reference key="parent" ref="0"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">625</int>
+						<reference key="object" ref="1021190516"/>
+						<reference key="parent" ref="81072856"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">626</int>
+						<reference key="object" ref="868196310"/>
+						<reference key="parent" ref="81072856"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -340,12 +378,14 @@
 				<string key="566.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="569.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="624.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="625.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="626.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">624</int>
+			<int key="maxID">627</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
