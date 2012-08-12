@@ -130,7 +130,7 @@ enum MenuTag {
         NSString *srcPath = [[bundle resourcePath] stringByAppendingPathComponent:@"html"];
         
         NSError *err;
-        [fileManager moveItemAtPath:srcPath toPath:dstPath error:&err];
+        [fileManager copyItemAtPath:srcPath toPath:dstPath error:&err];
     }    
 }
 
