@@ -13,6 +13,7 @@
 		BA3E9F6614B1589D00006CC4 /* BibleReadingMenulet.icns in Resources */ = {isa = PBXBuildFile; fileRef = BA3E9F6514B1589D00006CC4 /* BibleReadingMenulet.icns */; };
 		BA6E11F415CCA9C90058DEE5 /* schedule in Resources */ = {isa = PBXBuildFile; fileRef = BA6E11F315CCA9C90058DEE5 /* schedule */; };
 		BA7BC4CF14A97E5A00740694 /* SchedulePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7BC4CE14A97E5A00740694 /* SchedulePanelController.m */; };
+		BA7FF4AC15DB37D20014FA19 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7FF4AB15DB37D20014FA19 /* Reachability.m */; };
 		BA94AB55149704D30040164E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA94AB54149704D30040164E /* Cocoa.framework */; };
 		BA94AB5F149704D30040164E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA94AB5D149704D30040164E /* InfoPlist.strings */; };
 		BA94AB61149704D30040164E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BA94AB60149704D30040164E /* main.m */; };
@@ -25,7 +26,6 @@
 		BA99DD4914B0017700C54386 /* SchedulePanel.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD4714B0017700C54386 /* SchedulePanel.strings */; };
 		BA99DD4E14B0039D00C54386 /* MainMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD4C14B0039D00C54386 /* MainMenu.strings */; };
 		BA99DD5214B0060300C54386 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD5014B0060300C54386 /* Localizable.strings */; };
-		BABC6B9515D75FE0006E865F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = BABC6B9415D75FE0006E865F /* Reachability.m */; };
 		BABC6B9815D764CB006E865F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BABC6B9715D764CB006E865F /* SystemConfiguration.framework */; };
 		BAC7402C15D4885C006FC090 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC7402A15D4885C006FC090 /* LaunchAtLoginController.m */; };
 		BAC7402D15D4885C006FC090 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BAC7402B15D4885C006FC090 /* README.md */; };
@@ -54,6 +54,8 @@
 		BA6E11F315CCA9C90058DEE5 /* schedule */ = {isa = PBXFileReference; lastKnownFileType = folder; path = schedule; sourceTree = "<group>"; };
 		BA7BC4CD14A97E5A00740694 /* SchedulePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchedulePanelController.h; sourceTree = "<group>"; };
 		BA7BC4CE14A97E5A00740694 /* SchedulePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchedulePanelController.m; sourceTree = "<group>"; };
+		BA7FF4AA15DB37D20014FA19 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		BA7FF4AB15DB37D20014FA19 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		BA94AB50149704D30040164E /* BibleReadingMenulet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BibleReadingMenulet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA94AB54149704D30040164E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		BA94AB57149704D30040164E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -80,8 +82,6 @@
 		BA99DD5114B0060300C54386 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BA99DD5314B0061200C54386 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BABC3B3014A6744B0089FEC9 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		BABC6B9315D75FE0006E865F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		BABC6B9415D75FE0006E865F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		BABC6B9715D764CB006E865F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = ../../../../System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<group>"; };
 		BAC7402915D4885C006FC090 /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
 		BAC7402A15D4885C006FC090 /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
@@ -106,6 +106,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BA7FF4A915DB37D20014FA19 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				BA7FF4AA15DB37D20014FA19 /* Reachability.h */,
+				BA7FF4AB15DB37D20014FA19 /* Reachability.m */,
+			);
+			path = Reachability;
+			sourceTree = SOURCE_ROOT;
+		};
 		BA94AB45149704D30040164E = {
 			isa = PBXGroup;
 			children = (
@@ -167,7 +176,7 @@
 		BA94AB5B149704D30040164E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				BABC6B9215D75FE0006E865F /* Reachability */,
+				BA7FF4A915DB37D20014FA19 /* Reachability */,
 				BAC7402815D4885C006FC090 /* LaunchAtLoginController */,
 				BA6E11F315CCA9C90058DEE5 /* schedule */,
 				BAC99BC115C4326000057CB2 /* html */,
@@ -184,15 +193,6 @@
 				BA94AB63149704D30040164E /* Credits.rtf */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		BABC6B9215D75FE0006E865F /* Reachability */ = {
-			isa = PBXGroup;
-			children = (
-				BABC6B9315D75FE0006E865F /* Reachability.h */,
-				BABC6B9415D75FE0006E865F /* Reachability.m */,
-			);
-			path = Reachability;
 			sourceTree = "<group>";
 		};
 		BAC7402815D4885C006FC090 /* LaunchAtLoginController */ = {
@@ -288,7 +288,7 @@
 				BAEB0BFA14A40BAD006CBFD0 /* LanguageInformation.mm in Sources */,
 				BA7BC4CF14A97E5A00740694 /* SchedulePanelController.m in Sources */,
 				BAC7402C15D4885C006FC090 /* LaunchAtLoginController.m in Sources */,
-				BABC6B9515D75FE0006E865F /* Reachability.m in Sources */,
+				BA7FF4AC15DB37D20014FA19 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
