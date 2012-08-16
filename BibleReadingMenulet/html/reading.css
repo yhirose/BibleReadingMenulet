@@ -34,6 +34,11 @@ a {
     color: #41676D;
 }
 
+.icon {
+    width: 28px;
+    height: 28px;
+}
+
 .mejs-container .mejs-controls {
     background: url('pattern17.png');
 }
@@ -58,8 +63,8 @@ a {
 }
 
 #wol {
-    margin-top: 10px;
-    margin-right: 20px;
+    margin-top: 12px;
+    margin-right: 12px;
     font-size: 0.85em;
     font-style: italic;
     float: right;
