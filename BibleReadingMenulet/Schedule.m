@@ -45,15 +45,15 @@
         NSArray *fields = [line componentsSeparatedByString:@","];
         NSUInteger count = [fields count];
         
-        NSMutableDictionary *item = [NSMutableDictionary dictionaryWithObject:fields[0]
-                                                                       forKey:@"range"];
+        NSMutableDictionary *item = [NSMutableDictionary dictionary];
+        item[@"range"] = fields[0];
         
         if (count == 2) {
             NSString *date = fields[1];
             if ([date compare:@"*" options:NSCaseInsensitiveSearch] == NSOrderedSame) {
                 *curr = i;
             } else {
-                [item setValue:date forKey:@"date"];
+                item[@"date"] = date;
             }
         }
         
@@ -128,7 +128,7 @@
             [formatter setDateFormat:@"yyyy-MM-dd(E) HH:mm:ss"];
             NSString *date = [formatter stringFromDate:now];
             
-            [_ranges[index] setValue:date forKey:@"date"];
+            _ranges[index][@"date"] = date;
             
             if (index == self.currentIndex) {
                 self.currentIndex = [self advance:self.currentIndex + 1];
@@ -141,6 +141,8 @@
 
 - (void)markAsUnreadAtIndex:(NSInteger)index {
     if (_ranges[index][@"date"]) {
+        // NOTE: '_ranges[index][@"date"] = nil;' doesn't work.
+        // The compiler translates it to 'setObject' which doesn't accept 'nil'...
         [_ranges[index] setValue:nil forKey:@"date"];
         
         [self saveData:_ranges toFile:_path];

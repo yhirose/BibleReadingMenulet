@@ -90,7 +90,7 @@ enum MenuTag {
             
             if (prevProgress[bookChapId]) {
                 [menuItem setState:NSOnState];
-                [progress setValue:@YES forKey:bookChapId];
+                progress[bookChapId] = @YES;
             }
             
             i++;
@@ -270,7 +270,7 @@ enum MenuTag {
             
             if (prevProgress[bookChapId]) {
                 [menuItem setState:NSOnState];
-                [progress setValue:@YES forKey:bookChapId];
+                progress[bookChapId] = @YES;
             }
             
             i++;
@@ -369,7 +369,7 @@ enum MenuTag {
 
     // Check the selected item
     NSMutableDictionary *progress = [Schedule getProgress:type];
-    [progress setValue:@YES forKey:item[@"bookChapId"]];
+    progress[item[@"bookChapId"]] = @YES;
     [Schedule setProgress:progress type:type];
 }
 
