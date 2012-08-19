@@ -35,8 +35,8 @@ a {
 }
 
 .icon {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
 }
 
 .mejs-container .mejs-controls {
@@ -63,8 +63,8 @@ a {
 }
 
 #wol {
-    margin-top: 12px;
-    margin-right: 12px;
+    margin-top: 8px;
+    margin-right: 8px;
     font-size: 0.85em;
     font-style: italic;
     float: right;
