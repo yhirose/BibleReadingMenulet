@@ -141,10 +141,7 @@
 
 - (void)markAsUnreadAtIndex:(NSInteger)index {
     if (_ranges[index][@"date"]) {
-        // NOTE: '_ranges[index][@"date"] = nil;' doesn't work.
-        // The compiler translates it to 'setObject' which doesn't accept 'nil'...
-        [_ranges[index] setValue:nil forKey:@"date"];
-        
+        [_ranges[index] removeObjectForKey:@"date"];
         [self saveData:_ranges toFile:_path];
     }
 }
