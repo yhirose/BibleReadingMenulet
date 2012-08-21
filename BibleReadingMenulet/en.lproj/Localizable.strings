@@ -1,9 +1,16 @@
-/* 
-  Localizable.strings
+/* Localizable.strings
   BibleReadingMenulet
 
   Created by Yuji Hirose on 12/24/11.
-  Copyright (c) 2011 Yuji Hirose. All rights reserved.
-*/
+  Copyright (c) 2011 Yuji Hirose. All rights reserved. */
+
 "OPEN_ERR_TTL" = "Failed to open the Bible chapter.";
+
 "OPEN_ERR_MSG" = "Internet connection may be currently unavailable...";
+
+/* No comment provided by engineer. */
+"Listen Reading for this week" = "Listen Reading for this week";
+
+/* No comment provided by engineer. */
+"Stop Playing" = "Stop Playing";
+

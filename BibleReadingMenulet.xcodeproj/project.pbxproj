@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0166B18B15E33EB50061BC80 /* WTStudyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0166B18A15E33EB50061BC80 /* WTStudyModel.m */; };
+		0166B18E15E340640061BC80 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0166B18D15E340640061BC80 /* AVFoundation.framework */; };
 		BA3E9F6614B1589D00006CC4 /* BibleReadingMenulet.icns in Resources */ = {isa = PBXBuildFile; fileRef = BA3E9F6514B1589D00006CC4 /* BibleReadingMenulet.icns */; };
 		BA6E11F415CCA9C90058DEE5 /* schedule in Resources */ = {isa = PBXBuildFile; fileRef = BA6E11F315CCA9C90058DEE5 /* schedule */; };
 		BA7BC4CF14A97E5A00740694 /* SchedulePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7BC4CE14A97E5A00740694 /* SchedulePanelController.m */; };
@@ -30,6 +32,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0166B18915E33EB50061BC80 /* WTStudyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTStudyModel.h; sourceTree = "<group>"; };
+		0166B18A15E33EB50061BC80 /* WTStudyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTStudyModel.m; sourceTree = "<group>"; };
+		0166B18D15E340640061BC80 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		BA3E9F6514B1589D00006CC4 /* BibleReadingMenulet.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = BibleReadingMenulet.icns; sourceTree = "<group>"; };
 		BA6E11F315CCA9C90058DEE5 /* schedule */ = {isa = PBXFileReference; lastKnownFileType = folder; path = schedule; sourceTree = "<group>"; };
 		BA7BC4CD14A97E5A00740694 /* SchedulePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchedulePanelController.h; sourceTree = "<group>"; };
@@ -74,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0166B18E15E340640061BC80 /* AVFoundation.framework in Frameworks */,
 				BA94AB55149704D30040164E /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,6 +90,7 @@
 		BA94AB45149704D30040164E = {
 			isa = PBXGroup;
 			children = (
+				0166B18D15E340640061BC80 /* AVFoundation.framework */,
 				BA94AB5A149704D30040164E /* BibleReadingMenulet */,
 				BA94AB53149704D30040164E /* Frameworks */,
 				BA94AB51149704D30040164E /* Products */,
@@ -133,6 +140,8 @@
 				BA94AB69149704D30040164E /* MainMenu.xib */,
 				BA99DD4414B0009A00C54386 /* SchedulePanel.xib */,
 				BA94AB5B149704D30040164E /* Supporting Files */,
+				0166B18915E33EB50061BC80 /* WTStudyModel.h */,
+				0166B18A15E33EB50061BC80 /* WTStudyModel.m */,
 			);
 			path = BibleReadingMenulet;
 			sourceTree = "<group>";
@@ -248,6 +257,7 @@
 				BAEB0BFA14A40BAD006CBFD0 /* LanguageInformation.mm in Sources */,
 				BA7BC4CF14A97E5A00740694 /* SchedulePanelController.m in Sources */,
 				BAC7402C15D4885C006FC090 /* LaunchAtLoginController.m in Sources */,
+				0166B18B15E33EB50061BC80 /* WTStudyModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
