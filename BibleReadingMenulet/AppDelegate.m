@@ -9,6 +9,11 @@
 #import "AppDelegate.h"
 #import "SchedulePanelController.h"
 #import "Utility.h"
+#import "WTStudyModel.h"
+
+@interface AppDelegate ()
+@property WTStudyModel* wtModel;
+@end
 
 @implementation AppDelegate
 
@@ -462,4 +467,23 @@ static void fsEventsCallBack(ConstFSEventStreamRef streamRef,
 	FSEventStreamStart(stream);
 }
 
+#pragma mark - for Watchtower
+-(IBAction)actionReadWTThisWeek:(id)sender{
+    if (!_wtModel) {
+        _wtModel = [[WTStudyModel alloc] init];
+    }
+    NSMenuItem* menu = sender;
+    [_wtModel actionPlayThisWeek:self];
+    if (_wtModel.isPlaying) {
+        menu.title = NSLocalizedString(@"Stop Playing",nil);
+    }else{
+        menu.title = NSLocalizedString(@"Listen Reading for this week",nil);
+    }
+}
+-(IBAction)actionOpenWTPDFThisWeek:(id)sender{
+    if (!_wtModel) {
+        _wtModel = [[WTStudyModel alloc] init];
+    }
+    [_wtModel actionOpenPDFThisWeek:self];
+}
 @end

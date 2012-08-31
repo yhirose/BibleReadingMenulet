@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0166B18B15E33EB50061BC80 /* WTStudyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0166B18A15E33EB50061BC80 /* WTStudyModel.m */; };
+		0166B18E15E340640061BC80 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0166B18D15E340640061BC80 /* AVFoundation.framework */; };
 		BA3D13F015D6CD9700F04B0D /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3D13EF15D6CD9700F04B0D /* Sparkle.framework */; };
 		BA3D13F215D6CDDD00F04B0D /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BA3D13EF15D6CD9700F04B0D /* Sparkle.framework */; };
 		BA3D13F415D7116600F04B0D /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = BA3D13F315D7116600F04B0D /* dsa_pub.pem */; };
@@ -48,6 +50,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0166B18915E33EB50061BC80 /* WTStudyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTStudyModel.h; sourceTree = "<group>"; };
+		0166B18A15E33EB50061BC80 /* WTStudyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTStudyModel.m; sourceTree = "<group>"; };
+		0166B18D15E340640061BC80 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		BA3D13EF15D6CD9700F04B0D /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		BA3D13F315D7116600F04B0D /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		BA3E9F6514B1589D00006CC4 /* BibleReadingMenulet.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = BibleReadingMenulet.icns; sourceTree = "<group>"; };
@@ -97,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0166B18E15E340640061BC80 /* AVFoundation.framework in Frameworks */,
 				BA94AB55149704D30040164E /* Cocoa.framework in Frameworks */,
 				BA3D13F015D6CD9700F04B0D /* Sparkle.framework in Frameworks */,
 				BABC6B9815D764CB006E865F /* SystemConfiguration.framework in Frameworks */,
@@ -118,6 +124,7 @@
 		BA94AB45149704D30040164E = {
 			isa = PBXGroup;
 			children = (
+				0166B18D15E340640061BC80 /* AVFoundation.framework */,
 				BA94AB5A149704D30040164E /* BibleReadingMenulet */,
 				BA94AB53149704D30040164E /* Frameworks */,
 				BA94AB51149704D30040164E /* Products */,
@@ -169,6 +176,8 @@
 				BA94AB69149704D30040164E /* MainMenu.xib */,
 				BA99DD4414B0009A00C54386 /* SchedulePanel.xib */,
 				BA94AB5B149704D30040164E /* Supporting Files */,
+				0166B18915E33EB50061BC80 /* WTStudyModel.h */,
+				0166B18A15E33EB50061BC80 /* WTStudyModel.m */,
 			);
 			path = BibleReadingMenulet;
 			sourceTree = "<group>";
@@ -212,6 +221,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BA94AB6E149704D30040164E /* Build configuration list for PBXNativeTarget "BibleReadingMenulet" */;
 			buildPhases = (
+				BA725D1915F065E70085BABE /* ShellScript */,
 				BA94AB4C149704D30040164E /* Sources */,
 				BA94AB4D149704D30040164E /* Frameworks */,
 				BA94AB4E149704D30040164E /* Resources */,
@@ -276,6 +286,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		BA725D1915F065E70085BABE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ibtool --write BibleReadingMenulet/ja.lproj/MainMenu.xib -d BibleReadingMenulet/ja.lproj/MainMenu.strings BibleReadingMenulet/en.lproj/MainMenu.xib";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BA94AB4C149704D30040164E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -289,6 +316,7 @@
 				BA7BC4CF14A97E5A00740694 /* SchedulePanelController.m in Sources */,
 				BAC7402C15D4885C006FC090 /* LaunchAtLoginController.m in Sources */,
 				BA7FF4AC15DB37D20014FA19 /* Reachability.m in Sources */,
+				0166B18B15E33EB50061BC80 /* WTStudyModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
