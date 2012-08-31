@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0166B18B15E33EB50061BC80 /* WTStudyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0166B18A15E33EB50061BC80 /* WTStudyModel.m */; };
 		0166B18E15E340640061BC80 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0166B18D15E340640061BC80 /* AVFoundation.framework */; };
+		BA33C5EE15F171840073D69A /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BA33C5ED15F171840073D69A /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BA3D13F015D6CD9700F04B0D /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3D13EF15D6CD9700F04B0D /* Sparkle.framework */; };
 		BA3D13F215D6CDDD00F04B0D /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BA3D13EF15D6CD9700F04B0D /* Sparkle.framework */; };
 		BA3D13F415D7116600F04B0D /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = BA3D13F315D7116600F04B0D /* dsa_pub.pem */; };
@@ -53,6 +54,8 @@
 		0166B18915E33EB50061BC80 /* WTStudyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTStudyModel.h; sourceTree = "<group>"; };
 		0166B18A15E33EB50061BC80 /* WTStudyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTStudyModel.m; sourceTree = "<group>"; };
 		0166B18D15E340640061BC80 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		BA33C5EC15F171840073D69A /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = JSONKit/JSONKit.h; sourceTree = SOURCE_ROOT; };
+		BA33C5ED15F171840073D69A /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = JSONKit/JSONKit.m; sourceTree = SOURCE_ROOT; };
 		BA3D13EF15D6CD9700F04B0D /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		BA3D13F315D7116600F04B0D /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		BA3E9F6514B1589D00006CC4 /* BibleReadingMenulet.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = BibleReadingMenulet.icns; sourceTree = "<group>"; };
@@ -112,6 +115,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BA33C5EB15F171600073D69A /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				BA33C5EC15F171840073D69A /* JSONKit.h */,
+				BA33C5ED15F171840073D69A /* JSONKit.m */,
+			);
+			name = JSONKit;
+			sourceTree = "<group>";
+		};
 		BA7FF4A915DB37D20014FA19 /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,7 +136,6 @@
 		BA94AB45149704D30040164E = {
 			isa = PBXGroup;
 			children = (
-				0166B18D15E340640061BC80 /* AVFoundation.framework */,
 				BA94AB5A149704D30040164E /* BibleReadingMenulet */,
 				BA94AB53149704D30040164E /* Frameworks */,
 				BA94AB51149704D30040164E /* Products */,
@@ -142,6 +153,7 @@
 		BA94AB53149704D30040164E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0166B18D15E340640061BC80 /* AVFoundation.framework */,
 				BA3D13EF15D6CD9700F04B0D /* Sparkle.framework */,
 				BA94AB54149704D30040164E /* Cocoa.framework */,
 				BA94AB56149704D30040164E /* Other Frameworks */,
@@ -173,11 +185,11 @@
 				BA94AB91149E94C00040164E /* Schedule.m */,
 				BA7BC4CD14A97E5A00740694 /* SchedulePanelController.h */,
 				BA7BC4CE14A97E5A00740694 /* SchedulePanelController.m */,
+				0166B18915E33EB50061BC80 /* WTStudyModel.h */,
+				0166B18A15E33EB50061BC80 /* WTStudyModel.m */,
 				BA94AB69149704D30040164E /* MainMenu.xib */,
 				BA99DD4414B0009A00C54386 /* SchedulePanel.xib */,
 				BA94AB5B149704D30040164E /* Supporting Files */,
-				0166B18915E33EB50061BC80 /* WTStudyModel.h */,
-				0166B18A15E33EB50061BC80 /* WTStudyModel.m */,
 			);
 			path = BibleReadingMenulet;
 			sourceTree = "<group>";
@@ -185,6 +197,7 @@
 		BA94AB5B149704D30040164E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BA33C5EB15F171600073D69A /* JSONKit */,
 				BA7FF4A915DB37D20014FA19 /* Reachability */,
 				BAC7402815D4885C006FC090 /* LaunchAtLoginController */,
 				BA6E11F315CCA9C90058DEE5 /* schedule */,
@@ -317,6 +330,7 @@
 				BAC7402C15D4885C006FC090 /* LaunchAtLoginController.m in Sources */,
 				BA7FF4AC15DB37D20014FA19 /* Reachability.m in Sources */,
 				0166B18B15E33EB50061BC80 /* WTStudyModel.m in Sources */,
+				BA33C5EE15F171840073D69A /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
