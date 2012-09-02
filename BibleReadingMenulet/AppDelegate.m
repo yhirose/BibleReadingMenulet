@@ -362,10 +362,7 @@ enum MenuTag {
     }
 
     if (url == nil) {
-        NSRunAlertPanel(NSLocalizedString(@"OPEN_ERR_TTL", @"Title for Open error"),
-                        NSLocalizedString(@"OPEN_ERR_MSG", @"Message for open error"),
-                        @"OK", nil, nil);
-        
+        [Utility showConnectionError];
         return;
     }
     
