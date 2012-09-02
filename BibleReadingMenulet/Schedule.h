@@ -26,7 +26,7 @@
 - (void)setCurrentIndex:(NSInteger)index;
 
 + (Schedule *)currentSchedule;
-+ (void)clearSchedule;
++ (void)reloadSchedule;
 
 + (NSInteger) scheduleType;
 + (void)setScheduleType:(NSInteger)type;

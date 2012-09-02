@@ -49,7 +49,8 @@ enum MenuTag {
         NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
         NSString *lang = [ud stringForKey:@"LANGUAGE"];
         
-        NSString *vernacularRane = [_langInfo translateRange:range language:lang];
+        LanguageInformation *langInfo = [LanguageInformation instance];
+        NSString *vernacularRane = [langInfo translateRange:range language:lang];
         
         [_statusItem setTitle:vernacularRane];
     }    
@@ -76,7 +77,8 @@ enum MenuTag {
         NSMutableDictionary *prevProgress = [Schedule getProgress:@"SCHEDULE_PROGRESS"];
         NSMutableDictionary *progress = [NSMutableDictionary dictionary];        
         
-        _chapList = [_langInfo makeChapterListFromRange:range language:lang];
+        LanguageInformation *langInfo = [LanguageInformation instance];
+        _chapList = [langInfo makeChapterListFromRange:range language:lang];
         
         NSMenu *menuChapters = [[NSMenu alloc] init];        
         
@@ -93,7 +95,7 @@ enum MenuTag {
             
             if (prevProgress[bookChapId]) {
                 [menuItem setState:NSOnState];
-                [progress setValue:@YES forKey:bookChapId];
+                progress[bookChapId] = @YES;
             }
             
             i++;
@@ -135,7 +137,7 @@ enum MenuTag {
         NSString *srcPath = [[bundle resourcePath] stringByAppendingPathComponent:@"html"];
         
         NSError *err;
-        [fileManager moveItemAtPath:srcPath toPath:dstPath error:&err];
+        [fileManager copyItemAtPath:srcPath toPath:dstPath error:&err];
     }    
 }
 
@@ -160,10 +162,12 @@ enum MenuTag {
                                            book:book
                                         chapter:chap];
     
+    LanguageInformation *langInfo = [LanguageInformation instance];
+    
     if (![fileManager fileExistsAtPath:path]) {
-        NSString *urlStr = [_langInfo wolPageURLWithLanguage:lang
-                                                        book:book
-                                                     chapter:chap];
+        NSString *urlStr = [langInfo wolPageURLWithLanguage:lang
+                                                       book:book
+                                                    chapter:chap];
         if (urlStr == nil) {
             return nil;
         }
@@ -195,7 +199,7 @@ enum MenuTag {
                           urlStr,
                           [Utility getContentWol:nwtHTML],
                           lang,
-                          @([_langInfo getBookNo:book]),
+                          @([langInfo getBookNo:book]),
                           chap];
         
         [html writeToFile:path
@@ -214,9 +218,10 @@ enum MenuTag {
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
 
     NSString *currLangSymbol = [ud stringForKey:@"LANGUAGE"];
+    LanguageInformation *langInfo = [LanguageInformation instance];
     
     int i = 0;
-    for (NSDictionary* val in _langInfo.infoArray) {
+    for (NSDictionary* val in langInfo.infoArray) {
         NSString *name = val[@"name"];
         NSString *symbol = val[@"symbol"];
 
@@ -247,6 +252,8 @@ enum MenuTag {
     
     _chapListForSchool = [NSMutableArray array];
     NSMenu *menuChapters = [[NSMenu alloc] init];
+
+    LanguageInformation *langInfo = [LanguageInformation instance];
     
     int i = 0;
     for (NSString *range in [Utility getRangesForSchool]) {
@@ -254,7 +261,7 @@ enum MenuTag {
             [menuChapters addItem:[NSMenuItem separatorItem]];
         }
         
-        NSMutableArray *chapList = [_langInfo makeChapterListFromRange:range language:lang];
+        NSMutableArray *chapList = [langInfo makeChapterListFromRange:range language:lang];
         
         for (NSDictionary *item in chapList) {
             NSString *label = item[@"label"];
@@ -268,7 +275,7 @@ enum MenuTag {
             
             if (prevProgress[bookChapId]) {
                 [menuItem setState:NSOnState];
-                [progress setValue:@YES forKey:bookChapId];
+                progress[bookChapId] = @YES;
             }
             
             i++;
@@ -289,6 +296,7 @@ enum MenuTag {
     
     defaults[@"LANGUAGE"] = @"e";
     defaults[@"SCHEDULE_TYPE"] = @(0);
+    defaults[@"SCHEDULE_DIR"] = [[Utility appDirPath] stringByAppendingPathComponent:@"schedule"];
     
     [ud registerDefaults:defaults];
 }
@@ -320,8 +328,6 @@ enum MenuTag {
     [_statusItem setHighlightMode:YES];    
     [_menu setDelegate:self];
     
-    _langInfo = [LanguageInformation instance];
-    
     [self setupStatusMenuTitle];
 }
 
@@ -347,7 +353,8 @@ enum MenuTag {
     if (urlStr) {
         url = [NSURL fileURLWithPath:urlStr];
     } else {
-        urlStr = [_langInfo pageURLWithLanguage:lang
+        LanguageInformation *langInfo = [LanguageInformation instance];
+        urlStr = [langInfo pageURLWithLanguage:lang
                                            book:book
                                         chapter:chap];
         
@@ -355,10 +362,7 @@ enum MenuTag {
     }
 
     if (url == nil) {
-        NSRunAlertPanel(NSLocalizedString(@"OPEN_ERR_TTL", @"Title for Open error"),
-                        NSLocalizedString(@"OPEN_ERR_MSG", @"Message for open error"),
-                        @"OK", nil, nil);
-        
+        [Utility showConnectionError];
         return;
     }
     
@@ -367,7 +371,7 @@ enum MenuTag {
 
     // Check the selected item
     NSMutableDictionary *progress = [Schedule getProgress:type];
-    [progress setValue:@YES forKey:item[@"bookChapId"]];
+    progress[item[@"bookChapId"]] = @YES;
     [Schedule setProgress:progress type:type];
 }
 
@@ -383,8 +387,10 @@ enum MenuTag {
 
 - (IBAction)langAction:(id)sender
 {
+    LanguageInformation *langInfo = [LanguageInformation instance];
+    
     NSInteger i = [sender tag];
-    NSDictionary *item = (_langInfo.infoArray)[i];
+    NSDictionary *item = (langInfo.infoArray)[i];
     
     NSString *lang = item[@"symbol"];
     
@@ -419,9 +425,6 @@ enum MenuTag {
 
 - (void)menuWillOpen:(NSMenu *)menu
 {
-    // Update language info
-    _langInfo = [LanguageInformation instance];
-    
     [self setupStatusMenuTitle];
     [self setupReadMenu];
     [self setupLanguageMenu];
@@ -435,7 +438,7 @@ static void fsEventsCallBack(ConstFSEventStreamRef streamRef,
                              const FSEventStreamEventFlags eventFlags[],
                              const FSEventStreamEventId eventIds[])
 {
-    [Schedule clearSchedule];
+    [Schedule reloadSchedule];
 }
 
 - (void)setupFSEventListener

@@ -193,4 +193,11 @@
     return ranges;
 }
 
++ (void)showConnectionError
+{
+    NSRunAlertPanel(NSLocalizedString(@"CONNECTION_ERR_TTL", nil),
+                    NSLocalizedString(@"CONNECTION_ERR_MSG", nil),
+                    @"OK", nil, nil);
+}
+
 @end

@@ -45,15 +45,15 @@
         NSArray *fields = [line componentsSeparatedByString:@","];
         NSUInteger count = [fields count];
         
-        NSMutableDictionary *item = [NSMutableDictionary dictionaryWithObject:fields[0]
-                                                                       forKey:@"range"];
+        NSMutableDictionary *item = [NSMutableDictionary dictionary];
+        item[@"range"] = fields[0];
         
         if (count == 2) {
             NSString *date = fields[1];
             if ([date compare:@"*" options:NSCaseInsensitiveSearch] == NSOrderedSame) {
                 *curr = i;
             } else {
-                [item setValue:date forKey:@"date"];
+                item[@"date"] = date;
             }
         }
         
@@ -128,7 +128,7 @@
             [formatter setDateFormat:@"yyyy-MM-dd(E) HH:mm:ss"];
             NSString *date = [formatter stringFromDate:now];
             
-            [_ranges[index] setValue:date forKey:@"date"];
+            _ranges[index][@"date"] = date;
             
             if (index == self.currentIndex) {
                 self.currentIndex = [self advance:self.currentIndex + 1];
@@ -141,8 +141,7 @@
 
 - (void)markAsUnreadAtIndex:(NSInteger)index {
     if (_ranges[index][@"date"]) {
-        [_ranges[index] setValue:nil forKey:@"date"];
-        
+        [_ranges[index] removeObjectForKey:@"date"];
         [self saveData:_ranges toFile:_path];
     }
 }
@@ -175,7 +174,7 @@ static Schedule *_instance = nil;
     return _instance;
 }
 
-+ (void)clearSchedule
++ (void)reloadSchedule
 {
     _instance = nil;
     
@@ -191,8 +190,7 @@ static Schedule *_instance = nil;
 
 + (NSString *)progressPath
 {
-    NSString *dirPath = [Utility appDirPath];
-    return [dirPath stringByAppendingPathComponent:@"progress.xml"];
+    return [[self scheduleDirPath] stringByAppendingPathComponent:@"progress.xml"];
 }
 
 + (NSInteger) scheduleType
@@ -207,13 +205,13 @@ static Schedule *_instance = nil;
     [ud setValue:@(type) forKey:@"SCHEDULE_TYPE"];
     [ud synchronize];
     
-    [self clearSchedule];
+    [self reloadSchedule];
 }
 
 + (NSString *) scheduleDirPath
 {
-    NSString *dirPath = [Utility appDirPath];
-    return [dirPath stringByAppendingPathComponent:@"schedule"];
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    return [ud stringForKey:@"SCHEDULE_DIR"];
 }
 
 + (NSMutableDictionary *)getProgressPropertyList

@@ -15,5 +15,6 @@
 + (NSString *)getTitleWol:(NSString *)html;
 + (NSString *)fetchFile:(NSString *)url;
 + (NSMutableArray *)getRangesForSchool;
++ (void)showConnectionError;
 
 @end

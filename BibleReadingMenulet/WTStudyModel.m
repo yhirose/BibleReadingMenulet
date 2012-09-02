@@ -8,7 +8,9 @@
 
 #import "WTStudyModel.h"
 #import <AppKit/AppKit.h>
+#import "JSONKit.h"
 #import "Utility.h"
+
 @interface WTStudyModel ()
 @property NSSound* player;
 @end
@@ -25,7 +27,14 @@
     return [formatter stringFromDate:dateFirst];
     
 }
-
+-(id)loadSchedule {
+    NSURL *url = [NSURL URLWithString:@"https://dl.dropbox.com/u/1157820/wt_schedule.json"];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    if (data) {
+        return [data objectFromJSONData];
+    }
+    return nil;
+}
 -(IBAction)actionPlayThisWeek:(id)sender{
     [self actionPlayFromDate:[NSDate date]];
 }
@@ -52,7 +61,11 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        id schedule = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://dl.dropbox.com/u/1157820/wt_schedule.json"]] options:0 error:nil];
+        id schedule = [self loadSchedule];
+        if (schedule == nil) {
+            [Utility showConnectionError];
+            return;
+        }
         NSLog(@"%@",[schedule description]);
         
         id thisWeek = [schedule valueForKey:[self getMondayFromDate:date]];
@@ -67,10 +80,7 @@
                                              returningResponse:&resp
                                                          error:&err];
         if (data == nil) {
-                NSRunAlertPanel(NSLocalizedString(@"OPEN_ERR_TTL", @"Title for Open error"),
-                                NSLocalizedString(@"OPEN_ERR_MSG", @"Message for open error"),
-                                @"OK", nil, nil);
-                
+            [Utility showConnectionError];
             return;
         }
         if (!_isPlaying) {
@@ -84,7 +94,11 @@
 -(IBAction)actionOpenPDFFromDate:(NSDate*)date{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        id schedule = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://dl.dropbox.com/u/1157820/wt_schedule.json"]] options:0 error:nil];
+        id schedule = [self loadSchedule];
+        if (schedule == nil) {
+            [Utility showConnectionError];
+            return;
+        }        
         NSLog(@"%@",[schedule description]);
         
         id thisWeek = [schedule valueForKey:[self getMondayFromDate:date]];
@@ -99,10 +113,7 @@
                                              returningResponse:&resp
                                                          error:&err];
         if (data == nil) {
-            NSRunAlertPanel(NSLocalizedString(@"OPEN_ERR_TTL", @"Title for Open error"),
-                            NSLocalizedString(@"OPEN_ERR_MSG", @"Message for open error"),
-                            @"OK", nil, nil);
-            
+            [Utility showConnectionError];
             return;
         }
         
