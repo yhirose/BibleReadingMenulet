@@ -12,4 +12,6 @@
 @property BOOL isPlaying;
 -(IBAction)actionPlayThisWeek:(id)sender;
 -(IBAction)actionOpenPDFThisWeek:(id)sender;
+-(IBAction)actionPlayNextWeek:(id)sender;
+-(IBAction)actionOpenPDFNextWeek:(id)sender;
 @end

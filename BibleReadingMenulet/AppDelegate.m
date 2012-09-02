@@ -483,4 +483,22 @@ static void fsEventsCallBack(ConstFSEventStreamRef streamRef,
     }
     [_wtModel actionOpenPDFThisWeek:self];
 }
+-(IBAction)actionReadWTNextWeek:(id)sender{
+    if (!_wtModel) {
+        _wtModel = [[WTStudyModel alloc] init];
+    }
+    NSMenuItem* menu = sender;
+    [_wtModel actionPlayNextWeek:self];
+    if (_wtModel.isPlaying) {
+        menu.title = NSLocalizedString(@"Stop Playing",nil);
+    }else{
+        menu.title = NSLocalizedString(@"Listen Reading for next week",nil);
+    }
+}
+-(IBAction)actionOpenWTPDFNextWeek:(id)sender{
+    if (!_wtModel) {
+        _wtModel = [[WTStudyModel alloc] init];
+    }
+    [_wtModel actionOpenPDFNextWeek:self];
+}
 @end
