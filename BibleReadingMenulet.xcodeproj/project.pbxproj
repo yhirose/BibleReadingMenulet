@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0166B18B15E33EB50061BC80 /* WTStudyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0166B18A15E33EB50061BC80 /* WTStudyModel.m */; };
-		0166B18E15E340640061BC80 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0166B18D15E340640061BC80 /* AVFoundation.framework */; };
 		BA33C5EE15F171840073D69A /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BA33C5ED15F171840073D69A /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BA3D13F015D6CD9700F04B0D /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3D13EF15D6CD9700F04B0D /* Sparkle.framework */; };
 		BA3D13F215D6CDDD00F04B0D /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BA3D13EF15D6CD9700F04B0D /* Sparkle.framework */; };
@@ -53,7 +52,6 @@
 /* Begin PBXFileReference section */
 		0166B18915E33EB50061BC80 /* WTStudyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTStudyModel.h; sourceTree = "<group>"; };
 		0166B18A15E33EB50061BC80 /* WTStudyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTStudyModel.m; sourceTree = "<group>"; };
-		0166B18D15E340640061BC80 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		BA33C5EC15F171840073D69A /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = JSONKit/JSONKit.h; sourceTree = SOURCE_ROOT; };
 		BA33C5ED15F171840073D69A /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = JSONKit/JSONKit.m; sourceTree = SOURCE_ROOT; };
 		BA3D13EF15D6CD9700F04B0D /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
@@ -105,7 +103,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0166B18E15E340640061BC80 /* AVFoundation.framework in Frameworks */,
 				BA94AB55149704D30040164E /* Cocoa.framework in Frameworks */,
 				BA3D13F015D6CD9700F04B0D /* Sparkle.framework in Frameworks */,
 				BABC6B9815D764CB006E865F /* SystemConfiguration.framework in Frameworks */,
