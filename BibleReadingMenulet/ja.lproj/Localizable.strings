@@ -4,9 +4,9 @@
   Created by Yuji Hirose on 12/24/11.
   Copyright (c) 2011 Yuji Hirose. All rights reserved. */
 
-"OPEN_ERR_TTL" = "聖書を表示できませんでした。";
+"CONNECTION_ERR_TTL" = "データを表示できませんでした。";
 
-"OPEN_ERR_MSG" = "インターネットに接続されていません...";
+"CONNECTION_ERR_MSG" = "インターネットに接続されていません...";
 
 /* No comment provided by engineer. */
 "Listen Reading for this week" = "今週の朗読を聞く";

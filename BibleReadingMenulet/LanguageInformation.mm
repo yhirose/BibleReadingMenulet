@@ -7,6 +7,7 @@
 //
 
 #import "LanguageInformation.h"
+#import "Reachability.h"
 #import "Utility.h"
 #import <regex.h>
 #import <stdlib.h>
@@ -197,15 +198,32 @@ static bool parseChapterVerseRange(const char* str, std::vector<Cita>& list)
 
 @implementation LanguageInformation
 
+static LanguageInformation *_instance = nil;
+static Reachability        *_hostReach = nil;
+
++ (void)reachabilityChanged:(NSNotification *)aNotification
+{
+    _instance = nil;
+}
+
 + (LanguageInformation *)instance
 {
-    
-    static LanguageInformation *_instance = nil;
-    
     if (_instance == nil) {
         _instance = [[LanguageInformation alloc] init];
     }
+    
+    if (_hostReach == nil) {
+        _hostReach = [Reachability reachabilityWithHostName: @"yhirose.github.com"];
+        
+        [[NSNotificationCenter defaultCenter] addObserver: self
+                                                 selector: @selector(reachabilityChanged:)
+                                                     name: kReachabilityChangedNotification
+                                                   object: nil];
+        [_hostReach startNotifier];
+    }
+    
     return _instance;
+    
 }
 
 - (id)init

@@ -8,9 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		0166B18B15E33EB50061BC80 /* WTStudyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0166B18A15E33EB50061BC80 /* WTStudyModel.m */; };
+		BA33C5EE15F171840073D69A /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BA33C5ED15F171840073D69A /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BA3D13F015D6CD9700F04B0D /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3D13EF15D6CD9700F04B0D /* Sparkle.framework */; };
+		BA3D13F215D6CDDD00F04B0D /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BA3D13EF15D6CD9700F04B0D /* Sparkle.framework */; };
+		BA3D13F415D7116600F04B0D /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = BA3D13F315D7116600F04B0D /* dsa_pub.pem */; };
 		BA3E9F6614B1589D00006CC4 /* BibleReadingMenulet.icns in Resources */ = {isa = PBXBuildFile; fileRef = BA3E9F6514B1589D00006CC4 /* BibleReadingMenulet.icns */; };
 		BA6E11F415CCA9C90058DEE5 /* schedule in Resources */ = {isa = PBXBuildFile; fileRef = BA6E11F315CCA9C90058DEE5 /* schedule */; };
 		BA7BC4CF14A97E5A00740694 /* SchedulePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7BC4CE14A97E5A00740694 /* SchedulePanelController.m */; };
+		BA7FF4AC15DB37D20014FA19 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7FF4AB15DB37D20014FA19 /* Reachability.m */; };
 		BA94AB55149704D30040164E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA94AB54149704D30040164E /* Cocoa.framework */; };
 		BA94AB5F149704D30040164E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA94AB5D149704D30040164E /* InfoPlist.strings */; };
 		BA94AB61149704D30040164E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BA94AB60149704D30040164E /* main.m */; };
@@ -23,6 +28,7 @@
 		BA99DD4914B0017700C54386 /* SchedulePanel.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD4714B0017700C54386 /* SchedulePanel.strings */; };
 		BA99DD4E14B0039D00C54386 /* MainMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD4C14B0039D00C54386 /* MainMenu.strings */; };
 		BA99DD5214B0060300C54386 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD5014B0060300C54386 /* Localizable.strings */; };
+		BABC6B9815D764CB006E865F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BABC6B9715D764CB006E865F /* SystemConfiguration.framework */; };
 		BAC7402C15D4885C006FC090 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC7402A15D4885C006FC090 /* LaunchAtLoginController.m */; };
 		BAC7402D15D4885C006FC090 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BAC7402B15D4885C006FC090 /* README.md */; };
 		BAC99BAE15C386F200057CB2 /* Template.html in Resources */ = {isa = PBXBuildFile; fileRef = BAC99BAD15C386F200057CB2 /* Template.html */; };
@@ -30,13 +36,32 @@
 		BAEB0BFA14A40BAD006CBFD0 /* LanguageInformation.mm in Sources */ = {isa = PBXBuildFile; fileRef = BAEB0BF914A40BAD006CBFD0 /* LanguageInformation.mm */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		BA3D13E915D68C6B00F04B0D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BA3D13F215D6CDDD00F04B0D /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0166B18915E33EB50061BC80 /* WTStudyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTStudyModel.h; sourceTree = "<group>"; };
 		0166B18A15E33EB50061BC80 /* WTStudyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTStudyModel.m; sourceTree = "<group>"; };
+		BA33C5EC15F171840073D69A /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = JSONKit/JSONKit.h; sourceTree = SOURCE_ROOT; };
+		BA33C5ED15F171840073D69A /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = JSONKit/JSONKit.m; sourceTree = SOURCE_ROOT; };
+		BA3D13EF15D6CD9700F04B0D /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		BA3D13F315D7116600F04B0D /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		BA3E9F6514B1589D00006CC4 /* BibleReadingMenulet.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = BibleReadingMenulet.icns; sourceTree = "<group>"; };
 		BA6E11F315CCA9C90058DEE5 /* schedule */ = {isa = PBXFileReference; lastKnownFileType = folder; path = schedule; sourceTree = "<group>"; };
 		BA7BC4CD14A97E5A00740694 /* SchedulePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchedulePanelController.h; sourceTree = "<group>"; };
 		BA7BC4CE14A97E5A00740694 /* SchedulePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchedulePanelController.m; sourceTree = "<group>"; };
+		BA7FF4AA15DB37D20014FA19 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		BA7FF4AB15DB37D20014FA19 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		BA94AB50149704D30040164E /* BibleReadingMenulet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BibleReadingMenulet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA94AB54149704D30040164E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		BA94AB57149704D30040164E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -63,6 +88,7 @@
 		BA99DD5114B0060300C54386 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BA99DD5314B0061200C54386 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BABC3B3014A6744B0089FEC9 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		BABC6B9715D764CB006E865F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = ../../../../System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<group>"; };
 		BAC7402915D4885C006FC090 /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
 		BAC7402A15D4885C006FC090 /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
 		BAC7402B15D4885C006FC090 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -78,12 +104,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA94AB55149704D30040164E /* Cocoa.framework in Frameworks */,
+				BA3D13F015D6CD9700F04B0D /* Sparkle.framework in Frameworks */,
+				BABC6B9815D764CB006E865F /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BA33C5EB15F171600073D69A /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				BA33C5EC15F171840073D69A /* JSONKit.h */,
+				BA33C5ED15F171840073D69A /* JSONKit.m */,
+			);
+			name = JSONKit;
+			sourceTree = "<group>";
+		};
+		BA7FF4A915DB37D20014FA19 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				BA7FF4AA15DB37D20014FA19 /* Reachability.h */,
+				BA7FF4AB15DB37D20014FA19 /* Reachability.m */,
+			);
+			path = Reachability;
+			sourceTree = SOURCE_ROOT;
+		};
 		BA94AB45149704D30040164E = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +150,8 @@
 		BA94AB53149704D30040164E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0166B18D15E340640061BC80 /* AVFoundation.framework */,
+				BA3D13EF15D6CD9700F04B0D /* Sparkle.framework */,
 				BA94AB54149704D30040164E /* Cocoa.framework */,
 				BA94AB56149704D30040164E /* Other Frameworks */,
 			);
@@ -113,6 +161,7 @@
 		BA94AB56149704D30040164E /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BABC6B9715D764CB006E865F /* SystemConfiguration.framework */,
 				BA94AB57149704D30040164E /* AppKit.framework */,
 				BA94AB58149704D30040164E /* CoreData.framework */,
 				BA94AB59149704D30040164E /* Foundation.framework */,
@@ -133,11 +182,11 @@
 				BA94AB91149E94C00040164E /* Schedule.m */,
 				BA7BC4CD14A97E5A00740694 /* SchedulePanelController.h */,
 				BA7BC4CE14A97E5A00740694 /* SchedulePanelController.m */,
+				0166B18915E33EB50061BC80 /* WTStudyModel.h */,
+				0166B18A15E33EB50061BC80 /* WTStudyModel.m */,
 				BA94AB69149704D30040164E /* MainMenu.xib */,
 				BA99DD4414B0009A00C54386 /* SchedulePanel.xib */,
 				BA94AB5B149704D30040164E /* Supporting Files */,
-				0166B18915E33EB50061BC80 /* WTStudyModel.h */,
-				0166B18A15E33EB50061BC80 /* WTStudyModel.m */,
 			);
 			path = BibleReadingMenulet;
 			sourceTree = "<group>";
@@ -145,6 +194,8 @@
 		BA94AB5B149704D30040164E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BA33C5EB15F171600073D69A /* JSONKit */,
+				BA7FF4A915DB37D20014FA19 /* Reachability */,
 				BAC7402815D4885C006FC090 /* LaunchAtLoginController */,
 				BA6E11F315CCA9C90058DEE5 /* schedule */,
 				BAC99BC115C4326000057CB2 /* html */,
@@ -157,6 +208,7 @@
 				BA94AB62149704D30040164E /* BibleReadingMenulet-Prefix.pch */,
 				BA94AB5C149704D30040164E /* BibleReadingMenulet-Info.plist */,
 				BA94AB5D149704D30040164E /* InfoPlist.strings */,
+				BA3D13F315D7116600F04B0D /* dsa_pub.pem */,
 				BA94AB63149704D30040164E /* Credits.rtf */,
 			);
 			name = "Supporting Files";
@@ -179,9 +231,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BA94AB6E149704D30040164E /* Build configuration list for PBXNativeTarget "BibleReadingMenulet" */;
 			buildPhases = (
+				BA725D1915F065E70085BABE /* ShellScript */,
 				BA94AB4C149704D30040164E /* Sources */,
 				BA94AB4D149704D30040164E /* Frameworks */,
 				BA94AB4E149704D30040164E /* Resources */,
+				BA3D13E915D68C6B00F04B0D /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -236,10 +290,28 @@
 				BAC99BC215C4326000057CB2 /* html in Resources */,
 				BA6E11F415CCA9C90058DEE5 /* schedule in Resources */,
 				BAC7402D15D4885C006FC090 /* README.md in Resources */,
+				BA3D13F415D7116600F04B0D /* dsa_pub.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BA725D1915F065E70085BABE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ibtool --write BibleReadingMenulet/ja.lproj/MainMenu.xib -d BibleReadingMenulet/ja.lproj/MainMenu.strings BibleReadingMenulet/en.lproj/MainMenu.xib";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BA94AB4C149704D30040164E /* Sources */ = {
@@ -253,7 +325,9 @@
 				BAEB0BFA14A40BAD006CBFD0 /* LanguageInformation.mm in Sources */,
 				BA7BC4CF14A97E5A00740694 /* SchedulePanelController.m in Sources */,
 				BAC7402C15D4885C006FC090 /* LaunchAtLoginController.m in Sources */,
+				BA7FF4AC15DB37D20014FA19 /* Reachability.m in Sources */,
 				0166B18B15E33EB50061BC80 /* WTStudyModel.m in Sources */,
+				BA33C5EE15F171840073D69A /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +453,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BibleReadingMenulet/BibleReadingMenulet-Prefix.pch";
 				INFOPLIST_FILE = "BibleReadingMenulet/BibleReadingMenulet-Info.plist";
@@ -394,6 +472,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BibleReadingMenulet/BibleReadingMenulet-Prefix.pch";
 				INFOPLIST_FILE = "BibleReadingMenulet/BibleReadingMenulet-Info.plist";
