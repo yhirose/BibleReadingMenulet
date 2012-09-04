@@ -12,7 +12,11 @@
 #import "WTStudyModel.h"
 
 @interface AppDelegate ()
-@property WTStudyModel* wtModel;
+@property NSStatusItem            *statusItem;
+@property NSMutableArray          *chapList;
+@property NSMutableArray          *chapListForSchool;
+@property SchedulePanelController *schedulePanelController;
+@property WTStudyModel            *wtModel;
 @end
 
 @implementation AppDelegate

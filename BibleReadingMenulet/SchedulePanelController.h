@@ -8,11 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface SchedulePanelController : NSWindowController {
-  @private
-    NSColor *_white;
-    NSColor *_yellow;
-}
+@interface SchedulePanelController : NSWindowController
 
 @property (unsafe_unretained) IBOutlet NSTableView *tableView;
 @property (unsafe_unretained) IBOutlet NSComboBox *scheduleTypeCombo;

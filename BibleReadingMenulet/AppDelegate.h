@@ -12,13 +12,7 @@
 
 @class SchedulePanelController;
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate> {
-  @private
-    NSStatusItem            *_statusItem;
-    NSMutableArray          *_chapList;
-    NSMutableArray          *_chapListForSchool;
-    SchedulePanelController *_schedulePanelController;
-}
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate>
 
 @property (unsafe_unretained) IBOutlet NSMenu *menu;
 

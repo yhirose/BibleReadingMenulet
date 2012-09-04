@@ -9,6 +9,12 @@
 #import "Schedule.h"
 #import "Utility.h"
 
+@interface Schedule ()
+@property NSString                   *path;
+@property int                         curr;
+//@property (nonatomic) NSMutableArray *ranges;
+@end
+
 @implementation Schedule
 
 - (int)advance:(int)curr
@@ -148,10 +154,6 @@
 
 - (NSString *)currentRange {
     return _ranges[self.currentIndex][@"range"];
-}
-
-- (NSMutableArray *)ranges {
-    return _ranges;
 }
 
 - (int)currentIndex {
