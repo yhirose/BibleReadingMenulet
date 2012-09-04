@@ -105,30 +105,8 @@
         NSLog(@"%@",[thisWeek description]);
         
         NSURL* url =[NSURL URLWithString:[NSString stringWithFormat:[thisWeek valueForKey:@"pdf"],[[[NSUserDefaults standardUserDefaults] stringForKey:@"LANGUAGE"]uppercaseString]]];
-        NSURLRequest* req = [NSURLRequest requestWithURL:url];
-        NSURLResponse *resp;
-        NSError *err;
         
-        NSData *data = [NSURLConnection sendSynchronousRequest:req
-                                             returningResponse:&resp
-                                                         error:&err];
-        if (data == nil) {
-            [Utility showConnectionError];
-            return;
-        }
-        
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        if (![fileManager fileExistsAtPath:[[Utility appDirPath] stringByAppendingPathComponent:@"watchtower"]]) {
-            [fileManager createDirectoryAtPath:[[Utility appDirPath] stringByAppendingPathComponent:@"watchtower"]
-                   withIntermediateDirectories:YES
-                                    attributes:nil
-                                         error:nil];
-        }
-        
-        NSString* wtPath = [[Utility appDirPath] stringByAppendingPathComponent:@"watchtower/thisweek.pdf"];
-        [data writeToFile:wtPath atomically:YES];
-        BOOL success = [[NSWorkspace sharedWorkspace] openFile:wtPath];
-        NSLog(@"%d",success);
+        [[NSWorkspace sharedWorkspace] openURL:url];
     });
 }
 @end
