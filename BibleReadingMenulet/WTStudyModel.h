@@ -8,10 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+#define WTSReadingStart @"WTSReadingStart"
+#define WTSReadingEnd @"WTSReadingEnd"
+
 @interface WTStudyModel : NSObject
-@property BOOL isPlaying;
+@property (readonly) BOOL isPlaying;
 -(IBAction)actionPlayThisWeek:(id)sender;
 -(IBAction)actionOpenPDFThisWeek:(id)sender;
 -(IBAction)actionPlayNextWeek:(id)sender;
 -(IBAction)actionOpenPDFNextWeek:(id)sender;
+-(IBAction)actionPlayPause:(id)sender;
+-(IBAction)actionStop:(id)sender;
+-(IBAction)actionRestart:(id)sender;
+@property NSString* weekName;
 @end
