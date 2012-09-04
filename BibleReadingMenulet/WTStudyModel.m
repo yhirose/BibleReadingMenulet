@@ -11,8 +11,9 @@
 #import "JSONKit.h"
 #import "Utility.h"
 
-@interface WTStudyModel ()
+@interface WTStudyModel () <NSSoundDelegate>
 @property NSSound* player;
+@property BOOL isPausing;
 @end
 
 @implementation WTStudyModel
@@ -36,12 +37,14 @@
     return nil;
 }
 -(IBAction)actionPlayThisWeek:(id)sender{
+    self.weekName = NSLocalizedString(@"This Week", nil);
     [self actionPlayFromDate:[NSDate date]];
 }
 -(IBAction)actionOpenPDFThisWeek:(id)sender{
     [self actionOpenPDFFromDate:[NSDate date]];
 }
 -(IBAction)actionPlayNextWeek:(id)sender{
+    self.weekName = NSLocalizedString(@"Next Week", nil);
     NSDate* dateNextWeek = [[NSDate date] dateByAddingTimeInterval:1*60*60*24*(7.0)];
     [self actionPlayFromDate:dateNextWeek];
 }
@@ -51,14 +54,13 @@
 }
 
 -(IBAction)actionPlayFromDate:(NSDate*)date{
-    if (_isPlaying) {
-        _isPlaying = !_isPlaying;
+    if (self.isPlaying) {
         [_player stop];
-        _player = nil;
-        return;
     }
-    _isPlaying = !_isPlaying;
-    
+    if (self.player) {
+        _player = nil;
+        [[NSNotificationCenter defaultCenter] postNotificationName:WTSReadingEnd object:self];
+    }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         id schedule = [self loadSchedule];
@@ -83,10 +85,9 @@
             [Utility showConnectionError];
             return;
         }
-        if (!_isPlaying) {
-            return;
-        }
         _player = [[NSSound alloc] initWithData:data];
+        [[NSNotificationCenter defaultCenter] postNotificationName:WTSReadingStart object:self];
+        _player.delegate = self;
         NSLog(@"%@",err);
         [_player play];
     });
@@ -109,4 +110,35 @@
         [[NSWorkspace sharedWorkspace] openURL:url];
     });
 }
+
+-(BOOL) isPlaying {
+    return (_player) ? ![self isPausing] : NO;
+}
+
+#pragma mark - Control Actions
+-(IBAction)actionPlayPause:(id)sender{
+    if (self.isPlaying) {
+        [_player pause];
+        _isPausing = YES;
+    }else{
+        [_player resume];
+        _isPausing = NO;
+    }
+}
+-(IBAction)actionStop:(id)sender{
+    [_player stop];
+    [[NSNotificationCenter defaultCenter] postNotificationName:WTSReadingEnd object:self];
+}
+-(IBAction)actionRestart:(id)sender{
+    [_player stop];
+    [_player setCurrentTime:0.0];
+    [_player play];
+    [[NSNotificationCenter defaultCenter] postNotificationName:WTSReadingStart object:self];
+}
+
+#pragma mark - NSSoundDelegate
+- (void)sound:(NSSound *)sound didFinishPlaying:(BOOL)finishedPlaying {
+    [[NSNotificationCenter defaultCenter] postNotificationName:WTSReadingEnd object:self];
+}
+
 @end
