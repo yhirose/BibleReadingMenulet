@@ -8,28 +8,20 @@
 
 "CONNECTION_ERR_MSG" = "Internet connection may be currently unavailable...";
 
-/* No comment provided by engineer. */
 "Listen Reading for this week" = "Listen Reading for this week";
 
-/* No comment provided by engineer. */
 "Listen Reading for next week" = "Listen Reading for next week";
 
-/* No comment provided by engineer. */
 "Stop Playing" = "Stop Playing";
 
-/* No comment provided by engineer. */
 "Next Week" = "Next Week";
 
-/* No comment provided by engineer. */
 "Now Playing: %@" = "Now Playing: %@";
 
-/* No comment provided by engineer. */
 "Pause" = "Pause";
 
-/* No comment provided by engineer. */
 "Resume" = "Resume";
 
-/* No comment provided by engineer. */
 "This Week" = "This Week";
 
 "Read" = "Read";
@@ -37,8 +29,6 @@
 "Quit" = "Quit";
 
 "Mark as Read" = "Mark as Read";
-
-"New token" = "New token";
 
 "Language" = "Language";
 

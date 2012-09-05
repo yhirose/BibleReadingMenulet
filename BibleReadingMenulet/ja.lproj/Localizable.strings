@@ -8,28 +8,20 @@
 
 "CONNECTION_ERR_MSG" = "インターネットに接続されていません...";
 
-/* No comment provided by engineer. */
 "Listen Reading for this week" = "今週の朗読を聞く";
 
-/* No comment provided by engineer. */
 "Listen Reading for next week" = "来週の朗読を聞く";
 
-/* No comment provided by engineer. */
 "Stop Playing" = "再生を停止する";
 
-/* No comment provided by engineer. */
 "Next Week" = "来週";
 
-/* No comment provided by engineer. */
 "Now Playing: %@" = "%@の朗読を再生中";
 
-/* No comment provided by engineer. */
 "Pause" = "一時停止";
 
-/* No comment provided by engineer. */
 "Resume" = "再生";
 
-/* No comment provided by engineer. */
 "This Week" = "今週";
 
 "Read" = "読む";
@@ -37,8 +29,6 @@
 "Quit" = "終了";
 
 "Mark as Read" = "読了にする";
-
-"New token" = "新しいトークン";
 
 "Language" = "言語";
 
