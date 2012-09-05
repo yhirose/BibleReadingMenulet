@@ -150,7 +150,6 @@
 		BA94AB53149704D30040164E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0166B18D15E340640061BC80 /* AVFoundation.framework */,
 				BA3D13EF15D6CD9700F04B0D /* Sparkle.framework */,
 				BA94AB54149704D30040164E /* Cocoa.framework */,
 				BA94AB56149704D30040164E /* Other Frameworks */,
@@ -231,7 +230,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BA94AB6E149704D30040164E /* Build configuration list for PBXNativeTarget "BibleReadingMenulet" */;
 			buildPhases = (
-				BA725D1915F065E70085BABE /* ShellScript */,
 				BA94AB4C149704D30040164E /* Sources */,
 				BA94AB4D149704D30040164E /* Frameworks */,
 				BA94AB4E149704D30040164E /* Resources */,
@@ -295,23 +293,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		BA725D1915F065E70085BABE /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "ibtool --write BibleReadingMenulet/ja.lproj/MainMenu.xib -d BibleReadingMenulet/ja.lproj/MainMenu.strings BibleReadingMenulet/en.lproj/MainMenu.xib";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BA94AB4C149704D30040164E /* Sources */ = {
