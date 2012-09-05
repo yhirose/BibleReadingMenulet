@@ -32,3 +32,47 @@
 /* No comment provided by engineer. */
 "This Week" = "今週";
 
+"Read" = "読む";
+
+"Quit" = "終了";
+
+"Mark as Read" = "読了にする";
+
+"New token" = "新しいトークン";
+
+"Language" = "言語";
+
+"Start at Login" = "ログイン時に起動";
+
+"Show Schedule..." = "スケジュール表...";
+
+"Ministry School" = "宣教学校";
+
+"Watchtower Study" = "ものみの塔研究";
+
+"Open PDF for this week" = "今週のPDFを開く";
+
+"Open PDF for next week" = "来週のPDFを開く";
+
+"Chech for Updates..." = "アップデートの確認";
+
+"Stop" = "停止";
+
+"Restart" = "最初から再生";
+
+"Reading Schedule" = "通読予定";
+
+"Date" = "日付";
+
+"Regular" = "書名別";
+
+"Chronologically" = "年代別";
+
+"Thematically" = "主題別";
+
+"Mark as Unread" = "未読にする";
+
+"Set as Current" = "現在位置に設定";
+
+"Range" = "範囲";
+
