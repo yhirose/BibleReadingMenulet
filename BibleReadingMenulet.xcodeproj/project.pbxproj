@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0166B18B15E33EB50061BC80 /* WTStudyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0166B18A15E33EB50061BC80 /* WTStudyModel.m */; };
+		01730A7515F7C6D8007FF07E /* BRMNSMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 01730A7415F7C6D8007FF07E /* BRMNSMenuItem.m */; };
+		01936E3915F7C95C009EE578 /* BRMNSMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 01936E3815F7C95C009EE578 /* BRMNSMenu.m */; };
+		01936E4015F7CD75009EE578 /* BRMNSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 01936E3F15F7CD75009EE578 /* BRMNSButton.m */; };
+		01936E4815F7CFA7009EE578 /* BRMNSComboBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 01936E4715F7CFA7009EE578 /* BRMNSComboBox.m */; };
+		01936E5515F7D4A2009EE578 /* BRMNSTableColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 01936E5415F7D4A2009EE578 /* BRMNSTableColumn.m */; };
 		BA33C5EE15F171840073D69A /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BA33C5ED15F171840073D69A /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BA3D13F015D6CD9700F04B0D /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3D13EF15D6CD9700F04B0D /* Sparkle.framework */; };
 		BA3D13F215D6CDDD00F04B0D /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BA3D13EF15D6CD9700F04B0D /* Sparkle.framework */; };
@@ -25,8 +30,6 @@
 		BA94AB8B149BFA140040164E /* Utility.mm in Sources */ = {isa = PBXBuildFile; fileRef = BA94AB8A149BFA140040164E /* Utility.mm */; };
 		BA94AB92149E94C10040164E /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = BA94AB91149E94C00040164E /* Schedule.m */; };
 		BA99DD4614B0009A00C54386 /* SchedulePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD4414B0009A00C54386 /* SchedulePanel.xib */; };
-		BA99DD4914B0017700C54386 /* SchedulePanel.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD4714B0017700C54386 /* SchedulePanel.strings */; };
-		BA99DD4E14B0039D00C54386 /* MainMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD4C14B0039D00C54386 /* MainMenu.strings */; };
 		BA99DD5214B0060300C54386 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA99DD5014B0060300C54386 /* Localizable.strings */; };
 		BABC6B9815D764CB006E865F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BABC6B9715D764CB006E865F /* SystemConfiguration.framework */; };
 		BAC7402C15D4885C006FC090 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC7402A15D4885C006FC090 /* LaunchAtLoginController.m */; };
@@ -52,6 +55,16 @@
 /* Begin PBXFileReference section */
 		0166B18915E33EB50061BC80 /* WTStudyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTStudyModel.h; sourceTree = "<group>"; };
 		0166B18A15E33EB50061BC80 /* WTStudyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTStudyModel.m; sourceTree = "<group>"; };
+		01730A7315F7C6D8007FF07E /* BRMNSMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRMNSMenuItem.h; sourceTree = "<group>"; };
+		01730A7415F7C6D8007FF07E /* BRMNSMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRMNSMenuItem.m; sourceTree = "<group>"; };
+		01936E3715F7C95C009EE578 /* BRMNSMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRMNSMenu.h; sourceTree = "<group>"; };
+		01936E3815F7C95C009EE578 /* BRMNSMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRMNSMenu.m; sourceTree = "<group>"; };
+		01936E3E15F7CD75009EE578 /* BRMNSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRMNSButton.h; sourceTree = "<group>"; };
+		01936E3F15F7CD75009EE578 /* BRMNSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRMNSButton.m; sourceTree = "<group>"; };
+		01936E4615F7CFA7009EE578 /* BRMNSComboBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRMNSComboBox.h; sourceTree = "<group>"; };
+		01936E4715F7CFA7009EE578 /* BRMNSComboBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRMNSComboBox.m; sourceTree = "<group>"; };
+		01936E5315F7D4A2009EE578 /* BRMNSTableColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRMNSTableColumn.h; sourceTree = "<group>"; };
+		01936E5415F7D4A2009EE578 /* BRMNSTableColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRMNSTableColumn.m; sourceTree = "<group>"; };
 		BA33C5EC15F171840073D69A /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = JSONKit/JSONKit.h; sourceTree = SOURCE_ROOT; };
 		BA33C5ED15F171840073D69A /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = JSONKit/JSONKit.m; sourceTree = SOURCE_ROOT; };
 		BA3D13EF15D6CD9700F04B0D /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
@@ -80,14 +93,8 @@
 		BA94AB90149E94C00040164E /* Schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schedule.h; sourceTree = "<group>"; };
 		BA94AB91149E94C00040164E /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Schedule.m; sourceTree = "<group>"; };
 		BA99DD4514B0009A00C54386 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SchedulePanel.xib; sourceTree = "<group>"; };
-		BA99DD4814B0017700C54386 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SchedulePanel.strings; sourceTree = "<group>"; };
-		BA99DD4A14B001AC00C54386 /* ja */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SchedulePanel.strings; sourceTree = "<group>"; };
-		BA99DD4B14B0031400C54386 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/SchedulePanel.xib; sourceTree = "<group>"; };
-		BA99DD4D14B0039D00C54386 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
-		BA99DD4F14B003AA00C54386 /* ja */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		BA99DD5114B0060300C54386 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BA99DD5314B0061200C54386 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		BABC3B3014A6744B0089FEC9 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		BABC6B9715D764CB006E865F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = ../../../../System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<group>"; };
 		BAC7402915D4885C006FC090 /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
 		BAC7402A15D4885C006FC090 /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
@@ -112,6 +119,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01730A7115F7C669007FF07E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				01730A7215F7C669007FF07E /* UIElements */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		01730A7215F7C669007FF07E /* UIElements */ = {
+			isa = PBXGroup;
+			children = (
+				01730A7315F7C6D8007FF07E /* BRMNSMenuItem.h */,
+				01730A7415F7C6D8007FF07E /* BRMNSMenuItem.m */,
+				01936E3715F7C95C009EE578 /* BRMNSMenu.h */,
+				01936E3815F7C95C009EE578 /* BRMNSMenu.m */,
+				01936E3E15F7CD75009EE578 /* BRMNSButton.h */,
+				01936E3F15F7CD75009EE578 /* BRMNSButton.m */,
+				01936E4615F7CFA7009EE578 /* BRMNSComboBox.h */,
+				01936E4715F7CFA7009EE578 /* BRMNSComboBox.m */,
+				01936E5315F7D4A2009EE578 /* BRMNSTableColumn.h */,
+				01936E5415F7D4A2009EE578 /* BRMNSTableColumn.m */,
+			);
+			path = UIElements;
+			sourceTree = "<group>";
+		};
 		BA33C5EB15F171600073D69A /* JSONKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +203,7 @@
 		BA94AB5A149704D30040164E /* BibleReadingMenulet */ = {
 			isa = PBXGroup;
 			children = (
+				01730A7115F7C669007FF07E /* Common */,
 				BA94AB66149704D30040164E /* AppDelegate.h */,
 				BA94AB67149704D30040164E /* AppDelegate.m */,
 				BA94AB88149BF9CE0040164E /* Utility.h */,
@@ -201,8 +234,6 @@
 				BAC99BAD15C386F200057CB2 /* Template.html */,
 				BA3E9F6514B1589D00006CC4 /* BibleReadingMenulet.icns */,
 				BA99DD5014B0060300C54386 /* Localizable.strings */,
-				BA99DD4C14B0039D00C54386 /* MainMenu.strings */,
-				BA99DD4714B0017700C54386 /* SchedulePanel.strings */,
 				BA94AB60149704D30040164E /* main.m */,
 				BA94AB62149704D30040164E /* BibleReadingMenulet-Prefix.pch */,
 				BA94AB5C149704D30040164E /* BibleReadingMenulet-Info.plist */,
@@ -280,8 +311,6 @@
 				BA94AB65149704D30040164E /* Credits.rtf in Resources */,
 				BA94AB6B149704D30040164E /* MainMenu.xib in Resources */,
 				BA99DD4614B0009A00C54386 /* SchedulePanel.xib in Resources */,
-				BA99DD4914B0017700C54386 /* SchedulePanel.strings in Resources */,
-				BA99DD4E14B0039D00C54386 /* MainMenu.strings in Resources */,
 				BA99DD5214B0060300C54386 /* Localizable.strings in Resources */,
 				BA3E9F6614B1589D00006CC4 /* BibleReadingMenulet.icns in Resources */,
 				BAC99BAE15C386F200057CB2 /* Template.html in Resources */,
@@ -309,6 +338,11 @@
 				BA7FF4AC15DB37D20014FA19 /* Reachability.m in Sources */,
 				0166B18B15E33EB50061BC80 /* WTStudyModel.m in Sources */,
 				BA33C5EE15F171840073D69A /* JSONKit.m in Sources */,
+				01730A7515F7C6D8007FF07E /* BRMNSMenuItem.m in Sources */,
+				01936E3915F7C95C009EE578 /* BRMNSMenu.m in Sources */,
+				01936E4015F7CD75009EE578 /* BRMNSButton.m in Sources */,
+				01936E4815F7CFA7009EE578 /* BRMNSComboBox.m in Sources */,
+				01936E5515F7D4A2009EE578 /* BRMNSTableColumn.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,7 +369,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				BA94AB6A149704D30040164E /* en */,
-				BABC3B3014A6744B0089FEC9 /* ja */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -344,27 +377,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				BA99DD4514B0009A00C54386 /* en */,
-				BA99DD4B14B0031400C54386 /* ja */,
 			);
 			name = SchedulePanel.xib;
-			sourceTree = "<group>";
-		};
-		BA99DD4714B0017700C54386 /* SchedulePanel.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BA99DD4814B0017700C54386 /* en */,
-				BA99DD4A14B001AC00C54386 /* ja */,
-			);
-			name = SchedulePanel.strings;
-			sourceTree = "<group>";
-		};
-		BA99DD4C14B0039D00C54386 /* MainMenu.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BA99DD4D14B0039D00C54386 /* en */,
-				BA99DD4F14B003AA00C54386 /* ja */,
-			);
-			name = MainMenu.strings;
 			sourceTree = "<group>";
 		};
 		BA99DD5014B0060300C54386 /* Localizable.strings */ = {
