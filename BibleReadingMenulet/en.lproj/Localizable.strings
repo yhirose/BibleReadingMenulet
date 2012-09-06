@@ -8,12 +8,45 @@
 
 "CONNECTION_ERR_MSG" = "Internet connection may be currently unavailable...";
 
-/* No comment provided by engineer. */
 "Listen Reading for this week" = "Listen Reading for this week";
 
-/* No comment provided by engineer. */
 "Listen Reading for next week" = "Listen Reading for next week";
 
-/* No comment provided by engineer. */
 "Stop Playing" = "Stop Playing";
+
+"Next Week" = "Next Week";
+
+"Now Playing: %@" = "Now Playing: %@";
+
+"Pause" = "Pause";
+
+"Resume" = "Resume";
+
+"This Week" = "This Week";
+
+"Read" = "Read";
+
+"Quit" = "Quit";
+
+"Mark as Read" = "Mark as Read";
+
+"Language" = "Language";
+
+"Start at Login" = "Start at Login";
+
+"Show Schedule..." = "Show Schedule...";
+
+"Ministry School" = "Ministry School";
+
+"Watchtower Study" = "Watchtower Study";
+
+"Open PDF for this week" = "Open PDF for this week";
+
+"Open PDF for next week" = "Open PDF for next week";
+
+"Chech for Updates..." = "Chech for Updates...";
+
+"Stop" = "Stop";
+
+"Restart" = "Restart";
 

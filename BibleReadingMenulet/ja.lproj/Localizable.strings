@@ -8,12 +8,61 @@
 
 "CONNECTION_ERR_MSG" = "インターネットに接続されていません...";
 
-/* No comment provided by engineer. */
 "Listen Reading for this week" = "今週の朗読を聞く";
 
-/* No comment provided by engineer. */
 "Listen Reading for next week" = "来週の朗読を聞く";
 
-/* No comment provided by engineer. */
 "Stop Playing" = "再生を停止する";
+
+"Next Week" = "来週";
+
+"Now Playing: %@" = "%@の朗読を再生中";
+
+"Pause" = "一時停止";
+
+"Resume" = "再生";
+
+"This Week" = "今週";
+
+"Read" = "読む";
+
+"Quit" = "終了";
+
+"Mark as Read" = "読了にする";
+
+"Language" = "言語";
+
+"Start at Login" = "ログイン時に起動";
+
+"Show Schedule..." = "スケジュール表...";
+
+"Ministry School" = "宣教学校";
+
+"Watchtower Study" = "ものみの塔研究";
+
+"Open PDF for this week" = "今週のPDFを開く";
+
+"Open PDF for next week" = "来週のPDFを開く";
+
+"Chech for Updates..." = "アップデートの確認";
+
+"Stop" = "停止";
+
+"Restart" = "最初から再生";
+
+"Reading Schedule" = "通読予定";
+
+"Date" = "日付";
+
+"Regular" = "書名別";
+
+"Chronologically" = "年代別";
+
+"Thematically" = "主題別";
+
+"Mark as Unread" = "未読にする";
+
+"Set as Current" = "現在位置に設定";
+
+"Range" = "範囲";
 

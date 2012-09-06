@@ -8,12 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Schedule : NSObject {
-  @private
-    NSString       *_path;
-    int             _curr;
-    NSMutableArray *_ranges;
-}
+@interface Schedule : NSObject
+
+@property NSMutableArray *ranges;
 
 - (id)init;
 - (BOOL)isComplete;

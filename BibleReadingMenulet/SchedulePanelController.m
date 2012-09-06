@@ -11,6 +11,11 @@
 #import "Schedule.h"
 #import "Utility.h"
 
+@interface SchedulePanelController ()
+@property NSColor *white;
+@property NSColor *yellow;
+@end
+
 @implementation SchedulePanelController
 
 - (id)init

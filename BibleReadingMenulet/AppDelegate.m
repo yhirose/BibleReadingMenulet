@@ -12,7 +12,13 @@
 #import "WTStudyModel.h"
 
 @interface AppDelegate ()
-@property WTStudyModel* wtModel;
+@property NSStatusItem            *statusItem;
+@property NSMutableArray          *chapList;
+@property NSMutableArray          *chapListForSchool;
+@property SchedulePanelController *schedulePanelController;
+@property WTStudyModel            *wtModel;
+@property IBOutlet NSMenuItem     *menuItemNowPlaying;
+@property IBOutlet NSMenuItem     *menuItemBeforeNowPlayingLine;
 @end
 
 @implementation AppDelegate
@@ -307,6 +313,7 @@ enum MenuTag {
     [self setupUserDefaults];
     [self setupScheduleFiles];
     [self setupFSEventListener];
+    [self setUpWatchtowerNotifications];
 
     // Create the application directory
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -466,39 +473,57 @@ static void fsEventsCallBack(ConstFSEventStreamRef streamRef,
 
 #pragma mark - for Watchtower
 -(IBAction)actionReadWTThisWeek:(id)sender{
-    if (!_wtModel) {
-        _wtModel = [[WTStudyModel alloc] init];
-    }
-    NSMenuItem* menu = sender;
     [_wtModel actionPlayThisWeek:self];
-    if (_wtModel.isPlaying) {
-        menu.title = NSLocalizedString(@"Stop Playing",nil);
-    }else{
-        menu.title = NSLocalizedString(@"Listen Reading for this week",nil);
-    }
 }
 -(IBAction)actionOpenWTPDFThisWeek:(id)sender{
-    if (!_wtModel) {
-        _wtModel = [[WTStudyModel alloc] init];
-    }
     [_wtModel actionOpenPDFThisWeek:self];
 }
 -(IBAction)actionReadWTNextWeek:(id)sender{
-    if (!_wtModel) {
-        _wtModel = [[WTStudyModel alloc] init];
-    }
-    NSMenuItem* menu = sender;
     [_wtModel actionPlayNextWeek:self];
-    if (_wtModel.isPlaying) {
-        menu.title = NSLocalizedString(@"Stop Playing",nil);
-    }else{
-        menu.title = NSLocalizedString(@"Listen Reading for next week",nil);
-    }
 }
 -(IBAction)actionOpenWTPDFNextWeek:(id)sender{
-    if (!_wtModel) {
-        _wtModel = [[WTStudyModel alloc] init];
-    }
     [_wtModel actionOpenPDFNextWeek:self];
+}
+-(void) setUpWatchtowerNotifications{
+    [self.menuItemNowPlaying setHidden:YES];
+    [self.menuItemBeforeNowPlayingLine setHidden:YES];
+    [self createWatchtowerObject];
+    NSMenu* menu = self.menuItemNowPlaying.submenu;
+    [(NSMenuItem*)[menu itemAtIndex:0] setTarget:self];
+    [(NSMenuItem*)[menu itemAtIndex:0] setAction:@selector(actionPause:)];
+    [(NSMenuItem*)[menu itemAtIndex:1] setTarget:self];
+    [(NSMenuItem*)[menu itemAtIndex:1] setAction:@selector(actionStop:)];
+    [(NSMenuItem*)[menu itemAtIndex:2] setTarget:self];
+    [(NSMenuItem*)[menu itemAtIndex:2] setAction:@selector(actionRestart:)];
+}
+-(IBAction)actionPause:(id)sender{
+    [_wtModel actionPlayPause:self];
+    NSMenu* menu = self.menuItemNowPlaying.submenu;
+    if (_wtModel.isPlaying) {
+        [(NSMenuItem*)[menu itemAtIndex:0] setTitle:NSLocalizedString(@"Pause", nil)];
+    }else{
+        [(NSMenuItem*)[menu itemAtIndex:0] setTitle:NSLocalizedString(@"Resume", nil)];
+    }
+}
+-(IBAction)actionStop:(id)sender{
+    [_wtModel actionStop:self];
+}
+-(IBAction)actionRestart:(id)sender{
+    [_wtModel actionRestart:self];
+}
+-(void) createWatchtowerObject{
+    _wtModel = [[WTStudyModel alloc] init];
+    __unsafe_unretained AppDelegate* wself = self;
+    [[NSNotificationCenter defaultCenter] addObserverForName:WTSReadingStart object:_wtModel queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+        wself.menuItemNowPlaying.title = [NSString stringWithFormat:NSLocalizedString(@"Now Playing: %@", nil),wself.wtModel.weekName];
+        NSMenu* menu = wself.menuItemNowPlaying.submenu;
+        [(NSMenuItem*)[menu itemAtIndex:0] setTitle:NSLocalizedString(@"Pause", nil)];
+        [wself.menuItemNowPlaying setHidden:NO];
+        [wself.menuItemBeforeNowPlayingLine setHidden:NO];
+    }];
+    [[NSNotificationCenter defaultCenter] addObserverForName:WTSReadingEnd object:_wtModel queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+        [wself.menuItemNowPlaying setHidden:YES];
+        [wself.menuItemBeforeNowPlayingLine setHidden:YES];
+    }];
 }
 @end
