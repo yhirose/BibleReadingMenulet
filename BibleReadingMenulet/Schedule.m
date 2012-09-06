@@ -7,6 +7,7 @@
 //
 
 #import "Schedule.h"
+#import "JSONKit.h"
 #import "Utility.h"
 
 @interface Schedule ()
@@ -192,7 +193,7 @@ static Schedule *_instance = nil;
 
 + (NSString *)progressPath
 {
-    return [[self scheduleDirPath] stringByAppendingPathComponent:@"progress.xml"];
+    return [[self scheduleDirPath] stringByAppendingPathComponent:@"progress.json"];
 }
 
 + (NSInteger) scheduleType
@@ -216,33 +217,34 @@ static Schedule *_instance = nil;
     return [ud stringForKey:@"SCHEDULE_DIR"];
 }
 
-+ (NSMutableDictionary *)getProgressPropertyList
++ (NSMutableDictionary *)getProgressInfo
 {
-    NSMutableDictionary *plist = [NSMutableDictionary dictionary];
-    NSString* pgPath = [self progressPath];
+    NSString* path = [self progressPath];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:pgPath]) {
-        plist = [[NSMutableDictionary dictionary] initWithContentsOfFile:pgPath];
+    
+    if ([fileManager fileExistsAtPath:path]) {
+        NSData *data = [NSData dataWithContentsOfFile:path];
+        if (data) {
+            return [data mutableObjectFromJSONData];
+        }
     }
     
-    return plist;
+    return [NSMutableDictionary dictionary];
 }
 
 + (NSMutableDictionary *)getProgress:(NSString *)type
 {
-    NSMutableDictionary *plist = [self getProgressPropertyList];
-    NSMutableDictionary *progress = [plist[type] mutableCopy];
+    NSMutableDictionary *info = [self getProgressInfo];
+    NSMutableDictionary *progress = [info[type] mutableCopy];
     return progress;
 }
 
 + (void)setProgress:(NSMutableDictionary *)progress type:(NSString *)type
 {
-    NSMutableDictionary *plist = [self getProgressPropertyList];
-    NSString* pgPath = [self progressPath];
-    
-    [plist setValue:progress forKey:type];
-    [plist writeToFile:pgPath atomically:NO];
+    NSMutableDictionary *info = [self getProgressInfo];
+    [info setValue:progress forKey:type];
+    [[info JSONData] writeToFile:[self progressPath] atomically:NO];
 }
 
 @end
