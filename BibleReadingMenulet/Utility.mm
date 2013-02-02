@@ -45,7 +45,7 @@
 + (NSString *)getContentWol:(NSString *)html
 {
     const char* str = [html UTF8String];
-    const char* pat = "<div class='document'>(.*)</div></div>";
+    const char* pat = "<div class='document'[^>]*>(.*)</p></div>";
     
     std::string content;
     
@@ -59,6 +59,7 @@
     if (!ret) {
         const auto& m1 = matches[1];
         content.assign(&str[m1.rm_so], &str[m1.rm_eo]);
+        content.append("</p></div>");
     }
     
     regfree(&re);
