@@ -25,9 +25,9 @@
 + (Schedule *)currentSchedule;
 + (void)reloadSchedule;
 
-+ (NSInteger) scheduleType;
++ (NSInteger)scheduleType;
 + (void)setScheduleType:(NSInteger)type;
-+ (NSString *) scheduleDirPath;
++ (NSString *)scheduleDirPath;
 
 + (NSMutableDictionary *)getProgress:(NSString *)type;
 + (void)setProgress:(NSMutableDictionary *)progress type:(NSString *)type;

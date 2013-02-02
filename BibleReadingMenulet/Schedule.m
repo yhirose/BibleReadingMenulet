@@ -170,8 +170,8 @@ static Schedule *_instance = nil;
 
 + (Schedule *)currentSchedule
 {
+    NSInteger type = [self scheduleType];
     if (!_instance) {
-        NSInteger type = [self scheduleType];
         _instance = [[Schedule alloc] initWithPath:[self schedulePath:type]];
     }
     return _instance;
@@ -196,7 +196,7 @@ static Schedule *_instance = nil;
     return [[self scheduleDirPath] stringByAppendingPathComponent:@"progress.json"];
 }
 
-+ (NSInteger) scheduleType
++ (NSInteger)scheduleType
 {
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
     return [ud integerForKey:@"SCHEDULE_TYPE"];
@@ -211,7 +211,7 @@ static Schedule *_instance = nil;
     [self reloadSchedule];
 }
 
-+ (NSString *) scheduleDirPath
++ (NSString *)scheduleDirPath
 {
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
     return [ud stringForKey:@"SCHEDULE_DIR"];
