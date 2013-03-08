@@ -45,7 +45,7 @@
 + (NSString *)getContentWol:(NSString *)html
 {
     const char* str = [html UTF8String];
-    const char* pat = "<div class='document'[^>]*>(.*)</p></div>";
+    const char* pat = "<div class='document[^>]*>(.*)</p></div>";
     
     std::string content;
     
